@@ -1,5 +1,9 @@
 # Home Page
 
+<p align="center">
+  <img src="https://cdn.discordapp.com/attachments/718502328625528872/953354350514815086/s9.png" width="700">
+</p>
+
 All Categories:
 * [Prologue](https://astrea49.github.io/DH-Season-9-Archive/prologue/prologue)
 * [Dorms](https://astrea49.github.io/DH-Season-9-Archive/dorms/dorms)

@@ -1,0 +1,2261 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Despair&#39;s Horizon - Aria &amp; Wolfsbane</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="921187445947650088.html_Files/a_a82f66cbaf9572e715aef752d1954a13-F33DA.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Despair&#39;s Horizon</div>
+        <div class="preamble__entry">farms / Aria &amp; Wolfsbane</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-16 23:50:02Z</span>
+
+            <div class="chatlog__message " data-message-id="921187449596678144" id="message-921187449596678144" title="Message sent: 2021-12-16 23:50:02Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He makes his way here, going back around to water the plants and vegetables. Trying to cool off some more…</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-16 23:56:49Z</span>
+
+            <div class="chatlog__message " data-message-id="921189155499831306" id="message-921189155499831306" title="Message sent: 2021-12-16 23:56:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aria in turn also enters the farm. Her eyes were left shut as she trailed the dirt pathway with the front of her heel, occasionally pushing her hand out to her side in search of any physical obstructions.
+
+The fencing was peculiar, as well as the assorted scents of natural fruits, vegetables, and grains. This... was probably not a second kitchen, to say the least.
+
+&quot;. . .&quot;
+
+Aria tilts her head to the sound of running water nearby. Perhaps a stream was here...?
+
+She doesn&#39;t comment on Wolfsbane&#39;s presence, only looking intensely in his general direction.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 00:03:19Z</span>
+
+            <div class="chatlog__message " data-message-id="921190792394076262" id="message-921190792394076262" title="Message sent: 2021-12-17 00:03:19Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He continued to do what he was doing, going down each plot with his watering can… Until he eventually stopped to look up and see Aria standing there. He would look at her for awhile, before going back to watering the vegetation.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/640cd2526a889f3a1ecaadae62311a58-FA2CC.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Despair&#39;s Horizon Bot#8265" data-user-id="861082089231482880" style="color: rgb(78,93,148)">Despair&#39;s Horizon Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 00:04:20Z</span>
+
+            <div class="chatlog__message " data-message-id="921191045256056863" id="message-921191045256056863" title="Message sent: 2021-12-17 00:04:20Z">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(217,44,67,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="Unknown">@Unknown</span>, <span class="mention" title="Unknown">@Unknown</span> got <strong>1</strong> interaction!</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 00:13:29Z</span>
+
+            <div class="chatlog__message " data-message-id="921193350097436752" id="message-921193350097436752" title="Message sent: 2021-12-17 00:13:29Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;... The water is still going...?&quot;
+
+She would mumble to herself as she slowly stepped over, intent on investigating the noise. To her, Wolfsbane was also a running tap.
+
+She bent over relatively close to the other, interested in the watering device he had.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 00:16:03Z</span>
+
+            <div class="chatlog__message " data-message-id="921193994950697040" id="message-921193994950697040" title="Message sent: 2021-12-17 00:16:03Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He continued to do what he was doing.</em> “What are you doing?” <em>He questioned, though he didn’t miss a beat when it came to watering. Conversation wasn’t the main thing he was focused on after all.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 00:23:03Z</span>
+
+            <div class="chatlog__message " data-message-id="921195758043168828" id="message-921195758043168828" title="Message sent: 2021-12-17 00:23:03Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hm...?&quot;
+
+Curiously, she tilted her head up. For a moment, Aria looked between Wolfsbane and the object in his hands before sighing.
+
+&quot;I was... checking to see what that noise was...&quot;
+
+Aria pointed to the watering can (?).</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 00:27:58Z</span>
+
+            <div class="chatlog__message " data-message-id="921196994943397928" id="message-921196994943397928" title="Message sent: 2021-12-17 00:27:58Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Hmm, I see. It’s a watering can. Pouring it over the vegetables.” <em>He says, looking down to her, before turning his focus back to watering.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 00:34:49Z</span>
+
+            <div class="chatlog__message " data-message-id="921198720333266994" id="message-921198720333266994" title="Message sent: 2021-12-17 00:34:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;A watering can... fair place to find one... I think this is a farm of sorts.&quot; She nods understandably, pleased to know that she&#39;s come across a new area. Aria stands up.
+
+&quot;Are there... anymore of those vicious plants here...?&quot; She asks.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 00:38:57Z</span>
+
+            <div class="chatlog__message " data-message-id="921199760617136128" id="message-921199760617136128" title="Message sent: 2021-12-17 00:38:57Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Yes, you’d be right. It’s a farm. It has fruits, vegetables, tools, etc. all that comes with a farm.” <em>He shrugged.</em> “I don’t know, probably not, as someone actually murdered.” <em>He wasn’t looking around much for those plants, kinda just pretending like they never even happened.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 00:41:50Z</span>
+
+            <div class="chatlog__message " data-message-id="921200482423300176" id="message-921200482423300176" title="Message sent: 2021-12-17 00:41:50Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aria freezes, now looking at the other incredulously.
+
+&quot;I&#39;m sorry... someone, did <em>what</em>?&quot;
+
+Her not noticing the announcement, as well as the flurry rush of the murder details was an oversight. Either way, she wouldn&#39;t have found out on her own.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 00:46:23Z</span>
+
+            <div class="chatlog__message " data-message-id="921201629838053397" id="message-921201629838053397" title="Message sent: 2021-12-17 00:46:23Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Oh, did you not know? Sorry to tell you, I guess, but someone killed Corr… Never met them but… No one deserves death.” <em>He sighs, stopping again. His grip got tighter on the watering can. He takes a few deep breaths, continuing once more.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 00:55:25Z</span>
+
+            <div class="chatlog__message " data-message-id="921203903431864340" id="message-921203903431864340" title="Message sent: 2021-12-17 00:55:25Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;God...&quot; Aria bit on her thumb with an uncomfortable expression. The idea that someone had the gall to hurt someone else in favor of relief is unfathomable. Dirty. Plain rude if she thought hard enough. Despite never meeting Corr a day on this island, Aria felt sour.
+
+&quot;. . . It&#39;s only been a few days. Food is still available, no island drama has broken out, hell— even those plants haven&#39;t done much to irritate us. And yet still...&quot;
+
+She huffed heavily. &quot;. . . Did you see them? Corr?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 01:00:00Z</span>
+
+            <div class="chatlog__message " data-message-id="921205055741378570" id="message-921205055741378570" title="Message sent: 2021-12-17 01:00:00Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Some people aren’t cut out for survival. And I’m not referring to Corr. Some people just can’t last. Even the most minor of inconveniences, they can’t handle it. And if given the opportunity to end it, sometimes they take it. Even if that opportunity is deadly. Not worth it in the end.” <em>He would scoff.</em> “Anyway, yeah, I saw their body…”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 01:13:39Z</span>
+
+            <div class="chatlog__message " data-message-id="921208490918281256" id="message-921208490918281256" title="Message sent: 2021-12-17 01:13:39Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I would understand if someone died at fault of the island, not its inhabitants. Corr&#39;s death was premeditated... and at the hands of someone here.&quot; She grunts.
+
+&quot;Can you... tell me what you know?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 01:47:48Z</span>
+
+            <div class="chatlog__message " data-message-id="921217086037057576" id="message-921217086037057576" title="Message sent: 2021-12-17 01:47:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He sighs again.</em> “Well…” <em>And for the sake of not just copy and pasting info, he just restates what is said in <span class="mention">#〖&#128161;〗truth-bullets</span> well going back to his task.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 02:03:17Z</span>
+
+            <div class="chatlog__message " data-message-id="921220983476613131" id="message-921220983476613131" title="Message sent: 2021-12-17 02:03:17Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aria nods as she listened attentively. <em>Corr&#39;s death was definitely pre-planned</em>, she thinks. There was a noticeable wince on her that only grew worse the more details she hears— it wasn&#39;t hard to believe that someone was capable of it all.
+
+&quot;5&#39;3 to 5&#39;7 huh...&quot;
+
+She subconsciously looked to the sounds of water hitting the soil once again.
+
+&quot;That lowers the list of suspects by a wide margin...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 02:11:12Z</span>
+
+            <div class="chatlog__message " data-message-id="921222973053091880" id="message-921222973053091880" title="Message sent: 2021-12-17 02:11:12Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Yeah, I couldn’t tell their exact height, but that’s a good guess for the range of the culprit… or at least whoever was there.” <em>He would rub a hand through his hair.</em> “But anyway… Best not to focus on that… I mean, yeah, it’s all we’ll be able to think about, but honestly all that does is stress you out, you know? We can save that for the later.”</span>
+
+                                <span class="chatlog__edited-timestamp" title="2021-12-17 02:11:33Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 02:25:08Z</span>
+
+            <div class="chatlog__message " data-message-id="921226478551728138" id="message-921226478551728138" title="Message sent: 2021-12-17 02:25:08Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You&#39;ve saved a lot of trouble. Thank you... ah...&quot; She trailed off after coming to the realization that she couldn&#39;t identify the other. Very quickly, she cleared her throat.
+
+&quot;This is all going to start again. It&#39;s a cycle, and that... <em>idiot</em> who killed Corr just set it into motion.&quot; She shook her head distastefully.
+
+&quot;Alas, you may be right. I&#39;m sure the <em>&#39;game masters&#39;</em> have something special for this occasion.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 02:35:09Z</span>
+
+            <div class="chatlog__message " data-message-id="921229001475895378" id="message-921229001475895378" title="Message sent: 2021-12-17 02:35:09Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Yeah, whatever… You’re welcome.” <em>He grumbles lightly, his tone coming across as gruff and rough.</em> “Cycle, huh? Yeah… Probably. No one is safe anymore. Though were any of us truly safe in the first place? This game was meant to get us to kill after all. And it succeeded.” <em>’Something Special.’ Yeah, that’s one way to put it…</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 02:49:28Z</span>
+
+            <div class="chatlog__message " data-message-id="921232604424982529" id="message-921232604424982529" title="Message sent: 2021-12-17 02:49:28Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She smiled slightly, not bothered.
+
+Afterward, Aria tapped her chin. &quot;That&#39;s the thing, someone fell for the motive. Had they not, the game most likely wouldn&#39;t have started— eliminating any potential danger of the participants. Excluding whatever incentives are given.&quot; She paused for a moment.
+
+&quot;It... is safe to say that, as murder really did happen. Us being in danger from the start. Whatever would it mean for the rest of us...&quot; She patted the side of her neck with a nervous sigh.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 02:56:14Z</span>
+
+            <div class="chatlog__message " data-message-id="921234308247724092" id="message-921234308247724092" title="Message sent: 2021-12-17 02:56:14Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He listens to what Aria had to say. She wasn’t wrong. The game truly started when someone killed. He sighs. Eventually, he finishes up with watering the vegetables, moving to the hut to put the watering can back.</em> “It doesn’t mean good things for the rest of us, I can tell you that. But also, don’t worry too much. Worrying won’t get you anywhere. I ain’t going to tell ya to be optimistic or anything, I sure am not. This whole thing is fucked.” <em>Some more grumbling comes from him.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 03:08:51Z</span>
+
+            <div class="chatlog__message " data-message-id="921237482958372884" id="message-921237482958372884" title="Message sent: 2021-12-17 03:08:51Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;If any, I&#39;m more paranoid than anything. If I must sleep in a hidden location to avoid being a target during the times I&#39;m alone, then so be it.&quot; She crosses her arms. &quot;Though I agree. There still must be an opportunity to rescue as much people from here as possible. If you come across any means, will you tell the rest?&quot; She tilts her head.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 03:11:38Z</span>
+
+            <div class="chatlog__message " data-message-id="921238182836715591" id="message-921238182836715591" title="Message sent: 2021-12-17 03:11:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I guess I can’t blame you. That’s one way to survive after all. Hide from the possible murderers that surround you.” <em>He would then rub the back of his head, gritting his teeth.</em> “I don’t know… Maybe… If I do find anything, doubt I will…” <em>Grumble grumble.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 03:15:52Z</span>
+
+            <div class="chatlog__message " data-message-id="921239247883755552" id="message-921239247883755552" title="Message sent: 2021-12-17 03:15:52Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She tilts to the other side with an expectant look of <em>&#39;why not?&#39;</em>
+
+&quot;Is it a moral dilemma thing...?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 03:18:29Z</span>
+
+            <div class="chatlog__message " data-message-id="921239907966533643" id="message-921239907966533643" title="Message sent: 2021-12-17 03:18:29Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“No, I… It’s trust. I don’t trust anyone. Can’t. Won’t. Sorry, just how it is.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 03:32:48Z</span>
+
+            <div class="chatlog__message " data-message-id="921243508373872710" id="message-921243508373872710" title="Message sent: 2021-12-17 03:32:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh. After this experience, it&#39;s fair for any trust between others to be... if not completely gone, much less than before.&quot; Aria was tempted to say more, however, deciding to shrug it off. Wolfsbane was his own person anyway.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 12:32:48Z</span>
+
+            <div class="chatlog__message " data-message-id="921379405014630461" id="message-921379405014630461" title="Message sent: 2021-12-17 12:32:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Yeah…” <em>He gritted his teeth, crossing his arms.</em> “Do you still have trust in others? Even after what’s happened? Even with your knowledge on the world at large?”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 14:16:24Z</span>
+
+            <div class="chatlog__message " data-message-id="921405478507020289" id="message-921405478507020289" title="Message sent: 2021-12-17 14:16:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;No...&quot; Aria shook her head confidently. &quot;And I have better reason to continue this way. Everyone else... should be affected too.&quot;
+
+Everyone else...</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 14:23:12Z</span>
+
+            <div class="chatlog__message " data-message-id="921407187610382366" id="message-921407187610382366" title="Message sent: 2021-12-17 14:23:12Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He would nod.</em> “Good. You get it. Those who still want to work together, don’t seem to understand how this game works… What’ll happen further down the line if we continue like that.” <em>He would ball up his left hand into a fist, before slamming it into the hut. He takes a few more deep breaths, causing his left hand to relax in the process.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 15:11:15Z</span>
+
+            <div class="chatlog__message " data-message-id="921419282053726208" id="message-921419282053726208" title="Message sent: 2021-12-17 15:11:15Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;They&#39;re going to get someone killed. Whether it be themselves, or people like Corr.&quot;
+
+Aria jumped slightly at the sound of something hard hitting a wall. She rubbed the side of her neck with a sigh.
+
+&quot;Staying out of trouble is probably the best way to go. Not encouraging any cliques, as well as letting any emotions get in the way of rational thought. But... having charisma is really good too.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 18:06:33Z</span>
+
+            <div class="chatlog__message " data-message-id="921463397365739540" id="message-921463397365739540" title="Message sent: 2021-12-17 18:06:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He took another deep breath.</em> “Sorry…” <em>Once he recollected himself, he nods in agreement.</em> “Yeah, you’re right. The best way to survive this is to think rationally. Emotion will only make things worse.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 19:27:04Z</span>
+
+            <div class="chatlog__message " data-message-id="921483659645706301" id="message-921483659645706301" title="Message sent: 2021-12-17 19:27:04Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Right.&quot; She nods in unison. There were many things that mustn&#39;t be left unchecked— especially now that everyone has proved to be a danger to each other.
+
+With her hands behind her back, Aria turned to the field of crops.
+
+&quot;What do you think they&#39;re going to do about the culprit? Leave them for us to handle? Set them free?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 20:23:53Z</span>
+
+            <div class="chatlog__message " data-message-id="921497957138858074" id="message-921497957138858074" title="Message sent: 2021-12-17 20:23:53Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I don’t know… We’ll just have to wait and see what happens.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 20:54:50Z</span>
+
+            <div class="chatlog__message " data-message-id="921505745407713382" id="message-921505745407713382" title="Message sent: 2021-12-17 20:54:50Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She bends down close to the ground, looking over the field. Such words were the basis of truth to her— as simple as it may be. As of now, all that can be done is to have hope for the best.
+
+&quot;Also, ah, what&#39;s your name? I wouldn&#39;t want to address you as anything else.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 23:09:44Z</span>
+
+            <div class="chatlog__message " data-message-id="921539694355955712" id="message-921539694355955712" title="Message sent: 2021-12-17 23:09:44Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Right, I’m…” <em>It felt like he www almost about to say something completely different to what he says next. Strange .</em> “Wolfsbane. I’m Wolfsbane. Ultimate Nanny. You?”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-17 23:15:08Z</span>
+
+            <div class="chatlog__message " data-message-id="921541053083943004" id="message-921541053083943004" title="Message sent: 2021-12-17 23:15:08Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Aria. Latin Dancer.&quot; She grins. &quot;Nice to meet you Wolfsbane. I&#39;m sorry that we had to meet like this, with a corpse in between.&quot; Aria shrugs afterward.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-18 00:11:21Z</span>
+
+            <div class="chatlog__message " data-message-id="921555199011749889" id="message-921555199011749889" title="Message sent: 2021-12-18 00:11:21Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Aria, got it.” <em>He grumbles slightly.</em> “No need to be sorry. This is just how it’s going to be. When meeting the rest of the group, I mean. There was already the looming threat of death beforehand anyway, so it’s not much of a change. Just that someone actually happened to die.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-18 14:00:13Z</span>
+
+            <div class="chatlog__message " data-message-id="921763792931663953" id="message-921763792931663953" title="Message sent: 2021-12-18 14:00:13Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Yeah... I can&#39;t say you&#39;re wrong. This is something I&#39;ll just have to get used to.&quot; She put her hands on her hips. There was a small era of silence from her before she pointed down at the crops in front of her.
+
+&quot;How could you tell that they needed to be watered by the way? Do you like plants?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/646964fbc0ceb9908e82fa197bf6e187-FE034.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saga#0460" data-user-id="475324575815565332" style="color: rgb(48,126,29)">Jaga Blocks</span>
+
+
+        <span class="chatlog__timestamp">2021-12-18 14:00:22Z</span>
+
+            <div class="chatlog__message " data-message-id="921763829971566602" id="message-921763829971566602" title="Message sent: 2021-12-18 14:00:22Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Apologies for the late response that time!//</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2021-12-18 14:32:18Z</span>
+
+            <div class="chatlog__message " data-message-id="921771866073489458" id="message-921771866073489458" title="Message sent: 2021-12-18 14:32:18Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((You’re good!</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-18 14:34:14Z</span>
+
+            <div class="chatlog__message " data-message-id="921772353917157476" id="message-921772353917157476" title="Message sent: 2021-12-18 14:34:14Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He rubs the back of his head.</em> “Well, actually, I’m unsure if they needed me watering them, but I did it anyway. Watering plants is just… Calming. That’s why I do it. Helps clear my head.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-18 15:15:23Z</span>
+
+            <div class="chatlog__message " data-message-id="921782708022181938" id="message-921782708022181938" title="Message sent: 2021-12-18 15:15:23Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oooh. Fascinating.&quot; She nods subtly.
+
+&quot;You must have a garden of your own somewhere, right? It&#39;s a passion... and it&#39;s always good to appreciate the efforts of those that try to keep the environment eco-friendly.&quot; She puts a hand to the side of her face.
+
+&quot;I used to like gardening. Probably not a good thing for me to pursue now.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-18 15:24:02Z</span>
+
+            <div class="chatlog__message " data-message-id="921784884840759387" id="message-921784884840759387" title="Message sent: 2021-12-18 15:24:02Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He would fall silent, grumbling slightly.</em> “I suppose I have one… Not like that matters much…” <em>He grumbles some more.</em> “But, yes, an eco-friendly environment is a good thing, that more people should be into… At least, I-uh, think so…”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/0974c3cb6800c379b5d6aeed4f6acb10-DFAB9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aria Karenina#0000" data-user-id="916833085662847106" style="">Aria Karenina</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-18 15:38:42Z</span>
+
+            <div class="chatlog__message " data-message-id="921788575631159296" id="message-921788575631159296" title="Message sent: 2021-12-18 15:38:42Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Uh, just a thing between me and you... don&#39;t trust Lester with any gardening materials. Or gardening in general. Or with any object really.&quot; She snickers.
+
+&quot;In any case, I should probably be on my way. I&#39;ve stopped you from watering these, haven&#39;t I?&quot; Aria got to her feet with a short sigh. She dusts off her clothes before giving the other a short wave.
+
+&quot;It was a pleasure meeting you Wolfsbane. Take care.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/6338a96e7751e098aa45959730957b47-DC6CE.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="916833085662847106" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-18 15:42:01Z</span>
+
+            <div class="chatlog__message " data-message-id="921789412629708911" id="message-921789412629708911" title="Message sent: 2021-12-18 15:42:01Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“no need to tell me that… At least, I don’t think I’d trust him with anything.” <em>He nods to her.</em> “Er, ok. I kinda finished watering, so you didn’t stop me from anything really. But, uh, yeah, I guess same. See you around probably. Or not.” <em>He grumbled a bit more, giving a salute goodbye.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/646964fbc0ceb9908e82fa197bf6e187-FE034.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saga#0460" data-user-id="475324575815565332" style="color: rgb(48,126,29)">Jaga Blocks</span>
+
+
+        <span class="chatlog__timestamp">2021-12-18 15:48:42Z</span>
+
+            <div class="chatlog__message " data-message-id="921791092737867806" id="message-921791092737867806" title="Message sent: 2021-12-18 15:48:42Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ty for the rp!//</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="921187445947650088.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2021-12-18 15:59:40Z</span>
+
+            <div class="chatlog__message " data-message-id="921793851511947315" id="message-921793851511947315" title="Message sent: 2021-12-18 15:59:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((Np! Thank you too!!</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 48 message(s)</div>
+</div>
+
+</body>
+
+</html>

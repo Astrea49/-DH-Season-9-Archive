@@ -1,0 +1,1478 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Despair&#39;s Horizon - Red Dread and Red Dead</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="946570321098575932.html_Files/a_a82f66cbaf9572e715aef752d1954a13-F33DA.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Despair&#39;s Horizon</div>
+        <div class="preamble__entry">crystalline-caverns / Red Dread and Red Dead</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="946570321098575932.html_Files/37790250e9e895ead7efaf1906189aa1-BA377.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="PandaPrince#0321" style="color: rgb(92,228,192)">bastard</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;946570321098575932&#39;)">
+((threads are funnier to make                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/37790250e9e895ead7efaf1906189aa1-BA377.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="PandaPrince#0321" data-user-id="339972906693951489" style="color: rgb(92,228,192)">bastard</span>
+
+
+        <span class="chatlog__timestamp">2022-02-25 00:52:47Z</span>
+
+            <div class="chatlog__message " data-message-id="946570392359804958" id="message-946570392359804958" title="Message sent: 2022-02-25 00:52:47Z">
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-02-25 00:55:26Z</span>
+
+            <div class="chatlog__message " data-message-id="946571059325456424" id="message-946571059325456424" title="Message sent: 2022-02-25 00:55:26Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((Valid</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/a91070ee2f98172cc41dcab1b0e8fc09-8CEC5.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Akuza Caleshi#0000" data-user-id="922298917775900743" style="">Akuza Caleshi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-02-25 00:57:49Z</span>
+
+            <div class="chatlog__message " data-message-id="946571659018649670" id="message-946571659018649670" title="Message sent: 2022-02-25 00:57:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Gods...Akuza had ended up walking into here. He needed to calm himself down a bit. His wounds needed rebandaging, in order to keep the bleeding to a minimum. He started to take off his coat and uniform, taking off the blood soaked bandages as well. God there were so many wounds, different type of wounds...so many places for the blood to escape from.</em> &quot;Fucking bear...&quot; <em>He begun cleaning himself up with some of the ponder water, namely just dumping water onto himself. It hurt.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/37790250e9e895ead7efaf1906189aa1-BA377.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="PandaPrince#0321" data-user-id="339972906693951489" style="color: rgb(92,228,192)">bastard</span>
+
+
+        <span class="chatlog__timestamp">2022-02-25 00:57:50Z</span>
+
+            <div class="chatlog__message " data-message-id="946571662982254593" id="message-946571662982254593" title="Message sent: 2022-02-25 00:57:50Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="&#128150; Shade &#128150;#7384">@Shade’s A Dargon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-02-25 01:45:06Z</span>
+
+            <div class="chatlog__message " data-message-id="946583556795281428" id="message-946583556795281428" title="Message sent: 2022-02-25 01:45:06Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(o.o</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-02-25 01:47:59Z</span>
+
+            <div class="chatlog__message " data-message-id="946584283957567549" id="message-946584283957567549" title="Message sent: 2022-02-25 01:47:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Hi Kev</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="946584317830783046" id="message-946584317830783046" title="Message sent: 2022-02-25 01:48:08Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(o.o to you as well</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/c5f93d1d2899712003b2642b8680a76e-30FE3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Erina Normandy#0000" data-user-id="922298917775900743" style="">Erina Normandy</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-02-25 13:07:30Z</span>
+
+            <div class="chatlog__message " data-message-id="946755288466354217" id="message-946755288466354217" title="Message sent: 2022-02-25 13:07:30Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Once again, we have our favorite cavern dweller, Erina! She was doing the normal things she does every other day: float around, look at the koi fish in the pond, check out one of the crystals, float around some more. It was a very uneventful schedule, but it at least kept some order to her day. However, that schedule was most certainly interrupted often as people came down to the caverns. Whether they remembered she was down there or not was always debatable, but most of the time when someone would come down to the caverns, she would at least have a little chat. Though, it would appear a chat would soon be occurring, or at least Erina checking up on-</em>
+
+<em>…oh. That’s a lot of blood there, Akuza.</em>
+
+<em>Well, Daisuke appeared to be right when they mentioned Akuza was bleeding quite a bit. However, she wasn’t expecting this much bleeding. Though she most likely appeared at a bad time. She also wasn’t sure how to react either <s>neither did Shade but that is another story</s> seeing how severe the bleeding was. He then mentioned the bear once again. While she could easily connect the dots, thanks to what Daisuke said about this new motive, she couldn’t help but question herself aloud.</em>
+
+“…Monokuma was the one behind all this? Or was it some other bear?” <em>She asked. Good job Erina. You’re a really detective here.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-02-25 13:07:45Z</span>
+
+            <div class="chatlog__message " data-message-id="946755350261022760" id="message-946755350261022760" title="Message sent: 2022-02-25 13:07:45Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="PandaPrince#0321">@bastard</span> hi sorry it took a bit I was trying to figure out how to respond</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="946755799470964786" id="message-946755799470964786" title="Message sent: 2022-02-25 13:09:32Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <img loading="lazy" class="emoji " alt="whothecat" title="whothecat" src="https://cdn.discordapp.com/emojis/758395135087083520.png"> <img loading="lazy" class="emoji " alt="whenthe" title="whenthe" src="https://cdn.discordapp.com/emojis/758395395428188201.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/a91070ee2f98172cc41dcab1b0e8fc09-8CEC5.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Akuza Caleshi#0000" data-user-id="922298917775900743" style="">Akuza Caleshi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-02-25 13:30:23Z</span>
+
+            <div class="chatlog__message " data-message-id="946761048080396339" id="message-946761048080396339" title="Message sent: 2022-02-25 13:30:23Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Ah...And here he thought that ghosts slept, even slightly. Still, its not like they weren&#39;t expecting for the possibility. They let out a strained chuckle, flinching slightly when the pain got to them more.</em> &quot;S-Same bear...Only zhat fucking b-bear can do somezhing like zhis to m-me after all...save for a traitorous Nanny...&quot; <em>He continues cleaning the his wounds, the blood on his torso slowly being washed away.</em>
+
+&quot;It&#39;s apart of zhe newest m-motive...It&#39;s different for m-many of us, vut it has to do v-vith our traumas...Mine is more involved vith m-my physical trauma, or razher m-my scars...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/37790250e9e895ead7efaf1906189aa1-BA377.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="PandaPrince#0321" data-user-id="339972906693951489" style="color: rgb(92,228,192)">bastard</span>
+
+
+        <span class="chatlog__timestamp">2022-02-25 13:30:24Z</span>
+
+            <div class="chatlog__message " data-message-id="946761051754622997" id="message-946761051754622997" title="Message sent: 2022-02-25 13:30:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="&#128150; Shade &#128150;#7384">@Shade’s A Dargon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/c5f93d1d2899712003b2642b8680a76e-30FE3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Erina Normandy#0000" data-user-id="922298917775900743" style="">Erina Normandy</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-02-26 02:19:14Z</span>
+
+            <div class="chatlog__message " data-message-id="946954536122216448" id="message-946954536122216448" title="Message sent: 2022-02-26 02:19:14Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Well, the debate of whether ghosts sleep or not was always up in the air. Because the dead don’t need to eat or drink, would those rules also apply to sleep? If that were the case, then perhaps old habits never die for the geologist. She was here now, completely catching Akuza off guard. Though, glad to see the two were on the same page regarding which bear was behind the wounds. It would be a bit predictable since Monokuma was- wait, traitorous Nanny?</em>
+
+“That bear is quite a threat, isn’t he? He was the one who put us in this death game, after all. Though, and I must admit, I don’t recall much about a nanny.” <em>Erina never had an interaction with Wolfsbane. <img loading="lazy" class="emoji " alt="😔" title="pensive" src="https://twemoji.maxcdn.com/2/svg/1f614.svg"></em>
+
+<em>The explanation of the motive was nothing new to Erina, seeing as a more wooden Daisuke explained it to her. Though that didn’t make the second explanation any less unsettling than the first. Though hearing the motive only made her think about what would happen if she didn’t snap under the pressure of the quota motive and she were still alive. She thought about what would happen if she had to endure this motive.</em>
+
+“I heard about the motive from one of the others. It seems like quite a stressful motive, at least compared to that quota one. Especially in your case, seeing your current condition.” <em>She made a small gesture towards all the blood.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-02-26 02:19:17Z</span>
+
+            <div class="chatlog__message " data-message-id="946954548256333874" id="message-946954548256333874" title="Message sent: 2022-02-26 02:19:17Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="PandaPrince#0321">@bastard</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/a91070ee2f98172cc41dcab1b0e8fc09-8CEC5.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Akuza Caleshi#0000" data-user-id="922298917775900743" style="">Akuza Caleshi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-02-26 11:17:55Z</span>
+
+            <div class="chatlog__message " data-message-id="947090097826840646" id="message-947090097826840646" title="Message sent: 2022-02-26 11:17:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Slowly, most of the old blood on Akuza&#39;s chest was washed away by the water. Now, only the newest blood that streamed down onto the ground remained. He took a deep breath, wanting to lean backwards onto his arms. Though his left arm was bleeding relatively heavily. Either way, this was a small respite. Even if he was still in pain.</em> &quot;I velieve zhat fact s-should have already been established vhen zhe first deaths had o-occurred...&quot; 
+
+<em>It&#39;s then that Akuza&#39;s anger gets the better of him. I don&#39;t know if Erina would be able to feel anything. I doubt it. So we&#39;re getting rid of the long part! What she would be able to see, however, would be Akuza&#39;s eyes glowing vividly. Even brighter than they ever have during all their meetings.</em> &quot;Zhat fucking traitor shut himself off. Zhough it&#39;s b-best zhat you didn&#39;t acquaint vith h-him much. Zhat bastards nozhing vut a fucking b-back stabber, and a hazard on zhis island.&quot;
+
+<em>Though the talk about the motive seems to distract him some, his eyes dimming down to the usual faint glow they&#39;d have in the dark.</em> &quot;It is...Alzough zhis i-isn&#39;t somezhing new to me, u-unfortunately...Speaking of such, I d-do apologize if I get a little...l-loud.&quot; <em>They start to pull out some fresh, new, bandages, preparing them onto the side slightly.</em> &quot;I don&#39;t e-exactly have any pain killers on me r-right now...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/37790250e9e895ead7efaf1906189aa1-BA377.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="PandaPrince#0321" data-user-id="339972906693951489" style="color: rgb(92,228,192)">bastard</span>
+
+
+        <span class="chatlog__timestamp">2022-02-26 11:17:56Z</span>
+
+            <div class="chatlog__message " data-message-id="947090101027110972" id="message-947090101027110972" title="Message sent: 2022-02-26 11:17:56Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="&#128150; Shade &#128150;#7384">@Shade’s A Dargon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/c5f93d1d2899712003b2642b8680a76e-30FE3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Erina Normandy#0000" data-user-id="922298917775900743" style="">Erina Normandy</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-02-27 00:39:53Z</span>
+
+            <div class="chatlog__message " data-message-id="947291917882900551" id="message-947291917882900551" title="Message sent: 2022-02-27 00:39:53Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She listened to Akuza’s point regarding the bear being a threat since the first two deaths. That was true, to a certain extent, although the threat level of the iconic half and half bear went a bit farther back.</em>
+
+“That is true, although I believe that was established more towards the first announcement of the game.” <em>She explained her opinion regarding the threat level of the bear.</em>
+
+<em>Erina is more apathetic when it comes to others. Of course, after death she wasn’t as out of touch with how others felt, but it was still nowhere near a point where she would be completely concerned and selfless over others. Though she was able to quickly notice how Akuza’s were a lot brighter than before.</em>
+
+“Akuza, your eyes seem to be-“ <em>She cut the sentence short, not really seeing it as a good time to bring up the sudden vividness.</em>
+
+<em>Though, the anger that followed should’ve been expected. However, Erina was a bit caught off guard when Akuza started talking about Wolfsbane. She still listened to the rant, just trying to process exactly who this person was. Of course, this was simply another punishment to the Silent. A lack of knowledge of the situation, and the lack of knowledge with how one should respond in this case, resulted in the geologist simply nodding.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="947291943841443892" id="message-947291943841443892" title="Message sent: 2022-02-27 00:39:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Erina let out a sigh of relief when Akuza’s eyes dimmed down to a more normal brightness. Though the motive talk was… less than desirable, she still couldn’t help but note how strange this motive sounded. One person could be turned into wood, and yet another person is almost on the verge of death. It was all so confusing, yet also made a bit of sense. When Akuza apologized, Erina nodded in response. While she usually wasn’t fond of loud noises, Akuza’s current state allowed plenty of reasons for it to be loud. Bandaging a lot of your own wounds while you’re nearly bleeding to death is painful.</em>
+
+“It’s quite alright. Those wounds seem quite severe,” <em>Good detective skills, Erina!</em> “and bandaging them up may take a bit of time, especially on your own. I would presume, though I have little to no medical knowledge.” <em>She slightly chuckled at herself, though it was not at all directed towards Akuza.</em> “That’s why I’m an Ultimate geologist and not an Ultimate medic, after all.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-02-27 00:40:01Z</span>
+
+            <div class="chatlog__message " data-message-id="947291953328963654" id="message-947291953328963654" title="Message sent: 2022-02-27 00:40:01Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="PandaPrince#0321">@bastard</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="947292322696134708" id="message-947292322696134708" title="Message sent: 2022-02-27 00:41:29Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Accidentally went over the limit <img loading="lazy" class="emoji " alt="pikachuswag" title="pikachuswag" src="https://cdn.discordapp.com/emojis/858198352289464360.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/37790250e9e895ead7efaf1906189aa1-BA377.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="PandaPrince#0321" data-user-id="339972906693951489" style="color: rgb(92,228,192)">bastard</span>
+
+
+        <span class="chatlog__timestamp">2022-02-28 19:29:53Z</span>
+
+            <div class="chatlog__message " data-message-id="947938682558636065" id="message-947938682558636065" title="Message sent: 2022-02-28 19:29:53Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((smelly that it auto archived and thus deleted my response</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="947938752431542312" id="message-947938752431542312" title="Message sent: 2022-02-28 19:30:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((oh wait i own the thread</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/a91070ee2f98172cc41dcab1b0e8fc09-8CEC5.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Akuza Caleshi#0000" data-user-id="922298917775900743" style="">Akuza Caleshi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-02-28 19:56:48Z</span>
+
+            <div class="chatlog__message " data-message-id="947945453922689054" id="message-947945453922689054" title="Message sent: 2022-02-28 19:56:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Vell, you&#39;re certainly right a-about zhem being severe, as vell as g-going to take time bandaging. Alzough its obvious z-zhat my vounds are quite severe, seeing how much b-blood i&#39;m spilling. Vut I don&#39;t zhink you need t-to be an Ultimate Medic to tell zhis much, after all.&quot; <em>Akuza lets out a slight, strained chuckled. Though he stops as he flinches from the pain of his wounds.</em> &quot;Truth be told, zhis is probably g-going to be zhe most pain i&#39;ll ever f-feel, since zhis is basically me forcefully r-reliving the pain all zhese vounds gave me vhen z-zhey vere still fresh.&quot;
+
+&quot;Alzough zhis a-also means zhe even vorse part of zhis comes s-soon.&quot; <em>They pick up the bandages, and start wrapping it around their bloodied up body. Once...Twice...Thrice...It started to get tighter around his body, and more painful.</em> &quot;Fuck...Megbasz...Ez &#250;gy f&#225;j, mint egy kurva...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/37790250e9e895ead7efaf1906189aa1-BA377.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="PandaPrince#0321" data-user-id="339972906693951489" style="color: rgb(92,228,192)">bastard</span>
+
+
+        <span class="chatlog__timestamp">2022-02-28 19:56:52Z</span>
+
+            <div class="chatlog__message " data-message-id="947945473380081705" id="message-947945473380081705" title="Message sent: 2022-02-28 19:56:52Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="&#128150; Shade &#128150;#7384">@Shade’s A Dargon</span> sorry bout it being short and late)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/c5f93d1d2899712003b2642b8680a76e-30FE3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Erina Normandy#0000" data-user-id="922298917775900743" style="">Erina Normandy</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-03-02 12:40:20Z</span>
+
+            <div class="chatlog__message " data-message-id="948560390818766880" id="message-948560390818766880" title="Message sent: 2022-03-02 12:40:20Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She listened to Akuza confirm both of their observations on how the wounds were severe. It would most certainly take quite a bit to have wounds inflicted to cause this much bleeding. It seemed Akuza found her Ultimate statement somewhat humorous, so that was a win in her book. An even bigger win when you remember she was never one for comedy either. The little moment of laughter soon went away as Akuza admitted about how this was probably going to be the most pain he’s been in quite some time.</em>
+
+“I would be more concerned if this was not the worst pain you’ve been through, if I were to be perfectly honest.” <em>She replied.</em>
+
+<em>She sounded a bit calm in an attempt to not cause any more stress. She really couldn’t do much else besides spectate, after all. Though perhaps her statement came a bit too soon as Akuza stated it was only getting worse from here. She watched him wrap up a few of the wounds and just watching she could tell there was quite a bit of pain. It didn’t take a genius to tell that it was painful.</em>
+
+“…Are you alright there?” <em>She questioned. While she mostly likely knew the answer, one look at the wounds said enough, she just wasn’t sure what to exactly say. Plus, moral support was never her forte.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="946570321098575932.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-03-02 12:40:23Z</span>
+
+            <div class="chatlog__message " data-message-id="948560401723969598" id="message-948560401723969598" title="Message sent: 2022-03-02 12:40:23Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="PandaPrince#0321">@bastard</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948560444807872532" id="message-948560444807872532" title="Message sent: 2022-03-02 12:40:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Sorry it took a bit!</span>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="946570321098575932.html_Files/1f44d-B3F5F.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 27 message(s)</div>
+</div>
+
+</body>
+
+</html>

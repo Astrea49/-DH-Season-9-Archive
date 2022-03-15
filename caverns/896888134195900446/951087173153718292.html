@@ -1,0 +1,1058 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Despair&#39;s Horizon - Shade wants to type one more monologue before the season ends</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="951087173153718292.html_Files/a_a82f66cbaf9572e715aef752d1954a13-F33DA.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Despair&#39;s Horizon</div>
+        <div class="preamble__entry">crystalline-caverns / Shade wants to type one more monologue before the season ends</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="951087173153718292.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-03-13 09:25:41Z</span>
+
+            <div class="chatlog__message " data-message-id="952497669970989096" id="message-952497669970989096" title="Message sent: 2022-03-13 09:25:41Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="951087173153718292.html_Files/c5f93d1d2899712003b2642b8680a76e-30FE3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Erina Normandy#0000" data-user-id="922298917775900743" style="">Erina Normandy</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-03-13 09:26:03Z</span>
+
+            <div class="chatlog__message " data-message-id="952497762929344552" id="message-952497762929344552" title="Message sent: 2022-03-13 09:26:03Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>When the crystalline caverns were first discovered, once the caverns opened up, it was one of Erina’s favorite places. The way the crystals reflected against the bioluminescent plants, alongside the koi peacefully swimming in the ponds, it was a very calming atmosphere in the geologist’s eyes. She never felt at peace in the house of war, for a rather simple reason: fear. Erina always had a fear of fire from a young age. The idea that a force of nature can easily be created to destroy was one that never sat well with the geologist. Alongside the fact, fire was something man cannot control, meaning one spark could lead a wildfire. So when her housemates found the red gem and spoke of burning everything down, of course the geologist wished to have a word against that. Luckily they weren’t the ones who went through burning the house down, though Erina was thoroughly unaware of that. Though if someone were to ever explain to her that the house had been burnt down, she would’ve assumed it was one of the housemates. She wouldn’t assume out of hostility, just from own context clues.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="952497835490807918" id="message-952497835490807918" title="Message sent: 2022-03-13 09:26:20Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>It was funny how fate spun its thread. It was funny how fear can puppeteer her life once things derailed from the ordinary. To think this all started because of a exploration going wrong. That time truly felt like forever ago, when you look at the grand scheme of things. It felt like forever that she looked over at the rest of the group at the shipyard, eager to help with research. Of course the geologist would be eager then, and even now that eagerness would still be there if time were to repeat itself. She had a passion for learning, and an ever growing curiosity. It felt like forever that she was on the boat, speaking to Sadao about how odd it was there was a telescope as large as there was on it. Why was there a telescope, anyways? A trivial question remaining unanswered. How did she act around Sadao back then? Knowing herself, she wouldn’t have been surprised if it was a reaction of anger or hostility.</em>
+
+<em>She was not the kindest person while alive, to put it lightly. Though, every action had its reasoning behind it, and Erina was no exception. She had lived a life pre planned out. “As the Ultimate Geologist, you’ll be able to help make new discoveries. And who knows, maybe you’ll be able to make a difference.” She remembered those words she told herself clearly. She had told Samuel of her own goals as an ultimate, and he seemed to agree with them. Though, he wasn’t prepared for the extent Erina took to reach her goals. It was funny how one person’s words could change someone as much as hearing what Erina had heard.</em>
+
+<em>”Ultimates are special. They are the best of the best for a reason. That’s why they have to be flawless. After all, aren’t they always one mistake away from losing their title? What’s stopping the Penultimate from taking over the title of Ultimate? That would surely be sad for the Ultimate, now wouldn’t it?”</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="952497910115876864" id="message-952497910115876864" title="Message sent: 2022-03-13 09:26:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>The words which threw her on track to a self-destructing prophecy. The change was quite fast, something neither her family or Samuel could’ve predicted. Erina was honored to hold the title of Ultimate, so she did everything in her power to make sure that title remained. Dreams and Fantasy soon faded away, leaving nothing but a grounded reality in its place. Samuel, of course, never wanted his friend to suffer the fate of losing herself to the title. To try and remind Erina she was still only human and not built upon her title, he would do random acts to give Erina a bit of a break. Whether going to the movies or to stop and get an ice cream with her, he did whatever he could just to give the exhausted geologist a break. However, what one may see as a kind gesture, the other easily saw as a sabotage of her plan. As the viewpoints began to differ, she could feel the distance between her and Sam. Once friends who once met over a group project, now slowly drifting apart. Fear of failure and losing her title became her only drive, and she would remind herself of what was said to her. Those words quickly took control of her, and it was like a seed was implanted in her head. A seed which quickly fell into vines, holding her back from her true potential, and what was restricting her from being the girl who was simply curious for the reason of simply wanting to see how the world works.</em>
+
+<em>The killing game was a break away from the seeds of her ever growing expectations.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="952497986003410964" id="message-952497986003410964" title="Message sent: 2022-03-13 09:26:56Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>The announcement of the game was a twisted turn of events, one nobody would ever want to tread upon. After all, who would be satisfied to hear about being trapped in a place where logic was no more, and each participant was forced into a “kill or be killed” mentality? Of course, no one would immediately wish to be put in a scenario such as this. Though there are some exceptions, Erina was not one of those. She did not speak to many of the others caught in the web of the game while alive. That didn’t mean she remained silent, and if anything that was the opposite.</em>
+
+  <em>Starting with meeting Wynona, the Ultimate  Nephologist. The location of where the two first spoke felt like a sort of unsettling prophecy to the geologist. After all, they did speak in front of the large campfire the jungle had to offer, so as a result Erina was a bit more on edge than usual. Though the discussion left her with more questions than answers, especially regarding the “Cloud Witch”. Upon first hearing of this Witch, Erina had her doubts about such a thing, yet still found herself looking up at the sky long after the mention of it. What started as Erina looking for the cloud witch in the sky ended with her looking up at the clouds for the simple reason of catching up on how much she missed. With a life focused on up keeping her title, she had forgotten about the little things in life, such as how blue the sky was, or how the clouds always tend to pass by, changing shape as they do so. Even after death, which that day felt so long gone now, Wynona came to chat, something which Erina was grateful for. The caverns could easily become lonely.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="952498122964209734" id="message-952498122964209734" title="Message sent: 2022-03-13 09:27:29Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Akuza, the Ultimate Medic, was the second one she spoke to, and was the first person she made an alliance with. She wasn’t expecting to have a conversation that night, especially in a place like this. She established an alliance and Erina was under the impression it would be nothing more than that. If Akuza found anything weird which was under her field of study, she told him she would try her best to aid with such a thing. It was only after her fated demise did she realize how perhaps alliance was never the right term. It wouldn’t take a genius to notice she had opened herself to others more after death after realizing how much she missed in life. With Akuza, it could be apparent how she was able to have a more casual conversation compared to something more ultimate based. She never realized how foreign, yet enjoyable, a casual talk could be. Akuza helped her realize that, whether he would ever be aware of such a thing or not.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="952498140538355812" id="message-952498140538355812" title="Message sent: 2022-03-13 09:27:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Lucian, the Ultimate Foreign Prince, was the third she had spoken to on a larger scale than a simple hello, or an expression of disapproval, and another person she had hoped to keep some sort of alliance. He came to the war house with a simple offer: an invitation to the group meal to hopefully peacefully discuss how to escape the island without any killing. It was funny how quickly an idea such as this no longer works. It only took one vial of poison before peace was no more. Though these were times before the paralyzing plant-filled motive came to be. Lucian was one who, in his own way, was able to quickly expose the flaws of her own ways of thinking. It was never in a manipulative manner, more of a warning on how her mindset could get the better of her. And those words would ring true, as we saw the story unfold. But she recalled the conversations with the prince, and he even lent a hand during the motive which eventually got the better of her. She never knew the fate he received, but perhaps things were better left in that way.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="952498212915265616" id="message-952498212915265616" title="Message sent: 2022-03-13 09:27:50Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>It wouldn’t have taken long, however, until the spider of this game spun its web, capturing the first two victims. In retrospect, she should have seen this event happening. Monokuma had foreshadowed the demise of the game since the beginning, but something inside her felt that maybe those words were only spun out of lies, and she had hoped the others had more logic to not believe in a lie such as these. However, death’s reign never came to an end, and the first two victims travelled on to a moment beyond life.</em>
+
+<em>A wish to survive, A wish to not fall once more. The tides quickly turned against the geologist with the second motive. Each individual had made a promise to not fall victim to the game, something even Erina did herself. However, promises were meant to eventually fade, and that was what happened with Erina. It could’ve been the blame of the motive’s punishment, or it could have been her own demise falling upon her. She remembered writing a short note, like an ultimatum of sorts, but throwing it out. Whatever happened to that note was a mystery left to herself as she continued her plan. However, the best laid schemes of mice and men often go awry, and walking into the volcanic cavity was the action which sealed both the Ultimate Geologist and Ultimate Business Person’s fates. She remembered falling into the boiling lava, struggling to get out…</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="952498281223688212" id="message-952498281223688212" title="Message sent: 2022-03-13 09:28:06Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>…then she remembered awaking in the crystalline caverns. How she got from the volcanic cavity to the caverns was something she never wrapped her head around. Was it like some sort of ethereal puppeteer which led her to the caverns once more? Or did the events play out where while she was in the darkness of death she entered through the cavity but exited through one of the ponds? How she arrived there was left to the imagination of each individual. Although the caverns provided a moment of peace for her, something she didn’t have much in the jungle while alive: a moment where there was no fear, no feeling of failure, just peace and serenity. And that truly showed in her subtle change of demeanor. After all, death gave her time to think, and time to change. From Tamotsu’s brief visit showing her that there was more to learn even after death, especially with her ghostly state, to Lester’s talk about plans for how Dr. Who could save the planet from robots, Katsuro offering to have a picnic to keep her company, attempting to explain to Jericho how he was not insane by seeing her, even Momoka offering a small game to play to pass time, Erina had found herself opening up to the others more and more, learning it was okay to have more to life than her talent.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="952498342250823690" id="message-952498342250823690" title="Message sent: 2022-03-13 09:28:21Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Even a couple of her roommates in the war house stopped to visit. Misaki and Daisuke were the two she recalled visiting to chat. She was grateful those two would show their faces around the cavern, especially since in the grand scheme of things, her actions of stopping the motive were never an act of selfishness to escape, but out of a desperate attempt to make sure they didn’t walk down the path she walked upon. She had quite a heartfelt discussion with Misaki regarding that topic of Erina’s demise, which showed Erina that maybe there were people in a situation like her own, desperate to uphold expectations they began to throw themselves away. One regret Erina did have was that she never had a discussion with the Otamatone player, who was revealed to be the Ultimate Private Investigator, regarding music. Music played a big part in the geologist’s life, despite popular assumption. One of her favorite hobbies would be to play the piano, as Samuel would recommend her silly songs to play. However, she remembered always leaning back on the same song to play, which even thinking of its tune now brings back the bittersweet pain of the simpler times before the stress of the killing game, and before the stress of her title. Playing the Piano was one of the last things the geologist left behind before fully losing herself to her title. It was simply a part of her she was never able to let go.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="952498386651717682" id="message-952498386651717682" title="Message sent: 2022-03-13 09:28:31Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Unlike the Solemn talks with Misaki, Erina’s talks with Daisuke were more lighthearted. It was certainly a change of pace, looking upon the grand scheme of things. She was able to open up to a point where casual conversation, while never to a natural degree, became easier on the geologist. From wooden puppets to giant eels, a conversation with Daisuke went in a variety of paths, always causing a new twist or turn. She even went down a darkened path she would never mention under any circumstances: love life. She was always one who pushed the idea of romance aside in favor of, well that was no surprise. Though speaking of simple ideas like a cafe date with the girl of her dreams was fun for the geologist to fantasize, even though in the end she was no longer as respected as she once was.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="952498436295516200" id="message-952498436295516200" title="Message sent: 2022-03-13 09:28:43Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>The crystalline caverns still shone as bright as ever. The bioluminescent plants scattered amongst the crystals give light to a rainbow of serenity. The koi would swim in the same ponds as usual, their odd colors only enhancing the beauty of a place such as this. And then, there was Erina, sitting on one of the higher up crystals, looking down at the caverns. More of a hover, if anything, since her ghostly state did not allow her to properly sit. She would have never been able to reach a place such as this while alive, nor had she tried to approach this spot as a ghost. Floating around had taken her some time to get used to, but with time she grew more accustomed to being a ghost. Floating had become more common for her not to fit the role of being dead, but because she finally felt free. She wasn’t bound to the laws of gravity, the ground couldn’t hold her any longer, and even the fictional vines of her own mentality which once bound her down could not touch her anymore. While she was still in the cage of the crystalline caverns, she still had a bit of freedom.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="952498832464302090" id="message-952498832464302090" title="Message sent: 2022-03-13 09:30:18Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>To say she didn’t miss her old life would be a lie. She still regrets the path she took to her demise. Maybe if she could have learned earlier, this fate could have been avoided. To be dead for so long, and yet still find ways to grow and change as a person. The lessons were ones she could have learned while she was alive, but her story was never written in such a fashion. She got up from the crystal she was atop of and landed back onto the ground. She wandered over to the pond, and sat down. It had been a bit quiet in the caverns, and it seemed no one else was going to enter them. That only meant one thing; everyone had found a way to leave the island. Or, that is what she had hoped. She had her doubts and couldn’t believe it fully, but she tried to remain optimistic in this case. She sat in a spot she had sat many times. The caverns have changed so much, and yet not at all, especially from sitting at this spot.Once with Lucian, once with Misaki, once with Akuza, Once with Wynona, Once with Momoka, Once with Katsuro, Once with Lester, Once with Jericho, Once with Daisuke, and now she sat alone.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="952498878190608384" id="message-952498878190608384" title="Message sent: 2022-03-13 09:30:29Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>However, she didn’t seem sad, or at least did a fantastic job of not showing it. She seemed at peace as she looked around the caverns which had become her home. She was a part of the crystalline caverns, in a way. She looked into her reflection in the pond, like she had time and time again. Crystal clear water, crystal clear self. She looked for a few minutes, smiling at her own reflection, before finally fading away, blending into the background once more. She was a ghost after all, which meant she could become invisible. If there happened to be a soul that ventured down here once more, she would greet them, like she had the times before. “Greetings. Welcome to the House of War.” “Greetings, Welcome to the Crystalline Caverns.” The ghost which haunted the caverns would be here, waiting until the day whatever force would outstretch her hand, guiding her into a peaceful afterlife.</em>
+
+<em>With the crystalline curtains now coming to a close, the story of Erina Normandy, Ultimate Geologist, can finally come to an end.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="951087173153718292.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-03-13 09:30:43Z</span>
+
+            <div class="chatlog__message " data-message-id="952498937628082266" id="message-952498937628082266" title="Message sent: 2022-03-13 09:30:43Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Final Monologue: complete.</div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="951087173153718292.html_Files/598dcdbf4d1e5aa8301c2204ccadc8f0-95DF9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(52,152,219)">joi ⸝⸝ jwerty</span>
+
+
+        <span class="chatlog__timestamp">2022-03-13 15:49:16Z</span>
+
+            <div class="chatlog__message " data-message-id="952594204092141699" id="message-952594204092141699" title="Message sent: 2022-03-13 15:49:16Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(WAAAAAAAAAAAAAAAAAAAAAAAAH..)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="952594216490528838" id="message-952594216490528838" title="Message sent: 2022-03-13 15:49:19Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(ERINA... ERINAA...)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="951087173153718292.html_Files/0-EB806.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Some test bot#5280" data-user-id="498586715179581470" style="">Some test bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-03-15 17:26:50Z</span>
+
+            <div class="chatlog__message " data-message-id="953343533106987108" id="message-953343533106987108" title="Message sent: 2022-03-15 17:26:50Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Added a recipient.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 18 message(s)</div>
+</div>
+
+</body>
+
+</html>

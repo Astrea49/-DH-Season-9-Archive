@@ -1,0 +1,2083 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Despair&#39;s Horizon - at-the-end-of-time</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="934264512159313980.html_Files/a_a82f66cbaf9572e715aef752d1954a13-F33DA.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Despair&#39;s Horizon</div>
+        <div class="preamble__entry">♧ - ❀『The Palace (KG)』❀ - ♧ / at-the-end-of-time</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-22 01:54:46Z</span>
+
+            <div class="chatlog__message " data-message-id="934264800207339550" id="message-934264800207339550" title="Message sent: 2022-01-22 01:54:46Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>The end of time... Beyond despair.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/5a8266653aafffec376d5ae7f85570d3-B28CB.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="935697004238082048" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-26 00:45:50Z</span>
+
+            <div class="chatlog__message " data-message-id="935697007081820181" id="message-935697007081820181" title="Message sent: 2022-01-26 00:45:50Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>One may be confused why the giant locked door at the bottom of the underwater castle opened for them but nobody else. But Lester knew why. He knew exactly why.</em>
+
+<em>Be it curiosity, or that inability to control himself, Lester came to the End of Time, unbeknownst to any other participants. What awaits him there? Perhaps more internal suffering. Or a giant stack of treasure, that would be pretty sick too.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <span class="chatlog__reference-unknown">
+                    Original message was deleted or could not be loaded.
+                </span>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 01:25:14Z</span>
+
+            <div class="chatlog__message " data-message-id="935706921124634634" id="message-935706921124634634" title="Message sent: 2022-01-26 01:25:14Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>Although being hidden in an underwater castle, the cavern past this door was dry as a bone. There wasn&#39;t anything that would hint otherwise- which was strange. It mirrored the thick jungle that Lester had gotten used to, thick vines and other plantlife covering the walls. Though it was much more cramped than the jungle. The already chunky greenery paired with the claustrophobic tunnel walls made the place quite uncomfortable to be in.</em>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>But the tunnel seemed to lead <u>somewhere.</u> Off in the distance was the void, promises of mystery and adventure on the other side. Though with every step Lester took, the tighter the walls seemed to be. Like the leaves were threatening to swallow him whole.</em>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>Thankfully, that all came to an end soon. Met with a wall of sorts, a curtain of Ivy. but there seemed to be some sort of light peeking through the other side. Seems like a treasure just waiting to be collected.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/5a8266653aafffec376d5ae7f85570d3-B28CB.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="935697004238082048" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-26 01:38:58Z</span>
+
+            <div class="chatlog__message " data-message-id="935710376304181288" id="message-935710376304181288" title="Message sent: 2022-01-26 01:38:58Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Eugh. This place truly gave him the heebie jeebies, and this is a guy who&#39;s seen some really creepy places in his day.</em>
+
+<em>Yet, he pressed on, traversing deeper into the clashing of jungle greenery and claustrophobic dungeon, reaching the wall of ivy. Hmmm...Something shiny. That probably isn&#39;t anything good, in this place, but he is a young man driven by his own greed. He tries to move in to get a closer look at what it is in there.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <span class="chatlog__reference-unknown">
+                    Original message was deleted or could not be loaded.
+                </span>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 04:21:28Z</span>
+
+            <div class="chatlog__message " data-message-id="935751270776582144" id="message-935751270776582144" title="Message sent: 2022-01-26 04:21:28Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>For something that promised light on the other side... the cave wasn&#39;t very bright.</em>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>It was nothing fancy, just a jungle cavern matching the ambiance of the tunnel. Vines and leaves everywhere, the darkness in the room making it somehow seem an even tighter fit than the tunnel Lester was just once in. But how could he focus on that when the treasure Lester sought out was right in front of him? Whatever it was, it held a bright blue glow. Swirling with melancholy and anger both. Well- now that his eyes were adjusted to the light, Lester could make out what it was that was glowing.</em>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content">(evry yucky/graphic description of a dead body warning)
+<span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)">It was.. October. or Oda, now. Or her corpse, more accurately. For someone so set on respecting the dead, her body was sure not respected. Sai&#39;s &quot;autopsy&quot; left a literal hole in her chest, taking the organs with her. Now there was nothing but a cavity, Bones and other viscera visible. Oda still had the bruises and batters from the fight causing her death, splotches of blood pooling and bruises creeping across whatever visible skin there was. Her blue eyes were empty and sunken. There was no doubt this poor kid died, only because the weight of the killing game got too much for her.</span>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)">But there was something... <em>strange</em> about this situation. a tendon of sorts hanging down and curling around a ragged blue gem. It&#39;s where the glow was radiating from, emitting the same aura. And some of that light brought a hint of life to Oda&#39;s eyes. Although dead, the anger inside the island brought him back to life.</span>
+</div></div>
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+Upon seeing Lester, Oda&#39;s head sagged to the side. Staring at the salesman with a dead stare, a gauntness still evident. She was alive, for sure. But there was something different about this Oda. This Oda was driven more by the <em>despair</em> that drove the island. 
+She mumbled out a couple raspy words, every breath swaying the tendril dangling from her chest.
+
+&quot;whaa- whayy are yy-ouu heeree?&quot;
+The fact that the island was still able to bring her back to life in this state was a miracle. 
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-26 04:22:03Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/5a8266653aafffec376d5ae7f85570d3-B28CB.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="935697004238082048" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-26 04:31:02Z</span>
+
+            <div class="chatlog__message " data-message-id="935753678290317362" id="message-935753678290317362" title="Message sent: 2022-01-26 04:31:02Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>What.</em>
+
+<em>That&#39;s really all he could think of. What the fuck is he seeing, that&#39;s the thought that immediately rushes through his head. Was this the damn island&#39;s doing?! It must be-but why? Could October...?</em>
+
+<em>Completely startled, Lester falls flat on his ass. Nothing dignified about it, the boy is scared shitless.</em>
+
+&#39;&#39;W-W-W-How-What the fuck?! Why are you not dead as shit is what I want to know!&#39;&#39;
+
+<em>There&#39;s still a little bit of the real Lester, in there. October could tell from the very real confusion and fear in his eyes.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <span class="chatlog__reference-unknown">
+                    Original message was deleted or could not be loaded.
+                </span>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 04:33:56Z</span>
+
+            <div class="chatlog__message " data-message-id="935754406761230396" id="message-935754406761230396" title="Message sent: 2022-01-26 04:33:56Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+Sadly, there was very little October left in this husk of Oda. He blinked slowly, watching Lester with an unwavering gaze.
+&quot;Iiiit.. Brought me back. The iessslaan-dd.&quot; 
+
+And uh.. Lester. She <em>is</em> dead as shit. 
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/5a8266653aafffec376d5ae7f85570d3-B28CB.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="935697004238082048" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-26 04:37:48Z</span>
+
+            <div class="chatlog__message " data-message-id="935755382884823120" id="message-935755382884823120" title="Message sent: 2022-01-26 04:37:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;The island-this island-this FUCKING island...&#39;&#39;
+
+<em>He clutches his head. God, fuck, it makes sense to him now. Too much sense. It&#39;s almost as if the island is helping him make sense of itself.</em>
+
+&#39;&#39;Jesus Fuck I think i&#39;d rather stay dead if that was the alternative....Why the fuck would it do that....Did it get you too?&#39;&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <span class="chatlog__reference-unknown">
+                    Original message was deleted or could not be loaded.
+                </span>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 17:45:35Z</span>
+
+            <div class="chatlog__message " data-message-id="935953633458130945" id="message-935953633458130945" title="Message sent: 2022-01-26 17:45:35Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Oda rocked her head back and forth, signaling a nod.
+“yea. It ta-akled to me. a lot. I-It nev-urh told me the-re was a se-sec-ond oneee.” 
+
+Although her eyes stayed glazed, there was a hint of determination in there that couldn’t be found anywhere else. Anger. The kind that fueled this island. The gem glowed a bit brighter.
+“I c-aan-t diee. Y-yet. I h-have a job to d-do.” The composer swung his head to the other side. “Or. if you-rrr say-iing whaat. i think. <strong><u>We</u></strong> have a jo-ob.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 20:13:11Z</span>
+
+            <div class="chatlog__message " data-message-id="935990779657195531" id="message-935990779657195531" title="Message sent: 2022-01-26 20:13:11Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Lest &lt;&#39;&#39;Me neither...God dammit-&#39;&#39;
+
+<em>A job to do? No-He doesn&#39;t want to do this island&#39;s fucking bidding, but-But-</em>
+
+&#39;&#39;I know. Spread as much despair as we can, all across this god-forsaken shithole of a planet! Starting with these jackasses with &#39;&#39;talents&#39;&#39;!&#39;&#39; <em>He felt as though his words weren&#39;t his own, but they were at the same time? He&#39;s confused..This island took his family away, w-why does he feel so compelled to obey it?</em>&gt;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="935992241703514143" id="message-935992241703514143" title="Message sent: 2022-01-26 20:19:00Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(tupper you good bro?)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="934264512159313980.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Blastoise#8799" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;935990779657195531&#39;)">
+Lest &lt;&#39;&#39;Me neither...God dammit-&#39;&#39;
+
+<em>A job to do? No-He doesn&#39;t want to do this island&#39;s fucking bidding, but-But-</em>
+
+&#39;&#39;I know. Spread as much despair as we can, all across this god-forsaken shithole of a planet! Starting with these jackasses with &#39;&#39;talents&#39;&#39;!&#39;&#39; <em>He felt as though his words weren&#39;t his own, but they were at the same time? He&#39;s confused..This island took his family away, w-why does he feel so compelled to obey it?</em>&gt;                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 22:56:20Z</span>
+
+            <div class="chatlog__message " data-message-id="936031837841682432" id="message-936031837841682432" title="Message sent: 2022-01-26 22:56:20Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+Watching Lester, October seemed to respond to none of his actions. He was scared, she knew that. But he didn&#39;t seem to understand.
+&quot;Youu knnowwww. Itssss on-leee for the pee-pole who des-erve it. These jack-asses g-got my f-fuck-ing f-family kil-led. Prollub-bee yours, too. If you like them at least. I didnnn cOme here to- to waaa-chchhh more people dIE in front of me.&quot; 
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/5a8266653aafffec376d5ae7f85570d3-B28CB.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="935697004238082048" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-26 23:12:29Z</span>
+
+            <div class="chatlog__message " data-message-id="936035902587814011" id="message-936035902587814011" title="Message sent: 2022-01-26 23:12:29Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;Yeah, same here. Each and every one of them can eat a bag of shit, for all I care. And, well, there&#39;s a lot of people who deserve it. Oh, oh so many fucking people...Every doctor who charges tons of money to let you live, every asshole landlord demanding rent from people who don&#39;t have it, every fatass businessman who hoards it all for themselves!&#39;&#39;
+
+<em>Wrath and Greed, the deadly combination that made him ripe for the picking.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <span class="chatlog__reference-unknown">
+                    Original message was deleted or could not be loaded.
+                </span>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-02-06 05:47:37Z</span>
+
+            <div class="chatlog__message " data-message-id="939759217110286397" id="message-939759217110286397" title="Message sent: 2022-02-06 05:47:37Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+The anger starting to spread through Lester- the <em>wrath</em> he was displaying, it was refreshing. <em>The two were finally on the same page, huh? Guess that meant shit could finally go down. Just as planned.</em>
+
+Oda responded with a slow nod, the air hissing in and out of his lungs being the only sound lingering in the air at the moment. The breaths she took were twinged with that same wrath Lester held.
+&quot;Yy-eessss-. JJuu-stt imag-ginne the swee-t-tt-ness ovvvf payback. Don&#39;t youu want to give th-them whaat theyyyy dess--errvee??&quot; 
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+
+SO SORRY FOR LATE RESPONSE MY RP MOTIVATION LITERALLY TANKED SO BAD</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/5a8266653aafffec376d5ae7f85570d3-B28CB.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="935697004238082048" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-02-06 06:31:13Z</span>
+
+            <div class="chatlog__message " data-message-id="939770189740904508" id="message-939770189740904508" title="Message sent: 2022-02-06 06:31:13Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>It would seem so. His own feelings of resentment and anger were exacerbated by this infection, leaving himself a mere puppet of it. Whatever bits of affection he had for the others-even people like Wave and Sai-were repressed.</em>
+
+&#39;&#39;....Yes. I do. All of them. Daisuke, Sadao, Maximina, all the rest of them, I want to stamp out any little bit of hope, or happiness, or peace they have! I want them all to know what REAL suffering is! For once, I want everyone else to wallow in poverty and famine while <strong>I</strong> hoard all the damn wealth!&#39;&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <span class="chatlog__reference-unknown">
+                    Original message was deleted or could not be loaded.
+                </span>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-02-07 02:08:42Z</span>
+
+            <div class="chatlog__message " data-message-id="940066515074580560" id="message-940066515074580560" title="Message sent: 2022-02-07 02:08:42Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+The infection... What a wonderful thing. One that has taken these two and turned them into marionettes, carrying out despair to its greatest potential.
+
+Another nod came from the zombified Oda, a small smirk spreading across his face. He sunk to the floor, sitting in a heap. The bright blue gem inside his chest glowing brighter than ever.
+
+&quot;Agree-eed. All of themm. They need to s-s-ssssufff-ferr. Ssooooo.&quot; His head tilted to the side. &quot;What fffirssssstt?&quot; 
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/5a8266653aafffec376d5ae7f85570d3-B28CB.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="935697004238082048" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-02-07 03:11:55Z</span>
+
+            <div class="chatlog__message " data-message-id="940082422513545276" id="message-940082422513545276" title="Message sent: 2022-02-07 03:11:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;Good question!&#39;&#39;
+
+<em>He secretly hoped Odell had the answer.</em>
+
+&#39;&#39;I guess the first order of business is continue the killing game, keep them all here until half of them are dead and the ones left have nothing left to hope for!&#39;&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-02-07 03:11:57Z</span>
+
+            <div class="chatlog__message " data-message-id="940082431455809546" id="message-940082431455809546" title="Message sent: 2022-02-07 03:11:57Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@↳ ❝ [JurdsjandJhey] &#161;! ❞</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-02-07 03:50:19Z</span>
+
+            <div class="chatlog__message " data-message-id="940092085778931753" id="message-940092085778931753" title="Message sent: 2022-02-07 03:50:19Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(i love you two /p</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-02-07 04:06:28Z</span>
+
+            <div class="chatlog__message " data-message-id="940096151598809108" id="message-940096151598809108" title="Message sent: 2022-02-07 04:06:28Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((SHFHJFS</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="934264512159313980.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Blastoise#8799" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;940082431455809546&#39;)">
+<span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@↳ ❝ [JurdsjandJhey] &#161;! ❞</span>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-02-07 04:11:19Z</span>
+
+            <div class="chatlog__message " data-message-id="940097370618748948" id="message-940097370618748948" title="Message sent: 2022-02-07 04:11:19Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+Odell having the answer? Hell no. An already dumbass idiot who is now a zombie? No. There is not a single thought in this head. 
+
+Struggling, he pulled his legs into criss-cross apple sauce. Being a zombie and doing criss-cross apple sauce? An almost unachievable endeavor. Thank god Oda conquered something like this. 
+&quot;yaaa.hh.. butt.&quot; he paused for a moment, a wheezing laugh rattling around his lungs. Even the gem swayed at this husky chuckle. &quot;butt. I said butt. ha-aha. Howww would we do that? tho-ooughh..??&quot; 
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-02-07 04:12:56Z</span>
+
+            <div class="chatlog__message " data-message-id="940097777474621480" id="message-940097777474621480" title="Message sent: 2022-02-07 04:12:56Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(remember the goal of spreading the infection past the boundaries of the island</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-02-07 04:26:00Z</span>
+
+            <div class="chatlog__message " data-message-id="940101066660401222" id="message-940101066660401222" title="Message sent: 2022-02-07 04:26:00Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((im getting there</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/5a8266653aafffec376d5ae7f85570d3-B28CB.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="935697004238082048" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-02-07 04:29:07Z</span>
+
+            <div class="chatlog__message " data-message-id="940101849657253909" id="message-940101849657253909" title="Message sent: 2022-02-07 04:29:07Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;<em>Blink. Dying and being overtaken by the island curse doesn&#39;t change much, apparently.</em>
+
+&#39;&#39;You&#39;re a comedian. I&#39;ll tell you how, though. Sabotage. Any time they get even remotely close to finding a way out, I&#39;ll fuck it up somehow. Beyond that, I think there&#39;s a magical barrier of some sort around the island. Nothing getting past that.&#39;&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-02-07 04:29:11Z</span>
+
+            <div class="chatlog__message " data-message-id="940101865960525884" id="message-940101865960525884" title="Message sent: 2022-02-07 04:29:11Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@↳ ❝ [JurdsjandJhey] &#161;! ❞</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-02-07 04:31:36Z</span>
+
+            <div class="chatlog__message " data-message-id="940102476374347786" id="message-940102476374347786" title="Message sent: 2022-02-07 04:31:36Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(time barrier</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="934264512159313980.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Blastoise#8799" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;940101865960525884&#39;)">
+<span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@↳ ❝ [JurdsjandJhey] &#161;! ❞</span>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-02-07 04:46:07Z</span>
+
+            <div class="chatlog__message " data-message-id="940106130640740392" id="message-940106130640740392" title="Message sent: 2022-02-07 04:46:07Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+Oda seemed pleased with that prospect. It always worked at keeping people from winning card games, so why not here? He tried to grab onto his hood and pull it up, but that was very unsuccessful. He kept.. missing the hood, or pulling it up at the wrong angle or something that a zombie would do with their hood. Whatever. He got frustrated, and ended up leaving it.
+
+&quot;Yeea.h... but whaaatt iffff they get cloossse to . to hurt-ing you-u?&quot; You cannttt die toooo. It hurttssssssss.&quot; Oda was definitely getting better at speaking the more time went on. Not because I can&#39;t be assed to type like this all the time, noooo.
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/5a8266653aafffec376d5ae7f85570d3-B28CB.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="935697004238082048" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-02-07 04:49:56Z</span>
+
+            <div class="chatlog__message " data-message-id="940107089727066122" id="message-940107089727066122" title="Message sent: 2022-02-07 04:49:56Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;They don&#39;t suspect a thing about me, as far as I know. I mean, some of them don&#39;t like me, but they&#39;re not about to kill me and risk the trial. I just have to keep shit secret, which, well, that&#39;s kinda my job. I&#39;m a conman, a liar. I think I could play saboteur pretty well, if I do say so myself. &#39;&#39;
+
+<em>Was he correct, or is his ego getting out of check again?</em>
+
+&#39;&#39;Also, that little brat Wave likes me too much, and practically everyone worships him like a damn God. Long as i&#39;m good with him, nobody&#39;s doing shit to me.&#39;&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <span class="chatlog__reference-unknown">
+                    Original message was deleted or could not be loaded.
+                </span>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-02-09 22:10:48Z</span>
+
+            <div class="chatlog__message " data-message-id="941093806902763591" id="message-941093806902763591" title="Message sent: 2022-02-09 22:10:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+A familiar feeling bubbled up inside the composer. One that felt all to familiar, laced with vague melancholic memories of the past. She couldn&#39;t quite remember what it was tied to, but she knew it was something she had felt before.
+
+&quot;Heeeyyy- Lemm-mee lem-me help! I.. I can do something.. I think... Wh-whatt-eevv--er I-&#39;ll think of some-thing. But.&quot; For a zombie, she had a strange amount of emotion in her eyes. 
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/5a8266653aafffec376d5ae7f85570d3-B28CB.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="935697004238082048" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-02-10 01:25:07Z</span>
+
+            <div class="chatlog__message " data-message-id="941142710427983912" id="message-941142710427983912" title="Message sent: 2022-02-10 01:25:07Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Hey, I’ll take any help I can get, trust me. I just dunno...”
+
+<em>he raised an eyebrow.</em> “I think you’d attract a little attention, you know? What can you do?”
+
+<em>Hes not being mean, he’s genuine intrigued.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <span class="chatlog__reference-unknown">
+                    Original message was deleted or could not be loaded.
+                </span>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-02-10 02:27:24Z</span>
+
+            <div class="chatlog__message " data-message-id="941158383413784647" id="message-941158383413784647" title="Message sent: 2022-02-10 02:27:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+Oda paused, thinking for a few seconds as her zombie brain got moving. How.. How exactly would she help? No idea. Uh,... time to think.
+
+&quot;Well.....? Maayy-beeee. Get stuff. In the bah-guh-round. As long asssss I can.. not be seen?? I can still see the.. or hear. Hear the stuff. the Ise-lahnd. You knowww??&quot;
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/5a8266653aafffec376d5ae7f85570d3-B28CB.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="935697004238082048" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-02-10 04:14:07Z</span>
+
+            <div class="chatlog__message " data-message-id="941185240670568478" id="message-941185240670568478" title="Message sent: 2022-02-10 04:14:07Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I...Think I get it?”
+<em>He’s not sure to be glad or worried he understands the undead zombie.</em>
+“That could work though. Steal their shit, make em more miserable...I like the sound of that.”
+
+“We know the end goal of it all, right?”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <span class="chatlog__reference-unknown">
+                    Original message was deleted or could not be loaded.
+                </span>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-03-01 01:16:12Z</span>
+
+            <div class="chatlog__message " data-message-id="948025833153499176" id="message-948025833153499176" title="Message sent: 2022-03-01 01:16:12Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+&quot;no.. Ju-ustttt- help. Help you. Steal-ling isun&#39;-t the only thing I can do.. I can . Do uh.. stuff. For the island. I&#39;-yum dead, so... yeah. I can&#39; die and uh.. the people can&#39;t get me as well.&quot; 
+
+October nodded, a small, satisfied smile spreading across her face.
+&quot;yeh. And whee-&#39;ll doo whatever it takes? Right?&quot; 
+ <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/5a8266653aafffec376d5ae7f85570d3-B28CB.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="935697004238082048" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-03-01 17:07:03Z</span>
+
+            <div class="chatlog__message " data-message-id="948265124639174746" id="message-948265124639174746" title="Message sent: 2022-03-01 17:07:03Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Can’t kill what’s already dead, that’s true! Man, they’re gonna shit fucking bricks if they ever see you, it’s gonna be hilarious!”
+
+<em>Suddenly, he chuckled. An evil looking grin spread across his face.</em>
+
+“Whatever it takes. Anything.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-03-05 04:40:18Z</span>
+
+            <div class="chatlog__message " data-message-id="949526751518797854" id="message-949526751518797854" title="Message sent: 2022-03-05 04:40:18Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+Another slow nod came from the zombie, satisfaction filling the air. They all knew what was going to happen.<s>its been forever im tryong to wrap this up</s>
+
+&quot;Wuh-eellll. I can start whenev-uh. And justttt- call me if you need meee. You know where to find me. Or if you dooooonnnnn&#39;t?? Eeye-ll find you firrrstt.&quot; 
+Kind of concerning coming from a zombie, but whatever.
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/5a8266653aafffec376d5ae7f85570d3-B28CB.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="935697004238082048" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-03-05 04:42:13Z</span>
+
+            <div class="chatlog__message " data-message-id="949527230831288370" id="message-949527230831288370" title="Message sent: 2022-03-05 04:42:13Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Blink.</em>
+
+&#39;&#39;Well, that&#39;s terrifying. Catch you later, Zomtober. uh, try to keep it together. Literally.&#39;&#39;
+
+<em>I feel ya, Curds. He left, putting the mask back on as he did.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-03-05 04:47:36Z</span>
+
+            <div class="chatlog__message " data-message-id="949528587076243486" id="message-949528587076243486" title="Message sent: 2022-03-05 04:47:36Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He waved goodbye to Lester, the gem swaying sickeningly back and forth with the movement. 
+Yay..?
+
+<img loading="lazy" class="emoji " alt="MafuyuBye" title="MafuyuBye" src="https://cdn.discordapp.com/emojis/759294873223299083.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-03-05 04:51:28Z</span>
+
+            <div class="chatlog__message " data-message-id="949529560700039179" id="message-949529560700039179" title="Message sent: 2022-03-05 04:51:28Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(what a duo)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="934264512159313980.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-03-05 18:58:11Z</span>
+
+            <div class="chatlog__message " data-message-id="949742645184438292" id="message-949742645184438292" title="Message sent: 2022-03-05 18:58:11Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((honestly</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 39 message(s)</div>
+</div>
+
+</body>
+
+</html>

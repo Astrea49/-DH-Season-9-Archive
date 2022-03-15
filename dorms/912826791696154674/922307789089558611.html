@@ -1,0 +1,2190 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Despair&#39;s Horizon - a capitalist and a mentally unstable capitalist loather</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="922307789089558611.html_Files/a_a82f66cbaf9572e715aef752d1954a13-F33DA.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Despair&#39;s Horizon</div>
+        <div class="preamble__entry">house-of-magic / a capitalist and a mentally unstable capitalist loather</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-20 02:01:53Z</span>
+
+            <div class="chatlog__message " data-message-id="922307792872812614" id="message-922307792872812614" title="Message sent: 2021-12-20 02:01:53Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Julian#3244">@Julian</span> aight here we go))</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="922308483959906364" id="message-922308483959906364" title="Message sent: 2021-12-20 02:04:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((i can start if you want</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Julian#3244" data-user-id="288744675458940939" style="">Julian</span>
+
+
+        <span class="chatlog__timestamp">2021-12-20 02:04:59Z</span>
+
+            <div class="chatlog__message " data-message-id="922308574208745492" id="message-922308574208745492" title="Message sent: 2021-12-20 02:04:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Oh! Do as you please! That was I know how much you expect)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Julian#3244" style="">Julian</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;922308574208745492&#39;)">
+(Oh! Do as you please! That was I know how much you expect)                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-20 02:14:48Z</span>
+
+            <div class="chatlog__message " data-message-id="922311041587769364" id="message-922311041587769364" title="Message sent: 2021-12-20 02:14:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+
+Home. Safety. Just what October likes.
+
+The walk with Lucian was an all too familiar one, a walk where he was left nothing but a sad, sobbing mess, and <em>he</em> was carrying him. Someone who had struggled through life and death to make sure October was safe- unlike most of the others. 
+Well, <u>he</u> had an excuse but-
+Whatever.
+
+A few sniffles escaped October&#39;s mouth as Lucian stepped into the magic house- a place of familiarity and a lot more comfort than the trial room. She was a lot more calm than before, but not <em>completely</em> there. The smells of the old place still lingered, like the blood and the rain. 
+
+And october? She was dead silent. Said nothing as she still was latched onto him.
+
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/bd534ede556a197f9e02683f48a4ea6e-325D4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lucian D&#39;Arc#0000" data-user-id="916784294419136565" style="">Lucian D&#39;Arc</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-20 02:21:28Z</span>
+
+            <div class="chatlog__message " data-message-id="922312720106287134" id="message-922312720106287134" title="Message sent: 2021-12-20 02:21:28Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Well Lucian isnt the type of person to just let someone who needs help keep laying there... he was taught by someone even more altruistic than him to always stand up for the others. No matter the circumstance. He was just humming as he keeps walking.</em>
+
+<em>Eventually he finds octobers bed and tries to place them down on it</em> &quot;Were here.... Ahem, Ill be here for a short while until you are fine again. Im sorry I cant do much, I.... I was never really out a lot. I wasnt allowed outside you see. My real social interactions are a little... minute&quot;
+
+<em>Lucian lets out a nervous chuckle admitting to that.... it wasnt something he really liked saying...but it was the truth and maybe helps october ease up.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Julian#3244" style="">Julian</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;922308574208745492&#39;)">
+(Oh! Do as you please! That was I know how much you expect)                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-20 02:59:41Z</span>
+
+            <div class="chatlog__message " data-message-id="922322338048012338" id="message-922322338048012338" title="Message sent: 2021-12-20 02:59:41Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+
+Familiar, much?
+
+October wiped away some tears off of her face, curling up in the comfortable sheets of her bed. It was kind of nice having Lucian there, but it also was unnerving. Watching his face meld with Theron&#39;s inside of Toby&#39;s head- it was a weird thought to have. A weird sensation she very much did not like. 
+
+She let out another sniffle, then she.. actually spoke up. 
+Truth be told, her voice was quiver-y and her head was definitely not clear, but hey. She was talking.
+&quot;y-you&#39;re not missing much anyways. d-don&#39;t b-be so pressed a-about it.&quot;
+
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/640cd2526a889f3a1ecaadae62311a58-FA2CC.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Despair&#39;s Horizon Bot#8265" data-user-id="861082089231482880" style="color: rgb(78,93,148)">Despair&#39;s Horizon Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-20 03:03:05Z</span>
+
+            <div class="chatlog__message " data-message-id="922323195460190249" id="message-922323195460190249" title="Message sent: 2021-12-20 03:03:05Z">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(217,44,67,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@↳ ❝ [JurdsjandJhey] &#161;! ❞</span> got <strong>1</strong> interaction!</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/bd534ede556a197f9e02683f48a4ea6e-325D4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lucian D&#39;Arc#0000" data-user-id="916784294419136565" style="">Lucian D&#39;Arc</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-20 03:11:29Z</span>
+
+            <div class="chatlog__message " data-message-id="922325308424716359" id="message-922325308424716359" title="Message sent: 2021-12-20 03:11:29Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Am I not? Well that seems likely with what I am experiencing here... although I do think normal conversations are a little less loaded than the ones we have here. Someone at home really enjoyed casual talks... a little too much for my taste.&quot;
+
+<em>And so he is smiling like an idiot. Home was a really nice time... there was a lot to study for but actually it wasnt bad... this place has only one redeeming quality and even that isnt that great really. Their freedom is really limited after all and they can only do what they are willed to do... a sad thing all things considered.</em>
+
+&quot;Dont worry... Ill be here for as long as I need to be. Until you calm down at least a little.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Julian#3244" data-user-id="288744675458940939" style="">Julian</span>
+
+
+        <span class="chatlog__timestamp">2021-12-20 03:11:31Z</span>
+
+            <div class="chatlog__message " data-message-id="922325317199233105" id="message-922325317199233105" title="Message sent: 2021-12-20 03:11:31Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@↳ ❝ [JurdsjandJhey] &#161;! ❞</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-20 16:01:51Z</span>
+
+            <div class="chatlog__message " data-message-id="922519178458583101" id="message-922519178458583101" title="Message sent: 2021-12-20 16:01:51Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">also <span class="mention" title="Infernix#8206">@Monokuma | Kev</span> can you give julian an int))</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Julian#3244" data-user-id="288744675458940939" style="">Julian</span>
+
+
+        <span class="chatlog__timestamp">2021-12-20 16:02:21Z</span>
+
+            <div class="chatlog__message " data-message-id="922519301993431050" id="message-922519301993431050" title="Message sent: 2021-12-20 16:02:21Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Nah he wanted to give you one. It be fine! I have enough I thiiiink)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-20 16:03:40Z</span>
+
+            <div class="chatlog__message " data-message-id="922519634731729016" id="message-922519634731729016" title="Message sent: 2021-12-20 16:03:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((<span class="pre pre--inline">take it.</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2021-12-20 16:36:51Z</span>
+
+            <div class="chatlog__message " data-message-id="922527985154801675" id="message-922527985154801675" title="Message sent: 2021-12-20 16:36:51Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <img loading="lazy" class="emoji " alt="🎺" title="trumpet" src="https://twemoji.maxcdn.com/2/svg/1f3ba.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Julian#3244" style="">Julian</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;922325317199233105&#39;)">
+<span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@↳ ❝ [JurdsjandJhey] &#161;! ❞</span>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-20 16:42:37Z</span>
+
+            <div class="chatlog__message " data-message-id="922529436937621584" id="message-922529436937621584" title="Message sent: 2021-12-20 16:42:37Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+
+October sighed, which had an underlying bittersweet tone. Lucian&#39;s talk seemed to spark up some pleasant memories inside of her head, but these memories were now all washed over with sadness. 
+
+Lucian really reminded her of her younger brother- For whatever reason. Kind of tall, and also going out of his way to make sure October was okay. Man, she really missed Theron, didn&#39;t she? 
+&quot;mhm.&quot; She said, almost dismissively. But then she threw a question Lucian&#39;s way.
+&quot;just w-wonderiing- why- are y-you doing thiiss?? Y-you didn&#39;t h-have to.&quot;
+
+October really didn&#39;t feel like she deserved the help. She got somewhat close to someone who murdered for a selfish reason, and felt terrible about it.
+
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/bd534ede556a197f9e02683f48a4ea6e-325D4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lucian D&#39;Arc#0000" data-user-id="916784294419136565" style="">Lucian D&#39;Arc</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-20 16:48:34Z</span>
+
+            <div class="chatlog__message " data-message-id="922530932383162388" id="message-922530932383162388" title="Message sent: 2021-12-20 16:48:34Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Lucian goes out of his way to make sure everyone is okay... especially when someone is this obviously distraught, it is one of the things he deems not even... nice or anything special just expected of one.</em>
+
+<em>At the question he just chuckles to himself a little</em>
+&quot;Well, it is something I think is just nice to do... I dont want to see anyone that panicky... also it was Reiichis dying wish to take care of you right? I want to respect that.&quot; <em>Again with the smiles, Lucian did seem to be a smiler through and through, in the back of his mind are... memories long past, some from reading stories and some which resemble stories but are actually his life. The lonely prince locked in the castle. Well lonely no more after he was assigned a guard</em>
+
+&quot;No one should be lonely in a situation like this.... I dont think I would want to be lonely right now either.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <span class="chatlog__reference-unknown">
+                    Original message was deleted or could not be loaded.
+                </span>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-20 17:16:44Z</span>
+
+            <div class="chatlog__message " data-message-id="922538023072190515" id="message-922538023072190515" title="Message sent: 2021-12-20 17:16:44Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+
+Shame October doesn&#39;t know that. He&#39;s been too busy being... you know. Stuck inside.
+
+Right, Reiichi wanted October to be protected after its death. Remembering that wish sent another pang of sadness through October&#39;s heart. Why him? Why did <em>he</em> have to be the one that was protected? Why not someone else?? Someone else who deserved it more? October should have been dead that night- the one where he ventured to the place of no return. 
+
+&quot;...&quot;
+
+She stayed silent for a few minutes. 
+Lucian was <em>kinda</em> right, truth be told. Being lonely- especially in a stressful place was a terrible sensation. One that ate up October&#39;s insides with a side of heartburn crawling up her throat. 
+&quot;You sh-should at least int-tr-tell me who you are.&quot;
+
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/bd534ede556a197f9e02683f48a4ea6e-325D4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lucian D&#39;Arc#0000" data-user-id="916784294419136565" style="">Lucian D&#39;Arc</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-20 17:28:18Z</span>
+
+            <div class="chatlog__message " data-message-id="922540931700359208" id="message-922540931700359208" title="Message sent: 2021-12-20 17:28:18Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Reiichi did ask for that on his last stand... a rather sad thing, Lucian wasnt thrilled about the things happening either but there wasnt something else to be done.... the bear has too much control to make a break out viable. Other than that... well no one deserved to die... this is all just a cruel and twisted joke played on them.</em>
+
+&quot;Me? Of course.&quot; <em>Lucian takes just a second to prop himself up before speaking, the radiant smile painted across his face</em> &quot;Lucian D&#180;Arc, Ultimate Prince... well for whatever that title is worth, at your service.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Julian#3244" data-user-id="288744675458940939" style="">Julian</span>
+
+
+        <span class="chatlog__timestamp">2021-12-20 17:28:19Z</span>
+
+            <div class="chatlog__message " data-message-id="922540938960703538" id="message-922540938960703538" title="Message sent: 2021-12-20 17:28:19Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@↳ ❝ [JurdsjandJhey] &#161;! ❞</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-20 17:41:40Z</span>
+
+            <div class="chatlog__message " data-message-id="922544296551411782" id="message-922544296551411782" title="Message sent: 2021-12-20 17:41:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((itll take me a hot minuite to respond im shaving my head</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-20 19:44:50Z</span>
+
+            <div class="chatlog__message " data-message-id="922575293103882260" id="message-922575293103882260" title="Message sent: 2021-12-20 19:44:50Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((ok back</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Julian#3244" style="">Julian</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;922540938960703538&#39;)">
+<span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@↳ ❝ [JurdsjandJhey] &#161;! ❞</span>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-20 20:46:32Z</span>
+
+            <div class="chatlog__message " data-message-id="922590820731846726" id="message-922590820731846726" title="Message sent: 2021-12-20 20:46:32Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+
+Ah, a prince. A capitalist, some would say. And everyone knows how October feels about capitalists. 
+Truth be told, it&#39;s mostly a joke. She doesn&#39;t really care for or against them. She doesn&#39;t like how most of them are inherently selfish, though. Or at least to her. 
+
+October&#39;s face scrunched up at the mention of Lucian&#39;s talent. He was not in fact, interested by all the sparkles and rainbows and prettiness Lucian was putting on. I know. Hard to believe. If anything, he was mildly disappointed.
+&quot;...oh. okay. Y-you sound french too. Personnes qui parlent fran&#231;ais sont stupide. J-just so you know.&quot; If you know french, enjoy yourself with October&#39;s message. His pronunciation was actually quite decent- like he was an actual native French speaker. 
+
+ &quot;A-and you know me. Probably.&quot; Letting out a sigh, October rubbed his face. 
+
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/bd534ede556a197f9e02683f48a4ea6e-325D4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lucian D&#39;Arc#0000" data-user-id="916784294419136565" style="">Lucian D&#39;Arc</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-20 21:30:58Z</span>
+
+            <div class="chatlog__message " data-message-id="922602003555811348" id="message-922602003555811348" title="Message sent: 2021-12-20 21:30:58Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>That is an interesting assessment of what a capitalist is, although Lucian doesnt exactly oppose capitalism.... even if he prefers a system called social capitalism, but not like that would be a conversation topic anyways.</em>
+
+<em>If October hadnt been crying up to now Lucian would have scolded them for being that rude to most of the worlds population but for now a small shake of the head is enough.</em> &quot;I am, although I wouldnt call them stupid... I still love them nonetheless, I truly believe that deep deep down there is something good in each of us, No matter how deep I have to search. Ill do it.&quot;
+
+<em>Lucian does know them..... its not like he hasnt read all the profiles on the pad and more than that actually he remembered all the interactions he had with everyone and the 2 or 3 breakdowns October had already.</em> &quot;Of course I do, I have read all the profiles in order to get a first glimpse into everyone. I wish to get along with everyone after all, even if it seems like a naive desire.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Julian#3244" data-user-id="288744675458940939" style="">Julian</span>
+
+
+        <span class="chatlog__timestamp">2021-12-22 00:00:10Z</span>
+
+            <div class="chatlog__message " data-message-id="923001939627737118" id="message-923001939627737118" title="Message sent: 2021-12-22 00:00:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@↳ ❝ [JurdsjandJhey] &#161;! ❞</span> gentle a little more than 24 hours reminder)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-22 00:00:25Z</span>
+
+            <div class="chatlog__message " data-message-id="923002000419979285" id="message-923002000419979285" title="Message sent: 2021-12-22 00:00:25Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((i started typing ot up my apologies <img loading="lazy" class="emoji " alt="woeisme" title="woeisme" src="https://cdn.discordapp.com/emojis/795434576138600489.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Julian#3244" data-user-id="288744675458940939" style="">Julian</span>
+
+
+        <span class="chatlog__timestamp">2021-12-22 00:01:08Z</span>
+
+            <div class="chatlog__message " data-message-id="923002179101523988" id="message-923002179101523988" title="Message sent: 2021-12-22 00:01:08Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(It&#39;s okeee! I just do that before sleeping. I don&#39;t wanna keep people stuck)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-22 00:10:40Z</span>
+
+            <div class="chatlog__message " data-message-id="923004579581395036" id="message-923004579581395036" title="Message sent: 2021-12-22 00:10:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((makes sense!</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Julian#3244" style="">Julian</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;923001939627737118&#39;)">
+(<span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@↳ ❝ [JurdsjandJhey] &#161;! ❞</span> gentle a little more than 24 hours reminder)                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-22 02:03:10Z</span>
+
+            <div class="chatlog__message " data-message-id="923032892026781756" id="message-923032892026781756" title="Message sent: 2021-12-22 02:03:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+
+October just likes annoying capitalists. That&#39;s all. It&#39;s funny to her, of course. At least she&#39;s cracking jokes and being a bit more upbeat than before. Though there still was a hint of melancholy to her words.
+&quot;I&#39;m french, dumbass. Ethnically. It&#39;s a joke.&quot; 
+She chuckled, hoping to be a bit more upbeat than she seemed.
+
+&quot;Huh. Well anyone who would think it&#39;s naive is dumb.&quot; An offhanded comment, but not one Toby was going to expand on. Well, unless Julian asked. He folded his arms behind his head.
+
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/bd534ede556a197f9e02683f48a4ea6e-325D4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lucian D&#39;Arc#0000" data-user-id="916784294419136565" style="">Lucian D&#39;Arc</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-22 12:46:41Z</span>
+
+            <div class="chatlog__message " data-message-id="923194836243345458" id="message-923194836243345458" title="Message sent: 2021-12-22 12:46:41Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Its not like Lucian feels mocked or would react to being mocked really, these things dont really stress him out too much, it is really nice to see October be more upbeat, a tiny victory in his book. Well its probably not his victory but a victory nonetheless.</em>
+
+&quot;I see, well my jokes are usually a little different so I dont think I will pick up on those a lot.&quot; <em>Or laugh out of courtesy.... his sense of humor is... special to say the least, usually he just doesnt laugh, he doesnt think its a pretty laugh.</em>
+
+&quot;Are they? I have heard sentiments of wanting to survive and fight only on your own here quite a lot and I have been called naive for it. But if that is what brings me to an early grave so be it, at least I have died as a man of my values.&quot; <em>A thing Lucian did believe in, the fact that they could all get along if they tried but right now trust is at an all time low so it would be difficult to get something like that done.</em>
+
+&quot;But more importantly than that, are you fine again? I will be here to talk for as long as I need to be, though I do wonder how the others have taken it... Wave is probably not feeling too well so I might check up on him too.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Julian#3244" data-user-id="288744675458940939" style="">Julian</span>
+
+
+        <span class="chatlog__timestamp">2021-12-22 12:46:42Z</span>
+
+            <div class="chatlog__message " data-message-id="923194843600150568" id="message-923194843600150568" title="Message sent: 2021-12-22 12:46:42Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@↳ ❝ [JurdsjandJhey] &#161;! ❞</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-22 19:38:10Z</span>
+
+            <div class="chatlog__message " data-message-id="923298391109283890" id="message-923298391109283890" title="Message sent: 2021-12-22 19:38:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Julian#3244">@Julian</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923298404476530728" id="message-923298404476530728" title="Message sent: 2021-12-22 19:38:13Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(oh wait</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923298417923469334" id="message-923298417923469334" title="Message sent: 2021-12-22 19:38:16Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(i tohught i replied wtf</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923298435325624380" id="message-923298435325624380" title="Message sent: 2021-12-22 19:38:21Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(apologies ✋</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Julian#3244" data-user-id="288744675458940939" style="">Julian</span>
+
+
+        <span class="chatlog__timestamp">2021-12-22 20:14:37Z</span>
+
+            <div class="chatlog__message " data-message-id="923307564064706601" id="message-923307564064706601" title="Message sent: 2021-12-22 20:14:37Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@↳ ❝ [JurdsjandJhey] &#161;! ❞</span> I mean you can reply... this has been going on for a good 3 days ish now. xD)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-22 20:14:48Z</span>
+
+            <div class="chatlog__message " data-message-id="923307609837166593" id="message-923307609837166593" title="Message sent: 2021-12-22 20:14:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((yeah my bad! i ned up being a very slow rper <img loading="lazy" class="emoji " alt="woeisme" title="woeisme" src="https://cdn.discordapp.com/emojis/795434576138600489.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923307673804505178" id="message-923307673804505178" title="Message sent: 2021-12-22 20:15:03Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((esp when my motivation is being a bitch</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Julian#3244" style="">Julian</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;923194843600150568&#39;)">
+<span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@↳ ❝ [JurdsjandJhey] &#161;! ❞</span>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-22 20:57:08Z</span>
+
+            <div class="chatlog__message " data-message-id="923318264644395009" id="message-923318264644395009" title="Message sent: 2021-12-22 20:57:08Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+
+Well, at least being a nuisance isn&#39;t October&#39;s main priority. A big one, yeah. But not the biggest one.
+
+She shrugged, seemingly unbothered by Lucian&#39;s style of humor. At least- she didn&#39;t seem bothered until she started speaking.
+&quot;Yeah. Your people probably need better humor or something, I dunno.&quot; Ok so maybe she was a bit bothered. Or she was just making another stupid joke. October just.. didn&#39;t seem to care at all.
+
+&quot;Well, yeah. They&#39;re right too. But going and getting to know everyone is the best way to survive too. Know your competitors. See what they&#39;re like. Besides, it would be nice to get as many people out alive.&quot; Even if it was a foolish wish, October wanted to believe it.
+
+Sighing again, October tucked his arms behind his head. Thinking about random things once more. 
+&quot;Yeah. I&#39;m okay. A breakdown is annoying but like. I&#39;ll survive. Hah.&quot; 
+
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/bd534ede556a197f9e02683f48a4ea6e-325D4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lucian D&#39;Arc#0000" data-user-id="916784294419136565" style="">Lucian D&#39;Arc</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-22 21:09:07Z</span>
+
+            <div class="chatlog__message " data-message-id="923321278826414080" id="message-923321278826414080" title="Message sent: 2021-12-22 21:09:07Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Lucians sense of Humor is something very special that has to be unlocked first, that thing requires severe trust by the man. An awful lot of trust really, or just for him to be stressed</em>
+&quot;I think they are doing juuuust fine, I may be a little stuck up but I can think of at least one person I had to talk to daily that.... makes too many jokes.&quot; <em>He seems uncannily happy at that mention, seems like he liked the jokes even if he says that they are too many.</em>
+
+&quot;I&#180;d rather fail while trying to be a good person and get as many out as possible as succeed in only saving myself, staying true to yourself is important to me at least.&quot;
+
+<em>Lucian shrugs once as he hands October the golden feather brooch he hands everyone. Sighing once before he slowly stands up</em>
+&quot;Well if you dont need me anymore I will  go, although if you ever need something call me... somehow, Ill try to help and probably check up on you a few times.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <span class="chatlog__reference-unknown">
+                    Original message was deleted or could not be loaded.
+                </span>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-22 23:33:04Z</span>
+
+            <div class="chatlog__message " data-message-id="923357504073773138" id="message-923357504073773138" title="Message sent: 2021-12-22 23:33:04Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+
+&quot;Again, Joke.&quot; She murmured, chuckling a little to herself. Only to ignore Lucian&#39;s second comment, just cause. Why not. There was no point in addressing it. 
+
+With the brooch pressed to her palm, October glanced up at Lucian with a confused expression. Which soon faded, then replaced with her general aloofness.  &quot;Yeah. Whatever. Thanks I guess you can uh- leave me alone now I think?? And I can handle myself, jackass.&quot; She seemed mildly annoyed, but why? Who knows. 
+
+&quot;And enough people knock on this door, I don&#39;t need more.&quot;
+
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/bd534ede556a197f9e02683f48a4ea6e-325D4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lucian D&#39;Arc#0000" data-user-id="916784294419136565" style="">Lucian D&#39;Arc</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-12-22 23:46:19Z</span>
+
+            <div class="chatlog__message " data-message-id="923360839770210335" id="message-923360839770210335" title="Message sent: 2021-12-22 23:46:19Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>There wasnt even annoyance in Lucian, he seemed well just like he always does, calm, collected and overall a person who seems like everything is normal-ish.</em>
+
+&quot;Dont brood just because I am leaving, be strong, I know you can make it even if I am not here.&quot; <em>And after ruffling Octobers head a little he makes his way to the door, giving a mild and gentle wave</em>
+
+&quot;Ill see you then, I wont abandon anyone even if you feel like you should be. Its not my style to leave someone out. I would also invite you to the  group meal but I doubt you would want to participate, sooo ill bring you some food over then.&quot;
+
+<em>And then he actually walks out of the building, happy that he at least tried helping... in his mind he actually did pretty well with helping too but maybe October has different views on that. Regardless Lucian thinks he got one step closer to unifying the people.... after the major setback.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Julian#3244" data-user-id="288744675458940939" style="">Julian</span>
+
+
+        <span class="chatlog__timestamp">2021-12-22 23:46:38Z</span>
+
+            <div class="chatlog__message " data-message-id="923360919998853151" id="message-923360919998853151" title="Message sent: 2021-12-22 23:46:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@↳ ❝ [JurdsjandJhey] &#161;! ❞</span> I thank thee for the chat and I hope that my man hasnt bored the shit out of October)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-22 23:47:00Z</span>
+
+            <div class="chatlog__message " data-message-id="923361011925393419" id="message-923361011925393419" title="Message sent: 2021-12-22 23:47:00Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((dont worry she&#39;s just bein g a brat</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/8b49512c3ab7a6493b3f24dfd16ac764-E6448.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Julian#3244" data-user-id="288744675458940939" style="">Julian</span>
+
+
+        <span class="chatlog__timestamp">2021-12-22 23:47:33Z</span>
+
+            <div class="chatlog__message " data-message-id="923361149985116160" id="message-923361149985116160" title="Message sent: 2021-12-22 23:47:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(He tried... and well he is bad with punishing people so they can be brats with him xD)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-23 00:09:48Z</span>
+
+            <div class="chatlog__message " data-message-id="923366749703929866" id="message-923366749703929866" title="Message sent: 2021-12-23 00:09:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg">
+
+&quot;I&#39;m not brooding cause you&#39;re leaving, I&#39;m brooding cause I&#39;m bui- hEEYYY- StooOOOp-&quot; October was about to spit out another snarky comment, but was rudely interrupted by Lucian&#39;s hair ruffle. She tried to swat his hand away, but he moved away before then. Wait- what was that?? A tiny grin?? Wow. But again, it was soon muffled by melancholic thoughts. 
+
+Man, way to make her miss her family even more, huh?? 
+Whatever- she sighed, watching Lucian leave without saying anything else. Food would be nice, but.. man. She couldn&#39;t even think about that now- 
+
+With all the thoughts of family and missing people, October had one thought.
+Peace. Let them rest. As soon as he was sure Lucian was gone, October hopped up and scurried over to his notebook. Readying himself for <em>another</em> one of those moments. When he was done with this, he could go back to <em>the</em> room. It would be painful, sure. But he needed to let them move on. 
+
+It was the video game composer&#39;s to make sure the dead were left respected, of course. 
+
+<span class="mention">#deleted-channel</span> 
+
+<img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="💻" title="computer" src="https://twemoji.maxcdn.com/2/svg/1f4bb.svg"> •&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;• <img loading="lazy" class="emoji " alt="♫" title="♫" src="https://twemoji.maxcdn.com/2/svg/266b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="922307789089558611.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-23 00:30:54Z</span>
+
+            <div class="chatlog__message " data-message-id="923372061978660964" id="message-923372061978660964" title="Message sent: 2021-12-23 00:30:54Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">ill prolly write the second one tmrw</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 45 message(s)</div>
+</div>
+
+</body>
+
+</html>

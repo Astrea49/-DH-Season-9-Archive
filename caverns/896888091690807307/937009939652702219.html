@@ -1,0 +1,2103 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Despair&#39;s Horizon - Wolfe and Jericho</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="937009939652702219.html_Files/a_a82f66cbaf9572e715aef752d1954a13-F33DA.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Despair&#39;s Horizon</div>
+        <div class="preamble__entry">mineshafts / Wolfe and Jericho</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/6338a96e7751e098aa45959730957b47-CC56E.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="922308793306611772" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 15:42:59Z</span>
+
+            <div class="chatlog__message " data-message-id="937009943926689862" id="message-937009943926689862" title="Message sent: 2022-01-29 15:42:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He found himself coming here. Just to sit down somewhere. It’s not the most convent of places, but it works. Just a place to sit in silence. He looks down to the prosthetic arm he holds in his left hand. He grips tightly to it.</em>
+
+“Tch…”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 15:43:04Z</span>
+
+            <div class="chatlog__message " data-message-id="937009966521409637" id="message-937009966521409637" title="Message sent: 2022-01-29 15:43:04Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Crepe#2518">@The Great Jericho || Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/96af9ea787f5626a53d26ab0d6def126-79A5A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="922308793306611772" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 15:45:03Z</span>
+
+            <div class="chatlog__message " data-message-id="937010463538032660" id="message-937010463538032660" title="Message sent: 2022-01-29 15:45:03Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Jericho entered the mineshaft with a confident strut. He was in a rather good mood despite the current motive going on. I mean it hadn&#39;t done anything to him yet so why would he worry? Then he saw Wolfsbane! What an interesting time for conversation!</em>
+
+&quot;Ah? Why hellooo there my friend Wolfsbane. Its been quite some time since we last spoke. How are you doing today hmmm?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(255,196,54)">The Great Jericho || Crep</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 15:45:16Z</span>
+
+            <div class="chatlog__message " data-message-id="937010519041261660" id="message-937010519041261660" title="Message sent: 2022-01-29 15:45:16Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span> oh yeah do you want pings?</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 15:45:27Z</span>
+
+            <div class="chatlog__message " data-message-id="937010564822097940" id="message-937010564822097940" title="Message sent: 2022-01-29 15:45:27Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((For once, yes lol</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(255,196,54)">The Great Jericho || Crep</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 15:47:29Z</span>
+
+            <div class="chatlog__message " data-message-id="937011075310829649" id="message-937011075310829649" title="Message sent: 2022-01-29 15:47:29Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Gaaaaaaasp</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/6338a96e7751e098aa45959730957b47-CC56E.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="922308793306611772" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 15:48:47Z</span>
+
+            <div class="chatlog__message " data-message-id="937011402785321011" id="message-937011402785321011" title="Message sent: 2022-01-29 15:48:47Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He sets his prosthetic down, as he looks to Jericho. He takes a deep breath, before speaking.</em> “Hey, <em>Enga&#241;o</em>… Yes, yes it has. I haven’t been the most talkative as of late… I’m… Doing fine. Yeah. Uh, how about you?”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 15:48:51Z</span>
+
+            <div class="chatlog__message " data-message-id="937011419289899058" id="message-937011419289899058" title="Message sent: 2022-01-29 15:48:51Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Crepe#2518">@The Great Jericho || Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/96af9ea787f5626a53d26ab0d6def126-79A5A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="922308793306611772" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 15:52:45Z</span>
+
+            <div class="chatlog__message " data-message-id="937012400199200808" id="message-937012400199200808" title="Message sent: 2022-01-29 15:52:45Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Jericho is doing rather well! He&#39;s been doing some thinking and realised how this place has affected him. Jericho fears he&#39;s going soft! For staying in his character no longer seems like it&#39;d natural but rather an act of its own!&quot; <em>He said as dramatically as he could. Jericho didn&#39;t like how he was becoming slightly aware the Great Jericho might not be the normal Jericho</em>
+
+&quot;Jericho gets the lack of talk from you though he&#39;s surprised you&#39;re asking about the state of Jericho. &quot; <em>Jericho would strike a small pose</em> &quot;Tell me what do you think of this motive hmmm?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(255,196,54)">The Great Jericho || Crep</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 15:52:49Z</span>
+
+            <div class="chatlog__message " data-message-id="937012418616385576" id="message-937012418616385576" title="Message sent: 2022-01-29 15:52:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/6338a96e7751e098aa45959730957b47-CC56E.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="922308793306611772" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 15:57:27Z</span>
+
+            <div class="chatlog__message " data-message-id="937013586285445181" id="message-937013586285445181" title="Message sent: 2022-01-29 15:57:27Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Hmm, I see. Does that mean you’re going to stray away from being in character 24/7?” <em>He asked with a raised eyebrow.</em>
+
+<em>He rubs the back of his head.</em> “Just being courteous is all.” <em>He sighs as he watches Jericho pose.</em> “This motive is… Terrible. I’m not a fan. Especially if… If…” <em>He grits his teeth, looking off.</em> “No matter…”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 15:57:33Z</span>
+
+            <div class="chatlog__message " data-message-id="937013611572891778" id="message-937013611572891778" title="Message sent: 2022-01-29 15:57:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Crepe#2518">@The Great Jericho || Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/96af9ea787f5626a53d26ab0d6def126-79A5A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="922308793306611772" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 16:01:05Z</span>
+
+            <div class="chatlog__message " data-message-id="937014497216974878" id="message-937014497216974878" title="Message sent: 2022-01-29 16:01:05Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Rather the opposite my friend! Jericho plans to continue being the Great Jericho for as long as possible! &quot; <em>Does he even remember who he was out of character?</em> &quot;For it only feels right!&quot;
+
+&quot;Well the motive is rather odd. Jericho understands the lack of amusement! Though Jericho knows he has little to worry about he can understand what he may learn about others. Though he doesn&#39;t care what he learns. For its not like learning someone&#39;s life story shall make him avoid them. Everyone here is still a fan after all!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(255,196,54)">The Great Jericho || Crep</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 16:01:08Z</span>
+
+            <div class="chatlog__message " data-message-id="937014513826418699" id="message-937014513826418699" title="Message sent: 2022-01-29 16:01:08Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/6338a96e7751e098aa45959730957b47-CC56E.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="922308793306611772" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 16:11:46Z</span>
+
+            <div class="chatlog__message " data-message-id="937017187204489246" id="message-937017187204489246" title="Message sent: 2022-01-29 16:11:46Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Oh.” <em>He looks perplexed. He really thinks Jericho should be himself outside of the character. But who is he to tell someone how to live? At least Jericho knows it’s not natural.</em> “Well, uh, as long as you can tone down the ‘Great Jericho’ from time to time, I don’t care much.” <em>He says with a forced sigh.</em>
+
+“Well, some people don’t want their life story shown to everyone. Some people want their life story to remain a secret. Kept in shackles. Buried away. Some people want to leave parts of their life story in the past.” <em>His tone would become that of growl, something he hasn’t done in a long time. Raised his hand to his forehead, grumbling.</em> “It’s just… Nevermind. I think you get my point.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 16:11:49Z</span>
+
+            <div class="chatlog__message " data-message-id="937017202429812776" id="message-937017202429812776" title="Message sent: 2022-01-29 16:11:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Crepe#2518">@The Great Jericho || Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/96af9ea787f5626a53d26ab0d6def126-79A5A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="922308793306611772" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 16:16:35Z</span>
+
+            <div class="chatlog__message " data-message-id="937018401396785152" id="message-937018401396785152" title="Message sent: 2022-01-29 16:16:35Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Tone down the Great Jericho? Oh how could he ever do that? That would be like calling him the Great Jeri! There has to be all of Jericho for it to be him! Though why do you care if he stops being himself a little?&quot; <em>Jericho of course knows its not natural but it might as well be. Is there such thing as Jericho....whatever his last name is?</em>
+
+&quot;That&#39;s a rather fair point. Though if someone has to keep their life a secret then it only provokes further question. Jericho has learnt every secret shall come to life one day. Which is why Jericho is thankful he has nothing to hide. Though worry not Jericho understands you view.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(255,196,54)">The Great Jericho || Crep</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 16:16:39Z</span>
+
+            <div class="chatlog__message " data-message-id="937018418517901402" id="message-937018418517901402" title="Message sent: 2022-01-29 16:16:39Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/6338a96e7751e098aa45959730957b47-CC56E.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="922308793306611772" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 16:27:30Z</span>
+
+            <div class="chatlog__message " data-message-id="937021145151074347" id="message-937021145151074347" title="Message sent: 2022-01-29 16:27:30Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I… Hmph… don’t care. Keep being the great Jericho, or whatever. It’s none of my business.” <em>Grumble grumble.</em> “Though… Do you solely want to be known as such? Just as your act?” <em>He proposed a simple question.</em>
+
+“Not every secret comes to light. Not every question is answered. It takes a lifetime for certain things to be revealed. I hope that’s the case… I truly do.” <em>His expression grows cold, as he stares off in the distance.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 16:27:32Z</span>
+
+            <div class="chatlog__message " data-message-id="937021156794454016" id="message-937021156794454016" title="Message sent: 2022-01-29 16:27:32Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Crepe#2518">@The Great Jericho || Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/96af9ea787f5626a53d26ab0d6def126-79A5A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="922308793306611772" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 16:36:33Z</span>
+
+            <div class="chatlog__message " data-message-id="937023423916441630" id="message-937023423916441630" title="Message sent: 2022-01-29 16:36:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Nono Jericho insists you answer! He must knooow! As for his act? Well that&#39;s a rather simple question. If The Great Jericho stopped existing what would come of the husk of a body that used to be him hmmm?&quot;
+
+&quot;Ahhh I guess so. Though it&#39;s always a safe assumption to know that one day things may be revealed. Though if that&#39;s the case Jericho to hopes it is infact, not the case. Afterall who knows what there is to discover! Perhaps there&#39;s something about Jericho he doesn&#39;t know!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(255,196,54)">The Great Jericho || Crep</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 16:36:36Z</span>
+
+            <div class="chatlog__message " data-message-id="937023439238221875" id="message-937023439238221875" title="Message sent: 2022-01-29 16:36:36Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/6338a96e7751e098aa45959730957b47-CC56E.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="922308793306611772" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 16:44:01Z</span>
+
+            <div class="chatlog__message " data-message-id="937025304013205585" id="message-937025304013205585" title="Message sent: 2022-01-29 16:44:01Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I don’t know what kind of answer you want from me. I told you, I don’t care.” <em>He keeps gaze averted from Jericho.</em> “And that’s how you see it, huh? Interesting I guess… Sad, ultimately though.” 
+
+<em>He gaze falls upon the prosthetic laying on the ground.</em> “I can only hope.” <em>He murmurs, before looking off.</em> “Erm, I’m sure there is a lot to you none of us know about. You are quite the ‘Enigma.’ Though at the same time, are one of the easiest people to comprehend. So strange…”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 16:44:03Z</span>
+
+            <div class="chatlog__message " data-message-id="937025313114820638" id="message-937025313114820638" title="Message sent: 2022-01-29 16:44:03Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Crepe#2518">@The Great Jericho || Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/96af9ea787f5626a53d26ab0d6def126-79A5A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="922308793306611772" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 16:52:57Z</span>
+
+            <div class="chatlog__message " data-message-id="937027552768319518" id="message-937027552768319518" title="Message sent: 2022-01-29 16:52:57Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Well how else could the Great Jericho see it? Jericho fails to see how it is rather sad. For what do you think would remain of me if there was no Great Jericho.&quot;
+
+&quot;Oh? Is that so? Well Jericho hasn&#39;t revealed much about him so to be interested is only natural! After all Jericho is rather out and open! What you see is what you get! There&#39;s no nonsense with the Great Jericho! Such a compliment is appreciated!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(255,196,54)">The Great Jericho || Crep</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 16:53:09Z</span>
+
+            <div class="chatlog__message " data-message-id="937027604056256543" id="message-937027604056256543" title="Message sent: 2022-01-29 16:53:09Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/6338a96e7751e098aa45959730957b47-CC56E.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="922308793306611772" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 17:03:54Z</span>
+
+            <div class="chatlog__message " data-message-id="937030307738185778" id="message-937030307738185778" title="Message sent: 2022-01-29 17:03:54Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“That’s the thing, I don’t know. Which is why it’s sad. There is no person behind the Great Jericho. And that’s sad. You are just a character. An act. There is nothing more to you, is there?” <em>That wasn’t much of a secret. He thought maybe there was something more to him… but it seems unlikely.</em>
+
+“When you put it like that, I’m no longer interested. Keep whatever else there is to you. If there is anything at all. That wasn’t much of compliment but ok…” <em>Sigh.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 17:03:56Z</span>
+
+            <div class="chatlog__message " data-message-id="937030316806246453" id="message-937030316806246453" title="Message sent: 2022-01-29 17:03:56Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Crepe#2518">@The Great Jericho || Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/96af9ea787f5626a53d26ab0d6def126-79A5A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="922308793306611772" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 17:09:01Z</span>
+
+            <div class="chatlog__message " data-message-id="937031595720851476" id="message-937031595720851476" title="Message sent: 2022-01-29 17:09:01Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Afraid not my friend! But what does it matter hmm? Jericho is exactly that! An act! Does there have to be more than a character? The Great Jericho is always performing! The curtains haven&#39;t been closed for quite some time.&quot; <em>Maybe he doesn&#39;t know how to close them</em>
+
+&quot;OK OK my friend Jericho shall continue to do what he does best. Tis a shame but Jericho shall not tell the tale of his humble beginnings so worry not! There&#39;s always more to the Great Jericho. Just depends on how you see it!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(255,196,54)">The Great Jericho || Crep</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 17:09:05Z</span>
+
+            <div class="chatlog__message " data-message-id="937031610761642056" id="message-937031610761642056" title="Message sent: 2022-01-29 17:09:05Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/6338a96e7751e098aa45959730957b47-CC56E.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="922308793306611772" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 17:13:33Z</span>
+
+            <div class="chatlog__message " data-message-id="937032737381044295" id="message-937032737381044295" title="Message sent: 2022-01-29 17:13:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He shakes his head, looking down.</em> “Again, this goes nowhere. Keep being the Great Jericho, if that’s the only way you know how to live. I voiced my opinion, my co—“ <em>He cuts himself off.</em> “…Nevermind, I don’t care.”
+
+“That’s fine with me. I’m sure your tale of ‘humble beginnings’ isn’t as humble or interesting as you try to make it seem.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 17:13:36Z</span>
+
+            <div class="chatlog__message " data-message-id="937032748831494164" id="message-937032748831494164" title="Message sent: 2022-01-29 17:13:36Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Crepe#2518">@The Great Jericho || Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/96af9ea787f5626a53d26ab0d6def126-79A5A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="922308793306611772" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 17:18:45Z</span>
+
+            <div class="chatlog__message " data-message-id="937034044166766593" id="message-937034044166766593" title="Message sent: 2022-01-29 17:18:45Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You see the entertaining thing about being the Great Jericho is that not many people get to know you. It would be accurate to say that the people here have seen Jericho more than anyone else in the world! Jericho is only living the life he knows how to live! It&#39;s the only life he can make sense of for him! Play to your strengths the people say well this is Jerichos!&quot;
+
+&quot;Jericho came here not to talk about Jericho in all honesty. For he isn&#39;t some egotistical Magician! There&#39;s more to the Great Jericho than being Great! Or perhaps not. Or perhaps you say Jericho isn&#39;t as interesting due to someone in the room having done something quite more exciting than him hmm?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(255,196,54)">The Great Jericho || Crep</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 17:18:48Z</span>
+
+            <div class="chatlog__message " data-message-id="937034058460987442" id="message-937034058460987442" title="Message sent: 2022-01-29 17:18:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/6338a96e7751e098aa45959730957b47-CC56E.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="922308793306611772" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 17:25:56Z</span>
+
+            <div class="chatlog__message " data-message-id="937035851370729482" id="message-937035851370729482" title="Message sent: 2022-01-29 17:25:56Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Fair enough, I guess. ‘Play to your strengths.’ Continue to do you.” <em>He stretched his arm out slightly. He looked to Jericho confused.</em> “What are you on about? Who are referring too all of sudden?” <em>He would disagree with the egotistical part. Jericho has shown that to be tire quite often. And if Jericho is the act he presents, well…</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 17:25:58Z</span>
+
+            <div class="chatlog__message " data-message-id="937035862414332004" id="message-937035862414332004" title="Message sent: 2022-01-29 17:25:58Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Crepe#2518">@The Great Jericho || Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/96af9ea787f5626a53d26ab0d6def126-79A5A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="922308793306611772" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 17:30:50Z</span>
+
+            <div class="chatlog__message " data-message-id="937037086446465105" id="message-937037086446465105" title="Message sent: 2022-01-29 17:30:50Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;infact let Jericho ask you a question. Apart from the Great Jericho what do you see when you look at him? Do you see anything other than a Magician? Well Jericho only sees the Great Jericho. Infact if you were to ask Jerichos official name he&#39;s afraid he wouldn&#39;t be able to remember!&quot;
+
+&quot;As for what Jericho is on about? Perhaps Jericho shall keep that to him. After all he may be talking about something he may not fully get.&quot; <em>Oh yeah Jericho was 100% egotistical without a doubt</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(255,196,54)">The Great Jericho || Crep</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 17:30:54Z</span>
+
+            <div class="chatlog__message " data-message-id="937037101155897385" id="message-937037101155897385" title="Message sent: 2022-01-29 17:30:54Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/6338a96e7751e098aa45959730957b47-CC56E.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="922308793306611772" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 17:39:52Z</span>
+
+            <div class="chatlog__message " data-message-id="937039357464965190" id="message-937039357464965190" title="Message sent: 2022-01-29 17:39:52Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Even worse. Knowing he doesn’t even know his official name…</em> “I see a facade that became reality. That’s all I see.” <em>He runs a hand through his hair.</em> “What? What was even the point of saying that then… Your frustrating, you know that?” <em>Grumble, grumble.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 17:39:55Z</span>
+
+            <div class="chatlog__message " data-message-id="937039370706366526" id="message-937039370706366526" title="Message sent: 2022-01-29 17:39:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Crepe#2518">@The Great Jericho || Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/96af9ea787f5626a53d26ab0d6def126-79A5A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="922308793306611772" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 17:43:02Z</span>
+
+            <div class="chatlog__message " data-message-id="937040154701471805" id="message-937040154701471805" title="Message sent: 2022-01-29 17:43:02Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Exactly exactly!&quot; <em>Jericho nodded</em> &quot;So to take away The Great Jericho from him would only bring pain and discomfort! The Great Jericho feels only the best of emotion!&quot; <em>he said with a laugh</em>
+
+&quot;Jericho finds that amusing. He&#39;s had his fair share of experiences whilst he&#39;s been here and our conversations are always rather interesting. It&#39;s either an agitating one that turns into a neutral talk or the other way around! Quite interesting indeed.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(255,196,54)">The Great Jericho || Crep</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 17:43:06Z</span>
+
+            <div class="chatlog__message " data-message-id="937040173915590676" id="message-937040173915590676" title="Message sent: 2022-01-29 17:43:06Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/6338a96e7751e098aa45959730957b47-CC56E.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="922308793306611772" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 17:48:59Z</span>
+
+            <div class="chatlog__message " data-message-id="937041652965597264" id="message-937041652965597264" title="Message sent: 2022-01-29 17:48:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He would stand up, grabbing the prosthetic arm.</em> “I think I’m done here. To think I was starting to—“ <em>He scoffs.</em> “Whatever. I need some time alone. So keep your distance. See ya, <em>Enga&#241;o</em>.” <em>He says before walking off abruptly. A tight grip on the prosthetic again.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 17:49:24Z</span>
+
+            <div class="chatlog__message " data-message-id="937041756657188946" id="message-937041756657188946" title="Message sent: 2022-01-29 17:49:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( I got things to do now, but thanks for the interaction Crepe!</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="937009939652702219.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(255,196,54)">The Great Jericho || Crep</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 17:49:54Z</span>
+
+            <div class="chatlog__message " data-message-id="937041884025589820" id="message-937041884025589820" title="Message sent: 2022-01-29 17:49:54Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(No worries! Thank you wolfsbane is still pretty cool!</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 45 message(s)</div>
+</div>
+
+</body>
+
+</html>

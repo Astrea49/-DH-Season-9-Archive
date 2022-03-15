@@ -1,0 +1,1224 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Despair&#39;s Horizon - Excerpt 5 - Scavenger</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="927662823725740122.html_Files/a_a82f66cbaf9572e715aef752d1954a13-F33DA.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Despair&#39;s Horizon</div>
+        <div class="preamble__entry">grotto-of-the-lost / Excerpt 5 - Scavenger</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="927662823725740122.html_Files/5160147e3cacd050bebdb68fbd68ead6-E0339.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="LaplacElkiaN#8290" style="color: rgb(2,2,2)">Japlace spites you all</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;927662823725740122&#39;)">
+((don&#39;t mind me~                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927662823725740122.html_Files/5160147e3cacd050bebdb68fbd68ead6-E0339.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LaplacElkiaN#8290" data-user-id="221760256697565185" style="color: rgb(2,2,2)">Japlace spites you all</span>
+
+
+        <span class="chatlog__timestamp">2022-01-03 20:41:15Z</span>
+
+            <div class="chatlog__message " data-message-id="927662921016803389" id="message-927662921016803389" title="Message sent: 2022-01-03 20:41:15Z">
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927662922581307485" id="message-927662922581307485" title="Message sent: 2022-01-03 20:41:15Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Tupperbox#4754">@Monotupper || [tul!]</span> don&#39;t make me feel lonely :D</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927662823725740122.html_Files/3ba09fa76b4688a5e2273c56a4d8856c-C4924.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tupperbox#4754" data-user-id="431544605209788416" style="color: rgb(255,192,203)">Tupperbox</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-03 20:41:16Z</span>
+
+            <div class="chatlog__message " data-message-id="927662923759894608" id="message-927662923759894608" title="Message sent: 2022-01-03 20:41:16Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hello! This server&#39;s prefix is <span class="pre pre--inline">tul!</span>. Try <span class="pre pre--inline">tul!help</span> for help.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927662823725740122.html_Files/5160147e3cacd050bebdb68fbd68ead6-E0339.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LaplacElkiaN#8290" data-user-id="221760256697565185" style="color: rgb(2,2,2)">Japlace spites you all</span>
+
+
+        <span class="chatlog__timestamp">2022-01-04 05:51:13Z</span>
+
+            <div class="chatlog__message " data-message-id="927801324395982849" id="message-927801324395982849" title="Message sent: 2022-01-04 05:51:13Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((aight now I can start planning this</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927662823725740122.html_Files/5160147e3cacd050bebdb68fbd68ead6-E0339.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LaplacElkiaN#8290" data-user-id="221760256697565185" style="color: rgb(2,2,2)">Japlace spites you all</span>
+
+
+        <span class="chatlog__timestamp">2022-01-04 08:15:11Z</span>
+
+            <div class="chatlog__message " data-message-id="927837555918000159" id="message-927837555918000159" title="Message sent: 2022-01-04 08:15:11Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((yeah I&#39;m doing this after I wake up</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927662823725740122.html_Files/8b43b0fd349cd582cdf46f7c7702154b-F4E9D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laplace&#39;s Narrator#0000" data-user-id="922632850644287528" style="">Laplace&#39;s Narrator</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-04 09:22:52Z</span>
+
+            <div class="chatlog__message " data-message-id="927854587015213097" id="message-927854587015213097" title="Message sent: 2022-01-04 09:22:52Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline language-ini">[Excerpt #5]</div>
+
+<div class="pre pre--multiline language-diff">- Scavenger -</div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927662823725740122.html_Files/4ee179f4db7d32e369ccf0ef7b4538a5-32748.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lou-Mari Asencio#0000" data-user-id="922632850644287528" style="">Lou-Mari Asencio</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-04 09:22:53Z</span>
+
+            <div class="chatlog__message " data-message-id="927854590819455017" id="message-927854590819455017" title="Message sent: 2022-01-04 09:22:53Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)">&quot;<img loading="lazy" class="emoji " alt="𝚃" title="𝚃" src="https://twemoji.maxcdn.com/2/svg/1d683.svg"><img loading="lazy" class="emoji " alt="𝚑" title="𝚑" src="https://twemoji.maxcdn.com/2/svg/1d691.svg"><img loading="lazy" class="emoji " alt="𝚎" title="𝚎" src="https://twemoji.maxcdn.com/2/svg/1d68e.svg"> <img loading="lazy" class="emoji " alt="𝚎" title="𝚎" src="https://twemoji.maxcdn.com/2/svg/1d68e.svg"><img loading="lazy" class="emoji " alt="𝚊" title="𝚊" src="https://twemoji.maxcdn.com/2/svg/1d68a.svg"><img loading="lazy" class="emoji " alt="𝚛" title="𝚛" src="https://twemoji.maxcdn.com/2/svg/1d69b.svg"><img loading="lazy" class="emoji " alt="𝚝" title="𝚝" src="https://twemoji.maxcdn.com/2/svg/1d69d.svg"><img loading="lazy" class="emoji " alt="𝚑" title="𝚑" src="https://twemoji.maxcdn.com/2/svg/1d691.svg"> <img loading="lazy" class="emoji " alt="𝚠" title="𝚠" src="https://twemoji.maxcdn.com/2/svg/1d6a0.svg"><img loading="lazy" class="emoji " alt="𝚊" title="𝚊" src="https://twemoji.maxcdn.com/2/svg/1d68a.svg"><img loading="lazy" class="emoji " alt="𝚜" title="𝚜" src="https://twemoji.maxcdn.com/2/svg/1d69c.svg"> <img loading="lazy" class="emoji " alt="𝚋" title="𝚋" src="https://twemoji.maxcdn.com/2/svg/1d68b.svg"><img loading="lazy" class="emoji " alt="𝚕" title="𝚕" src="https://twemoji.maxcdn.com/2/svg/1d695.svg"><img loading="lazy" class="emoji " alt="𝚞" title="𝚞" src="https://twemoji.maxcdn.com/2/svg/1d69e.svg"><img loading="lazy" class="emoji " alt="𝚎" title="𝚎" src="https://twemoji.maxcdn.com/2/svg/1d68e.svg">, <img loading="lazy" class="emoji " alt="𝚋" title="𝚋" src="https://twemoji.maxcdn.com/2/svg/1d68b.svg"><img loading="lazy" class="emoji " alt="𝚞" title="𝚞" src="https://twemoji.maxcdn.com/2/svg/1d69e.svg"><img loading="lazy" class="emoji " alt="𝚝" title="𝚝" src="https://twemoji.maxcdn.com/2/svg/1d69d.svg"> <img loading="lazy" class="emoji " alt="𝚝" title="𝚝" src="https://twemoji.maxcdn.com/2/svg/1d69d.svg"><img loading="lazy" class="emoji " alt="𝚑" title="𝚑" src="https://twemoji.maxcdn.com/2/svg/1d691.svg"><img loading="lazy" class="emoji " alt="𝚎" title="𝚎" src="https://twemoji.maxcdn.com/2/svg/1d68e.svg"><img loading="lazy" class="emoji " alt="𝚛" title="𝚛" src="https://twemoji.maxcdn.com/2/svg/1d69b.svg"><img loading="lazy" class="emoji " alt="𝚎" title="𝚎" src="https://twemoji.maxcdn.com/2/svg/1d68e.svg"> <img loading="lazy" class="emoji " alt="𝚠" title="𝚠" src="https://twemoji.maxcdn.com/2/svg/1d6a0.svg"><img loading="lazy" class="emoji " alt="𝚊" title="𝚊" src="https://twemoji.maxcdn.com/2/svg/1d68a.svg"><img loading="lazy" class="emoji " alt="𝚜" title="𝚜" src="https://twemoji.maxcdn.com/2/svg/1d69c.svg"> <img loading="lazy" class="emoji " alt="𝚗" title="𝚗" src="https://twemoji.maxcdn.com/2/svg/1d697.svg"><img loading="lazy" class="emoji " alt="𝚘" title="𝚘" src="https://twemoji.maxcdn.com/2/svg/1d698.svg"> <img loading="lazy" class="emoji " alt="𝚐" title="𝚐" src="https://twemoji.maxcdn.com/2/svg/1d690.svg"><img loading="lazy" class="emoji " alt="𝚘" title="𝚘" src="https://twemoji.maxcdn.com/2/svg/1d698.svg"><img loading="lazy" class="emoji " alt="𝚍" title="𝚍" src="https://twemoji.maxcdn.com/2/svg/1d68d.svg">.&quot;</span>
+
+&quot;The words supposedly spoken by Yuri Gagarin. The first man to go to space. It has since been confirmed that the man didn&#39;t actually say that.&quot;
+
+&quot;Yet the power of this saying is something rather frightening.&quot;
+
+<em>Sitting at the top of a mound of trash, Lou stares at her right hand. It&#39;s in a fist, symbolizing her willingness to commit violent acts. A fist could be seen as a weapon, or at the very least a vehicle of violence. Her gaze switches to her left hand, which holds a torch in her hand. It symbolizes her need for help. The torch is one of the many tools she uses to assist her. She always finds herself needing help from objects and people. The latter is something that is she needs more than she likes to admit. The problem is that she doesn&#39;t 
+
+*She&#39;s alienated.</em>
+
+                               <em>She hates it.</em>
+
+<em>Lou then stares out in front of her, getting a view of the area around. This place, filled with trash, is something that resonates with her. A place that could have been used for something, but ended up being a disposal site. Lou feels as if it&#39;s calling her out. Anyone that knows the full details of her story would understand. She went into her own world showing the talent and promise for something that could&#39;ve been game changing, but her circumstances dictated something else. It&#39;s rather unfortunate, how she turned out.</em>
+
+<em>This isn&#39;t a tragedy.</em>
+
+&quot;I wonder what it&#39;s like. To see the world for what it literally is. Not one littered by the parasites known as humanity. How ironic, calling them parasites when I&#39;m no better than the collective. My hate. My curse. That&#39;s all this is isn&#39;t it? To be chained by such feelings... I still have my humanity at least.&quot;
+
+<span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)">&quot;<img loading="lazy" class="emoji " alt="𝙸" title="𝙸" src="https://twemoji.maxcdn.com/2/svg/1d678.svg"> <img loading="lazy" class="emoji " alt="𝚐" title="𝚐" src="https://twemoji.maxcdn.com/2/svg/1d690.svg"><img loading="lazy" class="emoji " alt="𝚞" title="𝚞" src="https://twemoji.maxcdn.com/2/svg/1d69e.svg"><img loading="lazy" class="emoji " alt="𝚎" title="𝚎" src="https://twemoji.maxcdn.com/2/svg/1d68e.svg"><img loading="lazy" class="emoji " alt="𝚜" title="𝚜" src="https://twemoji.maxcdn.com/2/svg/1d69c.svg"><img loading="lazy" class="emoji " alt="𝚜" title="𝚜" src="https://twemoji.maxcdn.com/2/svg/1d69c.svg"> <img loading="lazy" class="emoji " alt="𝙸" title="𝙸" src="https://twemoji.maxcdn.com/2/svg/1d678.svg"> <img loading="lazy" class="emoji " alt="𝚑" title="𝚑" src="https://twemoji.maxcdn.com/2/svg/1d691.svg"><img loading="lazy" class="emoji " alt="𝚊" title="𝚊" src="https://twemoji.maxcdn.com/2/svg/1d68a.svg"><img loading="lazy" class="emoji " alt="𝚟" title="𝚟" src="https://twemoji.maxcdn.com/2/svg/1d69f.svg"><img loading="lazy" class="emoji " alt="𝚎" title="𝚎" src="https://twemoji.maxcdn.com/2/svg/1d68e.svg"><img loading="lazy" class="emoji " alt="𝚗" title="𝚗" src="https://twemoji.maxcdn.com/2/svg/1d697.svg">&#39;<img loading="lazy" class="emoji " alt="𝚝" title="𝚝" src="https://twemoji.maxcdn.com/2/svg/1d69d.svg"> <img loading="lazy" class="emoji " alt="𝚢" title="𝚢" src="https://twemoji.maxcdn.com/2/svg/1d6a2.svg"><img loading="lazy" class="emoji " alt="𝚎" title="𝚎" src="https://twemoji.maxcdn.com/2/svg/1d68e.svg"><img loading="lazy" class="emoji " alt="𝚝" title="𝚝" src="https://twemoji.maxcdn.com/2/svg/1d69d.svg"> <img loading="lazy" class="emoji " alt="𝚕" title="𝚕" src="https://twemoji.maxcdn.com/2/svg/1d695.svg"><img loading="lazy" class="emoji " alt="𝚘" title="𝚘" src="https://twemoji.maxcdn.com/2/svg/1d698.svg"><img loading="lazy" class="emoji " alt="𝚜" title="𝚜" src="https://twemoji.maxcdn.com/2/svg/1d69c.svg"><img loading="lazy" class="emoji " alt="𝚝" title="𝚝" src="https://twemoji.maxcdn.com/2/svg/1d69d.svg"> <img loading="lazy" class="emoji " alt="𝚑" title="𝚑" src="https://twemoji.maxcdn.com/2/svg/1d691.svg"><img loading="lazy" class="emoji " alt="𝚘" title="𝚘" src="https://twemoji.maxcdn.com/2/svg/1d698.svg"><img loading="lazy" class="emoji " alt="𝚙" title="𝚙" src="https://twemoji.maxcdn.com/2/svg/1d699.svg"><img loading="lazy" class="emoji " alt="𝚎" title="𝚎" src="https://twemoji.maxcdn.com/2/svg/1d68e.svg">.&quot;</span>
+
+&quot;Let&#39;s get to work now. I can&#39;t just loathe in self-pity all the time. No more dreams.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927854608896909332" id="message-927854608896909332" title="Message sent: 2022-01-04 09:22:57Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong> </strong>
+<em>Lou starts the dangerous journey down the pile of trash she took the liberty to climb up. Crazy? Yes. She felt as if there was something to gain from reaching the top. And as she did, that feeling never went away. Maybe there&#39;s something within the piles of scrap here that she was meant to find. The war house had recently lost its weapons, so why not find some replacements? She was useless before, but now... Now she&#39;s not gonna be that weak girl she was then.</em>
+
+<em>But being drawn here... What does that mean?</em>
+
+<em><strong>It means that trash brings about more trash.</strong></em>
+
+&quot;This is my element.&quot;
+
+<em>Speaking to herself, Lou finds the downwards journey to be much harder. She could easily fall in and end up dying as a result. Many things could happen, and many of those things end up with her being harmed in some way. Like just now, some of the trash she&#39;s stepping on, it scratches her legs. Thank god for her choice of clothing, blocking out the sharpness of whatever could harm her. Still though, it&#39;s not a pleasant feeling as she eventually makes her way to the bottom.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927662823725740122.html_Files/337fb447dfe23ea45dc0b306bf8261ad-ABED1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ｔｈｅ  Ｍｅｄｉａｔｏｒ#0000" data-user-id="922632850644287528" style="">Ｔｈｅ  Ｍｅｄｉａｔｏｒ</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-04 09:22:57Z</span>
+
+            <div class="chatlog__message " data-message-id="927854611006636052" id="message-927854611006636052" title="Message sent: 2022-01-04 09:22:57Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Time to gather resources</div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927662823725740122.html_Files/4ee179f4db7d32e369ccf0ef7b4538a5-32748.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lou-Mari Asencio#0000" data-user-id="922632850644287528" style="">Lou-Mari Asencio</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-04 09:22:58Z</span>
+
+            <div class="chatlog__message " data-message-id="927854614483705863" id="message-927854614483705863" title="Message sent: 2022-01-04 09:22:58Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>As Lou starts her scan of the place, she comes across one of the useless cars. The windows, they&#39;re still intact to her surprise. A sudden vision pops into her mind upon gazing into the reflection seen in the glass. It&#39;s just her walking alone with that scarf. She&#39;s had it for how long now, and has maintained it for a surprisingly long time. She was given the scarf by someone she cared about dearly. Someone that changed her life. Someone she saw die right in front of her eyes.</em>
+
+<em>That guilt will always haunt her.</em>
+<strong> </strong></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927854616316608572" id="message-927854616316608572" title="Message sent: 2022-01-04 09:22:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://media.discordapp.net/attachments/911159680598945832/927842552743350292/IMG_4032.jpg">https://media.discordapp.net/attachments/911159680598945832/927842552743350292/IMG_4032.jpg</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                            <a href="927662823725740122.html_Files/IMG_4032-3ECBD.jpg">
+                                <img class="chatlog__embed-plainimage" src="927662823725740122.html_Files/IMG_4032-3ECBD.jpg" alt="Embedded image" loading="lazy">
+                            </a>
+                        </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927854618149531688" id="message-927854618149531688" title="Message sent: 2022-01-04 09:22:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong> </strong>
+<em>While she can&#39;t go back to the person she was, she knows she can still evolve. But it&#39;s the hardest thing for her. Moving on from the past that haunts her. This cycles back to her need for help.</em>
+<strong> </strong></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927854690874556456" id="message-927854690874556456" title="Message sent: 2022-01-04 09:23:17Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>But how exactly will she get that help. She&#39;s already chosen the path of the antagonist in this game. She did it for the possibility of uniting everyone else under the common feeling of disdain for her. There are many already out in the world that would love to see her wiped off the face of the earth. No one needs an insurgent like her causing discord in the world. She&#39;s seen as a threat to those that have power and those around her. With those labels over her head, who in the right mind would honestly trust her. If there are a few more people added to the list of those that would rather see her disappear...</em>
+
+<em>...what&#39;s a few more to that pile? If they don&#39;t care, then she&#39;s succeeded.</em>
+
+<span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)">&quot;<img loading="lazy" class="emoji " alt="𝙸" title="𝙸" src="https://twemoji.maxcdn.com/2/svg/1d678.svg"><img loading="lazy" class="emoji " alt="𝚝" title="𝚝" src="https://twemoji.maxcdn.com/2/svg/1d69d.svg">&#39;<img loading="lazy" class="emoji " alt="𝚜" title="𝚜" src="https://twemoji.maxcdn.com/2/svg/1d69c.svg"> <img loading="lazy" class="emoji " alt="𝚜" title="𝚜" src="https://twemoji.maxcdn.com/2/svg/1d69c.svg"><img loading="lazy" class="emoji " alt="𝚘" title="𝚘" src="https://twemoji.maxcdn.com/2/svg/1d698.svg"> <img loading="lazy" class="emoji " alt="𝚙" title="𝚙" src="https://twemoji.maxcdn.com/2/svg/1d699.svg"><img loading="lazy" class="emoji " alt="𝚊" title="𝚊" src="https://twemoji.maxcdn.com/2/svg/1d68a.svg"><img loading="lazy" class="emoji " alt="𝚒" title="𝚒" src="https://twemoji.maxcdn.com/2/svg/1d692.svg"><img loading="lazy" class="emoji " alt="𝚗" title="𝚗" src="https://twemoji.maxcdn.com/2/svg/1d697.svg"><img loading="lazy" class="emoji " alt="𝚏" title="𝚏" src="https://twemoji.maxcdn.com/2/svg/1d68f.svg"><img loading="lazy" class="emoji " alt="𝚞" title="𝚞" src="https://twemoji.maxcdn.com/2/svg/1d69e.svg"><img loading="lazy" class="emoji " alt="𝚕" title="𝚕" src="https://twemoji.maxcdn.com/2/svg/1d695.svg">.&quot;</span>
+
+&quot;Even so, this path I&#39;ve paved. I&#39;ll continue until the road ends. Unless I&#39;m directed down a different path, I remain on this course. It...It doesn&#39;t matter how much I hurt...right?&quot;
+
+<span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)">&quot;<img loading="lazy" class="emoji " alt="𝐖" title="𝐖" src="https://twemoji.maxcdn.com/2/svg/1d416.svg"><img loading="lazy" class="emoji " alt="𝐡" title="𝐡" src="https://twemoji.maxcdn.com/2/svg/1d421.svg"><img loading="lazy" class="emoji " alt="𝐲" title="𝐲" src="https://twemoji.maxcdn.com/2/svg/1d432.svg"> <img loading="lazy" class="emoji " alt="𝐚" title="𝐚" src="https://twemoji.maxcdn.com/2/svg/1d41a.svg"><img loading="lazy" class="emoji " alt="𝐦" title="𝐦" src="https://twemoji.maxcdn.com/2/svg/1d426.svg"> <img loading="lazy" class="emoji " alt="𝐈" title="𝐈" src="https://twemoji.maxcdn.com/2/svg/1d408.svg"> <img loading="lazy" class="emoji " alt="𝐝" title="𝐝" src="https://twemoji.maxcdn.com/2/svg/1d41d.svg"><img loading="lazy" class="emoji " alt="𝐨" title="𝐨" src="https://twemoji.maxcdn.com/2/svg/1d428.svg"><img loading="lazy" class="emoji " alt="𝐢" title="𝐢" src="https://twemoji.maxcdn.com/2/svg/1d422.svg"><img loading="lazy" class="emoji " alt="𝐧" title="𝐧" src="https://twemoji.maxcdn.com/2/svg/1d427.svg"><img loading="lazy" class="emoji " alt="𝐠" title="𝐠" src="https://twemoji.maxcdn.com/2/svg/1d420.svg"> <img loading="lazy" class="emoji " alt="𝐭" title="𝐭" src="https://twemoji.maxcdn.com/2/svg/1d42d.svg"><img loading="lazy" class="emoji " alt="𝐡" title="𝐡" src="https://twemoji.maxcdn.com/2/svg/1d421.svg"><img loading="lazy" class="emoji " alt="𝐢" title="𝐢" src="https://twemoji.maxcdn.com/2/svg/1d422.svg"><img loading="lazy" class="emoji " alt="𝐬" title="𝐬" src="https://twemoji.maxcdn.com/2/svg/1d42c.svg">?&quot;</span>
+
+<em>Lou is suddenly brought back to her senses as she feels something dig into her lower right leg. She quickly looks at it, and all of a sudden the mood shifts. The face she was once wearing, one that appeared neutral but felt remorseful, is now a smirk that suggests that she has something planned out... These common mood shifts are the result of her thoughts and atmosphere being different. Right now, she should be feeling all cynical but her thoughts were filled with questions and a hint of regret.</em>
+
+<em>It&#39;s weird.</em>
+  
+                     <em>She&#39;s weird.</em>
+    
+                                              <em>We&#39;re all weird.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927662823725740122.html_Files/337fb447dfe23ea45dc0b306bf8261ad-ABED1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ｔｈｅ  Ｍｅｄｉａｔｏｒ#0000" data-user-id="922632850644287528" style="">Ｔｈｅ  Ｍｅｄｉａｔｏｒ</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-04 09:23:17Z</span>
+
+            <div class="chatlog__message " data-message-id="927854693311447060" id="message-927854693311447060" title="Message sent: 2022-01-04 09:23:17Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="pre pre--inline">&#39;But now, it&#39;s time we get our power back.&#39;</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927662823725740122.html_Files/4ee179f4db7d32e369ccf0ef7b4538a5-32748.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lou-Mari Asencio#0000" data-user-id="922632850644287528" style="">Lou-Mari Asencio</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-04 09:23:18Z</span>
+
+            <div class="chatlog__message " data-message-id="927854695249240084" id="message-927854695249240084" title="Message sent: 2022-01-04 09:23:18Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Lou reaches down and pulls out the object she was just looking at. An object she often saw when she went around to do her reports. One she&#39;s familiar with, and one that&#39;s much too easy for anyone with competent arm strength to use.</em>
+
+<em><strong>A crowbar.</strong></em>
+
+<em>How convenient for her. She can have that, a knife, and a torch as potential weapons to use...</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927854775888912444" id="message-927854775888912444" title="Message sent: 2022-01-04 09:23:37Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong> </strong>
+<em>Admittedly, Lou knows that a good chunk of the people would rather avoid her so having weapons most of the time would be useless. She personally feels secure when she has something she can defend herself with. Maybe the amount of items is overcompensating it, but it&#39;s honestly better to have more than less, at least in her mind. The ability to have options is something that can make her more threatening than the weapons.</em>
+
+<em>As Lou continues through the pile, a couple of thoughts with her roommates cross her mind. Erina, the one that died first, gave them a nice message. She&#39;s going to respect it because she has a certain level of respect for the dead. Daisuke, the one dude in the house, is honestly a neutral to her. Sai is easily the one Lou respects the most, mainly for how she acted in front of her in front of those paintings. Not many people have honestly spoken to her like that. Finally Misaki. There&#39;s something about her that intrigues Lou, but she won&#39;t let that be known whatsoever. She won&#39;t get too involved with anyone otherwise attachments may form...</em>
+
+&quot;Oh yeah, I said I would bring something back for Misaki huh...&quot;
+
+<em>That group chat sure is something...</em> 
+
+<em>Looking around, Lou finds something among the trash that she thinks Misaki might like. As if it were magic, she spots a comb. Misaki did mention a comb right, so there we go. Lou will wash it out of course to make sure there&#39;s nothing disgusting getting in the girl&#39;s hair. She may antagonistic, but she isn&#39;t mean.</em>
+
+<em>Well...mean in that regard...</em>
+
+<em>Lou then starts humming as she starts to leave. There are things still in the back of her mind. Things that she&#39;ll address one day. Right now though, they can wait.</em>
+
+<em>She has the morning to look forward to.</em>
+
+<em>Maybe she can have another start one day. That&#39;s what the morning is for after all...</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927662823725740122.html_Files/8b43b0fd349cd582cdf46f7c7702154b-F4E9D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laplace&#39;s Narrator#0000" data-user-id="922632850644287528" style="">Laplace&#39;s Narrator</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-04 09:23:37Z</span>
+
+            <div class="chatlog__message " data-message-id="927854777667297310" id="message-927854777667297310" title="Message sent: 2022-01-04 09:23:37Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline language-ini">[Excerpt #5 - Finished]</div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 17 message(s)</div>
+</div>
+
+</body>
+
+</html>

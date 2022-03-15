@@ -1,0 +1,1498 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Despair&#39;s Horizon - octobers-diary</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="914588686916653076.html_Files/a_a82f66cbaf9572e715aef752d1954a13-F33DA.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Despair&#39;s Horizon</div>
+        <div class="preamble__entry">♧ ─ ❀『Diaries (KG)』❀ ─ ♧ / octobers-diary</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="914588686916653076.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-05 03:46:52Z</span>
+
+            <div class="chatlog__message " data-message-id="916898396076396604" id="message-916898396076396604" title="Message sent: 2021-12-05 03:46:52Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline language-ini">[The first few pages are sectioned off, each for October&#39;s fellow participants. One for each person. They will be updated with every interaction!]</div>
+(and the pixels are stupid little doodles she did of each person but not actual pixels i am too lazy to actually draw things out)
+<strong>
+</strong></span>
+
+                                <span class="chatlog__edited-timestamp" title="2021-12-05 04:05:32Z">(edited)</span>
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="914588686916653076.html_Files/Untitled819_20211105191940-9F6D1.png">
+                                <img class="chatlog__attachment-media" src="914588686916653076.html_Files/Untitled819_20211105191940-9F6D1.png" alt="Image attachment" title="Image: Untitled819_20211105191940.png (6.47 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916898734590279680" id="message-916898734590279680" title="Message sent: 2021-12-05 03:48:13Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>
+</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916898742362312704" id="message-916898742362312704" title="Message sent: 2021-12-05 03:48:15Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div>
+<u><span class="pre pre--inline">Akuza Caleshi</span> <img loading="lazy" class="emoji " alt="pixel_akuza" title="pixel_akuza" src="https://cdn.discordapp.com/emojis/913848143504867328.png"></u>
+➥ Medic
+➥ <img loading="lazy" class="emoji " alt="gun" title="gun" src="https://cdn.discordapp.com/emojis/677634274014527495.png"> Break-in Idiots
+
+⤷ if you&#39;re a medic then why can&#39;t you put a bandage on all my emotional baggage and unresolved trauma and other issues
+
+⤷ trusting you would be a mistake. You sefishly barged into my house and treated me like garbage. Fuck you. Not the worst out of the group, but still bad.
+⤷ and then you try to justify your actions. weirdo.
+
+➥ <s>don&#39;t trust.</s> <span class="pre pre--inline">Foe.</span>
+➥ <span class="pre pre--inline">( ་ ⍸ ་ )</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:27:56Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916898867683934218" id="message-916898867683934218" title="Message sent: 2021-12-05 03:48:45Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div>
+<u><span class="pre pre--inline">Aria Karenina</span> <img loading="lazy" class="emoji " alt="pixel_aria" title="pixel_aria" src="https://cdn.discordapp.com/emojis/913846945221582869.png"></u>
+➥ Latin Dancer
+
+➥ <span class="pre pre--inline">Foe.</span>
+➥ <span class="pre pre--inline">（☝ ՞ਊ ՞）☝</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:28:04Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916898954803814410" id="message-916898954803814410" title="Message sent: 2021-12-05 03:49:05Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div>
+<s><u><span class="pre pre--inline">Corr Tabure</span> <img loading="lazy" class="emoji " alt="pixel_corr" title="pixel_corr" src="https://cdn.discordapp.com/emojis/913845464254787604.png"></u></s>
+➥ &quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;ETHICAL&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot; Hacker
+
+⤷ . . .
+⤷ Ethical. <em>Ethical.</em> is that how you stay out of trouble??? One little word?? Is that how you keep them from sniffing you down??? And then they make you leave your entire life behind just because you&#39;re scared for your life??? Coward. Ethical my ass.
+⤷ I still don&#39;t respect you. You&#39;re dumb you hide behind some stupid word to keep to safe. BUt i&#39;m not disrespecting the dead. 
+
+➥ FINAL VERDICT
+      ➥ Victim
+➥ trusting you would be a mistake. (your dead you&#39;re not a threat)
+➥ <span class="pre pre--inline">╭∩╮(-_-)╭∩╮</span>
+<div class="pre pre--multiline nohighlight"> </div></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:28:24Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916899048018018344" id="message-916899048018018344" title="Message sent: 2021-12-05 03:49:28Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><u><span class="pre pre--inline">Daisuke Izumi</span> <img loading="lazy" class="emoji " alt="pixel_daisuke" title="pixel_daisuke" src="https://cdn.discordapp.com/emojis/923043828406046720.png"></u>
+➥ Survivor
+
+➥ <span class="pre pre--inline">Foe.</span>
+➥ <span class="pre pre--inline">(☞ ՞ਊ ՞)☞</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:28:38Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916899177571696700" id="message-916899177571696700" title="Message sent: 2021-12-05 03:49:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div>
+<s><u><span class="pre pre--inline">Erina Normandy</span> <img loading="lazy" class="emoji " alt="pixel_erina" title="pixel_erina" src="https://cdn.discordapp.com/emojis/913843796524007434.png"></u></s>
+➥ Geologist
+
+⤷ should i trust you? should i not? i don&#39;t know. I&#39;m sorry you died though. Maybe you got what you deserved, who knows. I don&#39;t think that though. I don&#39;t know why, but.
+
+➥ FINAL VERDICT
+      ➥ Victim
+➥ May you rest in peace because you seem like the only innocent soul left.
+➥ <span class="pre pre--inline">(☉౪ ⊙)</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:35:34Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916899230226984991" id="message-916899230226984991" title="Message sent: 2021-12-05 03:50:11Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div>
+
+<u><span class="pre pre--inline">The Great Jericho</span> <img loading="lazy" class="emoji " alt="pixel_jericho" title="pixel_jericho" src="https://cdn.discordapp.com/emojis/913845505635799120.png"></u>
+➥ Street Magician
+
+⤷ You seem weird. I don&#39;t know you but I don&#39;t trust you. You&#39;re lying about something for sure, whether it be your name or talent. Probably both. You&#39;re hiding something and I know it. 
+⤷ Idk why I want to find what you&#39;re hiding but. Im feeling nosy ig.
+
+⤷ You&#39;re optimistic but to an unhealthy extent. You being this &quot;jericho&quot; dude has completely taken you over to the point that you can&#39;t act any other way. You don&#39;t see how terrible thus FUCKING situation is rn and that&#39;s just fucking stupid. I get if you&#39;re coping or whatever but seriously wtf. 
+⤷ you don&#39;t understand how much the loss of a human life means. Clearly. Your ego and your silver lining of the world makes that PRETTY FUCKING CLEAR. 
+
+➥ <s>don&#39;t trust.</s> <span class="pre pre--inline">Nosy Annoying Fuck of a Foe.</span>
+➥ <span class="pre pre--inline">(∩ ͡&#176; ͜ʖ ͡&#176;)⊃━☆ﾟ</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:28:58Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916899377056976936" id="message-916899377056976936" title="Message sent: 2021-12-05 03:50:46Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div>
+<s><u><span class="pre pre--inline">John</span> <img loading="lazy" class="emoji " alt="pixel_john" title="pixel_john" src="https://cdn.discordapp.com/emojis/913846876896383036.png"></u></s>
+➥ Business Person
+➥ <img loading="lazy" class="emoji " alt="gun" title="gun" src="https://cdn.discordapp.com/emojis/677634274014527495.png"> Break-in Idiots
+➥ <img loading="lazy" class="emoji " alt="📉" title="chart_with_downwards_trend" src="https://twemoji.maxcdn.com/2/svg/1f4c9.svg"> Capitalist Crew 
+
+⤷ Oh look, a capitalist.
+⤷ I don&#39;t trust you either. You&#39;re definitely hiding behind some sort of alias and everyone knows to never trust ultimate capitalists. You&#39;ll probably get along with all the other freaking capitalists here.
+
+⤷ One. Me giving you my trust is a privilege, not a right. You are shady and scummy until you prove me otherwise. Two. Fuck you. Fuck you and all if your shitty little breakin buddies. Can I have ONE stranger treat me with human decency because at this rate youre driving my faith in humanity into the negatives.
+
+⤷ you confuse me why are you trying to nhelp me??? Still don&#39;t trust you but I get free food ig thats one problem solved
+
+⤷ I hate you. I thought you were gonna stay alive. i thought you were gonna help me. It&#39;s stupidly selfish to think this ut i dont wanna be alone here whyd youleavemewithamurder
+
+➥ FINAL VERDICT
+      ➥ Killer 
+➥ <s>trusting you would be a mistake.?</s> <span class="pre pre--inline">Two faced betraying liar</span>
+➥ <span class="pre pre--inline">ಠ_ಠ</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:30:22Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916899436729360414" id="message-916899436729360414" title="Message sent: 2021-12-05 03:51:00Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div>
+<u><span class="pre pre--inline">Lester Warburton</span> <img loading="lazy" class="emoji " alt="pixel_lester" title="pixel_lester" src="https://cdn.discordapp.com/emojis/913846617474478150.png"></u>
+➥ Salesman
+➥ <img loading="lazy" class="emoji " alt="📉" title="chart_with_downwards_trend" src="https://twemoji.maxcdn.com/2/svg/1f4c9.svg"> Capitalist Crew
+
+⤷ There&#39;s another. Holy shit. 
+⤷ Again, don&#39;t trust you. you&#39;re hiding something for sure.
+
+➥ <span class="pre pre--inline">Foe.</span>
+➥ <span class="pre pre--inline">（ &#172;＿&#172;)</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:30:33Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916899528932741130" id="message-916899528932741130" title="Message sent: 2021-12-05 03:51:22Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div>
+<u><span class="pre pre--inline">Lou-Mari Gabriele Asencio</span> <img loading="lazy" class="emoji " alt="pixel_loumari" title="pixel_loumari" src="https://cdn.discordapp.com/emojis/913846711657582592.png"></u>
+➥ Unknown
+
+⤷ Your hiding soemthing. I know it. I dont trust you and ever will. You have a reason to be hiding something, which isn&#39;t good! I&#39;ll figure it out though haha lmaoooo
+⤷ also stop being french and sounding rich you prick
+
+➥ <s>don&#39;t trust.</s> <span class="pre pre--inline">(Annoying) Foe.</span>
+➥ <span class="pre pre--inline">┐( -“-)┌</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:30:49Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916899573484625970" id="message-916899573484625970" title="Message sent: 2021-12-05 03:51:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div>
+<u><span class="pre pre--inline">Lucian D&#39;Arc</span> <img loading="lazy" class="emoji " alt="pixel_lucian" title="pixel_lucian" src="https://cdn.discordapp.com/emojis/913845790118658098.png"></u>
+➥ Foreign Prince
+➥ <img loading="lazy" class="emoji " alt="📉" title="chart_with_downwards_trend" src="https://twemoji.maxcdn.com/2/svg/1f4c9.svg"> Capitalist Crew 
+
+⤷ WHY ARE THERE SO MANY CAPITALISTS im going to make a list at this point
+⤷ also stop being french
+
+⤷ You&#39;re nice. too nice. You remind me of Theron but i dont like it.Last time someone reminded me of theron they died and i couldnt do anythingaboutit
+⤷ you&#39;re the closest thing i have to someone to help me left but i stilldont trust you 
+
+➥ <s>dont trust.</s>? <span class="pre pre--inline">Foe. probably.</span>
+➥ <span class="pre pre--inline">⑉౦ළ౦⑉</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:32:02Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916899676312190987" id="message-916899676312190987" title="Message sent: 2021-12-05 03:51:58Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div>
+<u><span class="pre pre--inline">Maximina Krolik</span> <img loading="lazy" class="emoji " alt="pixel_maximina" title="pixel_maximina" src="https://cdn.discordapp.com/emojis/913846387970551848.png"></u>
+➥ Pluocrat
+➥ <img loading="lazy" class="emoji " alt="gun" title="gun" src="https://cdn.discordapp.com/emojis/677634274014527495.png"> Break-in Idiots
+➥ <img loading="lazy" class="emoji " alt="📉" title="chart_with_downwards_trend" src="https://twemoji.maxcdn.com/2/svg/1f4c9.svg"> Capitalist Crew 
+
+⤷ fucking hate you capitalists
+⤷ hate. haye gate haye ahagrt  i ddidnt come here to get bullkied again i dont wanna go back to that shit i hate you 
+
+⤷ hate hate hate hate hatehate hatehate hatehate hatehate hatehate hatehate hate hate hatehate hatehate hatehate hatehate hatehate hatehate hatehate hatehate hatehate hatehate hatehate hatehate hatehate hatehate hatehate hatehate hatehate hate how did you make your apology not feel like an aplogy you&#39;re so fucked up i hate you
+
+➥ <span class="pre pre--inline">I hate you more than anything more in the world I can&#39;t stand you and your stuck up ass i dont care that you apologized that doesn&#39;t fix anything.</span>
+➥ <span class="pre pre--inline">(‿ꜟ‿)</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:32:58Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916899761217470485" id="message-916899761217470485" title="Message sent: 2021-12-05 03:52:18Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div>
+<u><span class="pre pre--inline">Misaki Mito</span> <img loading="lazy" class="emoji " alt="pixel_misaki" title="pixel_misaki" src="https://cdn.discordapp.com/emojis/913846553612005437.png"></u>
+➥ Otomatone Player 
+
+⤷ I spelled that wrong ahahaaahahsdahhahahsdhasdha owhbandcramp. It&#39;s kinda cool that you&#39;re also a musician, but can&#39;t trust you. You look pretty but yeah. Sorry. Wish I cared more. I sound more sad when I write this out lmao I genuinely dont care
+⤷ though i have plated the otamatone before it&#39;s fun
+
+➥ <span class="pre pre--inline">Foe.</span>
+➥ <span class="pre pre--inline">┐(・。・┐) ♪</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:33:09Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916899851214659584" id="message-916899851214659584" title="Message sent: 2021-12-05 03:52:39Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div>
+<u><span class="pre pre--inline">Momoka Hanasaki</span> <img loading="lazy" class="emoji " alt="pixel_momoka" title="pixel_momoka" src="https://cdn.discordapp.com/emojis/913848117093339146.png"></u>
+➥ Model
+
+⤷ Ryder would like you. derogatory. I think you&#39;d tell me how good i&#39;d look in pink and then spit on me because I didn&#39;t have a charter for your phone. Don&#39;t like you. Don&#39;t care.
+⤷ you&#39;re kinda dumb lmao
+
+➥ <span class="pre pre--inline">Foe.</span>
+➥ <span class="pre pre--inline">(ʺʘੂ๔̈ੁʘੂ)</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:33:21Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916899895590408193" id="message-916899895590408193" title="Message sent: 2021-12-05 03:52:50Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div>
+<u><span class="pre pre--inline">(☆) Naoko Sugimoto</span> <img loading="lazy" class="emoji " alt="pixel_naoko" title="pixel_naoko" src="https://cdn.discordapp.com/emojis/913845954719928330.png"></u>
+➥ SFX Artist
+
+⤷ lmao emo
+
+➥ Thin fucking ice.
+➥ <span class="pre pre--inline">（͡&#176;͜ʖ͡&#176;）</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:33:42Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916899945133539388" id="message-916899945133539388" title="Message sent: 2021-12-05 03:53:02Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div>
+<s><u><span class="pre pre--inline">(☆) Reiichi Nisemuri</span> <img loading="lazy" class="emoji " alt="pixel_reiichi" title="pixel_reiichi" src="https://cdn.discordapp.com/emojis/913846484582162432.png"></u></s>
+➥ <s>Statistican</s> Statistician
+
+⤷ I don&#39;t understand you. First off you don&#39;t talk which is fine but. I don&#39;t know if it was because of the flashback or whatever but I can&#39;t stop seeing theron (either just seeing him or seeing him in you if you get my drift) when i look at you and i don&#39;t like it. you&#39;re nothing like him??? Why do i keep seeing him?? am I just sad?? you&#39;re weird.
+⤷ I wanna know more about you but i don&#39;t wanna get hurt. .....or for you to get hurt.
+
+⤷ why why why dont fucking ehwhy why did you do that 
+⤷ you cant doisrespect human life like that 
+⤷ imsorry i liked you but i cant you didnt have a good reason like theron you were gonna let everyone else die
+
+➥ FINAL VERDICT
+      ➥ murderer / I shouldn&#39;t respect you but why do i
+➥ <span class="pre pre--inline">(,Ծ_Ծ,)</span> 
+<div class="pre pre--multiline nohighlight"> </div></span>
+
+                                <span class="chatlog__edited-timestamp" title="2021-12-22 20:48:41Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916899995226091531" id="message-916899995226091531" title="Message sent: 2021-12-05 03:53:14Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><u><span class="pre pre--inline">Sadao Matsumoto</span> <img loading="lazy" class="emoji " alt="pixel_sadao" title="pixel_sadao" src="https://cdn.discordapp.com/emojis/913846171674497084.png"></u>
+➥ Poet
+➥ <img loading="lazy" class="emoji " alt="gun" title="gun" src="https://cdn.discordapp.com/emojis/677634274014527495.png"> Break-in Idiots
+
+⤷ you look emo too
+⤷ fuck you im now emophobic
+
+➥ <s>don&#39;t trust.</s> <span class="pre pre--inline">Foe.</span>
+➥ <span class="pre pre--inline">ԅ|.͡&#176; ൧͑ ͡&#176;.|ᕤ</span>
+<div class="pre pre--multiline nohighlight"> </div></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:36:09Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916900030999306250" id="message-916900030999306250" title="Message sent: 2021-12-05 03:53:22Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><u><span class="pre pre--inline">Sai Mannan</span> <img loading="lazy" class="emoji " alt="pixel_sai" title="pixel_sai" src="https://cdn.discordapp.com/emojis/913846090154008638.png"></u>
+➥ Biomedical Researcher
+
+➥ <span class="pre pre--inline">Foe.</span>
+➥ <span class="pre pre--inline">༼≖ɷ≖༽</span>
+<div class="pre pre--multiline nohighlight"> </div></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:36:13Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916900095163793438" id="message-916900095163793438" title="Message sent: 2021-12-05 03:53:37Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><u><span class="pre pre--inline">(☆) Tamotsu Asa</span> <img loading="lazy" class="emoji " alt="pixel_tamotsu" title="pixel_tamotsu" src="https://cdn.discordapp.com/emojis/913845350383636490.png"></u>
+➥ Lawyer
+
+⤷ You&#39;re one of my roommates. And you&#39;re kinda weird, tbh. I&#39;m writing this when im half alsepe so i hope this makes sense. your beliefs dont make sense to me and youre kinda a mischief maker. You think you can do whatever you want as long as you deem it &quot;smart&quot; and &quot;lawful&quot;. Which is a flawed viewpoint but whatever.
+
+⤷ You&#39;re the only person other than Reiichi ive kinda talked to, which is weird. but despite your weirdness i think you could be some sort of useful. besides you&#39;re in my room, so i should make sure i get on your good side a little.
+
+➥ <s>maybe trust?</s> thin fucking ice.
+➥ <span class="pre pre--inline">(；&#172;д&#172;)</span>
+<div class="pre pre--multiline nohighlight"> </div></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:36:22Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916900130488189008" id="message-916900130488189008" title="Message sent: 2021-12-05 03:53:46Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><u><span class="pre pre--inline">Wave</span> <img loading="lazy" class="emoji " alt="pixel_wave" title="pixel_wave" src="https://cdn.discordapp.com/emojis/913845420931825665.png"></u>
+➥ Grafitti Artist
+
+⤷ Fuck you. fuck you so so much in every way shape and form. I hate you so much. Not my fault i cant do it im sorry i would be helpful if i couldyou&#39;re just like ryder its your fault i cant see him more than anything
+
+⤷ HATE YOU
+
+➥ <span class="pre pre--inline">Foe.</span>
+➥ <span class="pre pre--inline">V(=^･ω･^=)v</span>
+<div class="pre pre--multiline nohighlight"> </div></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:36:30Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916900179536404530" id="message-916900179536404530" title="Message sent: 2021-12-05 03:53:57Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><u><span class="pre pre--inline">Wolfsbane</span> <img loading="lazy" class="emoji " alt="pixel_wolfsbane" title="pixel_wolfsbane" src="https://cdn.discordapp.com/emojis/913846028963307571.png"></u>
+➥ Nanny
+
+⤷ annoying stuck up bitch just cause you&#39;re a nanny and you think of me as childish that doesnt mean you can boss me around
+
+➥ <span class="pre pre--inline">Foe.</span>
+➥ <span class="pre pre--inline">(꒵꜅꒵)</span>
+<div class="pre pre--multiline nohighlight"> </div></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:36:57Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916900231759667211" id="message-916900231759667211" title="Message sent: 2021-12-05 03:54:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><u><span class="pre pre--inline">(☆) Wynona Simons</span> <img loading="lazy" class="emoji " alt="pixel_wynona" title="pixel_wynona" src="https://cdn.discordapp.com/emojis/913845255793692732.png"></u>
+➥ Nephologist
+
+➥ thin ufcking ice. 
+➥ <span class="pre pre--inline">༼(∩ ͡&#176;╭͜ʖ╮͡ ͡&#176;)༽⊃━☆ﾟ. * ･ ｡ﾟ</span>
+<div class="pre pre--multiline nohighlight"> </div></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-10 04:37:06Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916900499998003260" id="message-916900499998003260" title="Message sent: 2021-12-05 03:55:14Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>
+</strong></span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="914588686916653076.html_Files/Untitled819_20211105191940-4F187.png">
+                                <img class="chatlog__attachment-media" src="914588686916653076.html_Files/Untitled819_20211105191940-4F187.png" alt="Image attachment" title="Image: Untitled819_20211105191940.png (6.34 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="914588686916653076.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-05 04:08:53Z</span>
+
+            <div class="chatlog__message " data-message-id="916903936697446431" id="message-916903936697446431" title="Message sent: 2021-12-05 04:08:53Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><u><span class="pre pre--inline">ENTRY 1: I AM GOING TO FUCKING COMMIT A WAR CRIME NICELY. I HAVE BROKEN THE LAW ONCE AND I WILL DO IT AGAIN.</span></u>
+
+⤷ why are there no fucking type tpyes here. I can&#39;t with this. this is stupid shit. anyways. 
+
+⤷ i really dont know what i did to get here because i am now talking to a book. talking to a book is absolutely stupid and i dont know why i am. my writing is worse than dodger&#39;s. or so lucas told me but he&#39;s even more of a criminal than i am. lmao. dont tell him i sadithatFUCKOUUNOWIMSAD
+
+(kind of heavy death talk so spoilered for that)
+⤷ a<span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)">nyways,,, im sad now. im gonna die here nad i know it. i cant go outside without having a fucking panick attack and everoynes supposed to kill each other. im not gonna live. i know it. im too weak. i cant fight back. i cant help dodger or mei how the hell am i gonna live through this </span>
+
+⤷ maybe i shouldnt write all of my lifelong woes in this book man someone might find it
+
+⤷ good thing i can hide somerthing like mad lmao hahah
+⤷ fuck
+⤷ now im sad
+
+⤷ and i miss mom now too cause she would always get mad at me for hiding bang from ehr and she would get mad at me and now fuck im criyng akll over this damnc book 
+⤷ fuck this
+
+⤷ mom i miss you dad i miss you ryder i kinda miss you lils you&#39;re okay i miss you too dodger i fucking hate you please fucking AAAAAAAAA comemback come back come back i wish that shit never happend with redhead theron please give me a hug im sad i miss you a lot and lucas i kinda miss you too
+⤷ and mei i miss you a lot too 
+⤷ sorry
+⤷ i know you all cant see this but maybe you can look at it after i die (jokes)
+
+⤷ and im runningoutofspaceonthispagewgydoiʷʳⁱᵗᵉˢᵒᵇⁱᵍᶠᵘᶜᵏʸᵒᵘ
+
+⤷ <span class="pre pre--inline">BYE .3.</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="916904037620789319" id="message-916904037620789319" title="Message sent: 2021-12-05 04:09:17Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>
+</strong></span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="914588686916653076.html_Files/Untitled819_20211105191940-07069.png">
+                                <img class="chatlog__attachment-media" src="914588686916653076.html_Files/Untitled819_20211105191940-07069.png" alt="Image attachment" title="Image: Untitled819_20211105191940.png (6.34 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="914588686916653076.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2021-12-06 22:55:54Z</span>
+
+            <div class="chatlog__message " data-message-id="917549947828699236" id="message-917549947828699236" title="Message sent: 2021-12-06 22:55:54Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><u><span class="pre pre--inline">ENTRY 2: IDK IS THIS WHAT A CHARACTER ARC FEELS LIKE</span></u>
+
+⤷ so its been a few days since the whole whiney breakdown i had and idk i feel like ive chainged?? esp after the convo i had with the lawyer. tatomotus or whatever???? idk how to spell it. 
+
+⤷ ive had time to think while im praying to not kill my ds lmoa BUT i dont really wanna die tbh even though its definitely a possibility
+⤷ im an easy target and i know it in every way but.
+⤷ idk i kinda wanna live even though im most likely not going to
+⤷ i miss diodger please dont fucking start crying afain you ugly fuck and i also miss theorn (and the other ones two ig)
+
+⤷ but if i died i wouldnt get to see them again. Well be able to talk to them i see them all the time when i hallucinate from either lack of sleep or trauma lmaoOOOO
+⤷ anyways.
+⤷ I keep seeing theron whenever i look at that reehceee or whatever her name is and i miss him more each time and 
+⤷ i dont wanna lose him
+⤷ if i die his sacrifice will be null
+⤷ i wanna live
+⤷ i wanna see mom and dad and ryder and lils and dodger and theron and lucas again
+⤷ losing mei was absolutely awful why would i willingly put them through that
+⤷ im not gonna kill someone, but still. I&#39;m going to TRY to live. and i&#39;ll make a litle plan for that too ahhaaa avfada :&gt;
+
+⤷ ill think of it later when im not fucking melting but i need to get everyone in my dorm  on board
+⤷ and i need one of them to go get me food LMAO im not going outside 
+
+⤷ woahididntuseallthespacethistime
+
+⤷ i love you mom dad ryder lils dodger theron lucas and mei please don&#39;t get hurt 
+⤷ <span class="pre pre--inline">BYE. :}</span>
+<strong>
+</strong></span>
+
+                                <span class="chatlog__edited-timestamp" title="2021-12-06 22:56:07Z">(edited)</span>
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="914588686916653076.html_Files/Untitled819_20211105191940-C2ED5.png">
+                                <img class="chatlog__attachment-media" src="914588686916653076.html_Files/Untitled819_20211105191940-C2ED5.png" alt="Image attachment" title="Image: Untitled819_20211105191940.png (6.23 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="914588686916653076.html_Files/3f28fdb09237f78adfbe1a16c853aa81-D3FA9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,87,87)">↳ ❝ [JurdsjandJhey] &#161;! ❞</span>
+
+
+        <span class="chatlog__timestamp">2022-01-10 04:27:11Z</span>
+
+            <div class="chatlog__message " data-message-id="929954502390460466" id="message-929954502390460466" title="Message sent: 2022-01-10 04:27:11Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><u><span class="pre pre--inline">ENTRY 3: GOD FUCK WHY DID I LOSE THIS IVE BEEN STUCK WITH MY THOUGHTS FOR SO LONG</span></u>
+
+<em>(there&#39;s a name crossed out. guess someone wasnt thinking writing it down.)</em>
+⤷ why was this hiding under my mattress. Why did i put it there. why. i cant. i couldnt find this for like a month and it was in the worlds most obvious hiding spot. i hate you <span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)"><s>odell oda baker</s></span> october
+⤷ forgot that if i wrote that down that could be dangerous haha
+⤷ so yeahr two people are dead and i just feel like shit like moreso than usual ahah
+⤷ i cant get up sometimes its too hard 
+⤷ moving is too hard sometimes
+⤷ i hate it and wanna do things and help but i cant so i feel worse than i do
+⤷  guess ppl dying does that to you haha
+
+⤷ i still need to fix the shrine oops
+⤷ but do i really need to like
+⤷ come on
+⤷ everyone here sucks thats something i can pull from here for sure
+
+⤷ i cant fucking trust anyone and nobody even is good enough to try and stay alive for me
+⤷ john and reiichi are dead the only two people who tried and they both killed people for selfish reasons
+⤷ so much for faith in humanity
+
+⤷ like therons selfish too sometimes but not that bad come on 
+⤷ he doesnt treat human life like a joke like everyone here does
+⤷ i hate it i hate it i hate it i hate it
+⤷ im gonna die soon too i know it
+⤷ theyre gonn kill me next
+⤷ ill just be another person in their pile that they don&#39;t care aobut and shove the thought away of
+⤷ the next person that they think back on sadly but dont do anything to fix it
+⤷ its like im the ONLYDAMNPERSONJERETHATUNDERSTANDSHOWBAD RTHISIS
+⤷ i dont wanna die here even more cause i dont wanna give those fuckwads the satisfaction of living on their stupid lives
+⤷ this situation sucks but maybe they&#39;ll use it to learn how much a persons&#39; life is actually woth
+
+⤷ i wanna see you al lagains i miss you wall a lot
+⤷ i love you mom you&#39;re the best mom ever 
+⤷ dad you&#39;re so cool than kyou for always wanting to talk to me about computer stuff
+⤷ ryder you suck sometimes but never as much as anyone here ill let you boss me around anfyday rather than be here 
+⤷ who knows i might even give you a hug
+⤷ lils i dont talk to you a lot but i miss you too you&#39;re a really really good older sioster please dont die we gotta have a resident girlboss in the house
+⤷ dodger im sorry 
+⤷ i love you
+⤷ would i kill to see you again? i dunno 
+⤷ the point is that i miss you a lot and i wanna hang out with you in our room again god fuck i hate being a slobbery blubberingmess 
+⤷ theron you;re one of my favorite living people i wanna give you a big hug again and be able to do something with you again i miss you a lot please dont die while im gone
+⤷ lucas i dont talk to you a lot but still youre my little brother and i love you for it. you&#39;re annoying and stupid and stuck up and thats the best part about you. I&#39;d hug you too if i igot home.
+
+⤷ none of ypou die or get hurt while im gone. Please.
+⤷ <span class="pre pre--inline">bye.</span>
+<strong>
+</strong></span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="914588686916653076.html_Files/Untitled819_20211105191940-5B7C4.png">
+                                <img class="chatlog__attachment-media" src="914588686916653076.html_Files/Untitled819_20211105191940-5B7C4.png" alt="Image attachment" title="Image: Untitled819_20211105191940.png (6.09 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 28 message(s)</div>
+</div>
+
+</body>
+
+</html>

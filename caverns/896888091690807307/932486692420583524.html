@@ -1,0 +1,2270 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Despair&#39;s Horizon - Post Motive. S vs. S</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="932486692420583524.html_Files/a_a82f66cbaf9572e715aef752d1954a13-F33DA.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Despair&#39;s Horizon</div>
+        <div class="preamble__entry">mineshafts / Post Motive. S vs. S</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 04:09:13Z</span>
+
+            <div class="chatlog__message " data-message-id="932486696015101952" id="message-932486696015101952" title="Message sent: 2022-01-17 04:09:13Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">/yes</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="932486971102748743" id="message-932486971102748743" title="Message sent: 2022-01-17 04:10:18Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Sai wandered into the Mineshaft, she... was a bit worried about Lester, so she came here to grab supplies ahead of time. She&#39;ll go find him later to check up on his fists- can&#39;t let that shit get infected on an island. She grabs a couple of supplies before placing the items back in Akuza&#39;s hiding spot.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="932486979302613052" id="message-932486979302613052" title="Message sent: 2022-01-17 04:10:20Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="placeholder#9775">@jozo</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 04:14:41Z</span>
+
+            <div class="chatlog__message " data-message-id="932488073839788092" id="message-932488073839788092" title="Message sent: 2022-01-17 04:14:41Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(prep the bda</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 04:15:18Z</span>
+
+            <div class="chatlog__message " data-message-id="932488226818637844" id="message-932488226818637844" title="Message sent: 2022-01-17 04:15:18Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//TRUE</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="932488338672341042" id="message-932488338672341042" title="Message sent: 2022-01-17 04:15:44Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//Kev the plan is to use the medical supplies to suffocate him right?</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 04:19:25Z</span>
+
+            <div class="chatlog__message " data-message-id="932489263411499038" id="message-932489263411499038" title="Message sent: 2022-01-17 04:19:25Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(remember to use the bandages specifically</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 04:21:57Z</span>
+
+            <div class="chatlog__message " data-message-id="932489904171135058" id="message-932489904171135058" title="Message sent: 2022-01-17 04:21:57Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//Right right I almost forgot. Will do.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 04:29:20Z</span>
+
+            <div class="chatlog__message " data-message-id="932491759722852372" id="message-932491759722852372" title="Message sent: 2022-01-17 04:29:20Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(wait im sorry for taking very long im still helping out one of my friends</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 04:31:07Z</span>
+
+            <div class="chatlog__message " data-message-id="932492207682879488" id="message-932492207682879488" title="Message sent: 2022-01-17 04:31:07Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//YOU&#39;RE GOOD PLACE DO NOT WORRY</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 04:33:39Z</span>
+
+            <div class="chatlog__message " data-message-id="932492846483796019" id="message-932492846483796019" title="Message sent: 2022-01-17 04:33:39Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He also wandered onto here, watching what the surroundings were. He instantly spotted Sai, and instantly felt a pang of grief.</em> &quot;Well.... hello there, Sai.&quot; <em>He says, sighing.</em> &quot;I&#39;ve been meaning to talk to you for some time, but what is that you have there?&quot; <em>He says, looking at what Sai is doing.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="932492853832220693" id="message-932492853832220693" title="Message sent: 2022-01-17 04:33:41Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Royalcat08#6390">@Royalcat08</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="placeholder#9775" style="color: rgb(52,152,219)">jozo</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;932492853832220693&#39;)">
+(<span class="mention" title="Royalcat08#6390">@Royalcat08</span>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 04:35:27Z</span>
+
+            <div class="chatlog__message " data-message-id="932493299028217928" id="message-932493299028217928" title="Message sent: 2022-01-17 04:35:27Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She glances down at the items, and then back at Sadao. Hm. Well he&#39;s just sighing but best not to bring up Lester anyway. &quot;Just supplies, in case someone gets hurt I wanted to bring a few closer to the dorms so we wouldn&#39;t have to run all the way here in a time of emergency.&quot; 
+
+&quot;...But enough about that. You wanted to speak to me?&quot; Well isn&#39;t that fun.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 04:38:56Z</span>
+
+            <div class="chatlog__message " data-message-id="932494174236835850" id="message-932494174236835850" title="Message sent: 2022-01-17 04:38:56Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He nods.</em> &quot;Good thinking. I do... think we might need that at sometime.&quot; <em>He sighs.</em> &quot;But yes, I&#39;ve been meaning to speak to you. I wanted to say that... I&#39;m sorry. I&#39;m sorry for placing the fault on you back there. I realize now that it was dumb and.... I shouldn&#39;t have said that. But they meant so much to me, I don&#39;t know what I was thinking. I&#39;ve recently made a promise to myself to start anew, with my old self intact. I am taking the first step here by apologizing to you.&quot; <em>He says, rubbing the back of his head.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="932494183120400464" id="message-932494183120400464" title="Message sent: 2022-01-17 04:38:58Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Royalcat08#6390">@Royalcat08</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="placeholder#9775" style="color: rgb(52,152,219)">jozo</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;932494183120400464&#39;)">
+(<span class="mention" title="Royalcat08#6390">@Royalcat08</span>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 04:42:48Z</span>
+
+            <div class="chatlog__message " data-message-id="932495148271689738" id="message-932495148271689738" title="Message sent: 2022-01-17 04:42:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She pauses, whether or not she was expecting an apology is of no importance, but she also... doesn&#39;t care? 
+
+...Being honest here Sadao, the second you lashed out on her, it was the moment you proved how much your emotions control you. And that, in her book, is unacceptable. &quot;You&#39;re fine.&quot; She pauses a bit, &quot;Just don&#39;t let the bear get to you again in the future.&quot; Kind of a low blow there Sai.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 04:47:13Z</span>
+
+            <div class="chatlog__message " data-message-id="932496260143939585" id="message-932496260143939585" title="Message sent: 2022-01-17 04:47:13Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He sighs.</em> &quot;Acceptance is better than obliviousness. As long as you are aware of it, I am fine. But even so, how are the rest of the people? I&#39;m guessing you need those supplies for something or someone.&quot; <em>He says, looking not so affected by the comment that Sai made about the bear.</em> &quot;Will do. The bear will need more than despair to mask pent up regret.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="932496269463658556" id="message-932496269463658556" title="Message sent: 2022-01-17 04:47:15Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Royalcat08#6390">@Royalcat08</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="placeholder#9775" style="color: rgb(52,152,219)">jozo</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;932496269463658556&#39;)">
+(<span class="mention" title="Royalcat08#6390">@Royalcat08</span>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 04:51:30Z</span>
+
+            <div class="chatlog__message " data-message-id="932497338470109224" id="message-932497338470109224" title="Message sent: 2022-01-17 04:51:30Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;It&#39;s no one in particular. Just preparing for the future. It&#39;s just necessary logic.&quot; She&#39;s not revealing Lester&#39;s secret. Yeah no. Anyway, she doesn&#39;t seem like she&#39;s lying though- because she&#39;s partially not. &quot;The bear... the motive was brutal though. I... am sorry for your loss.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/640cd2526a889f3a1ecaadae62311a58-FA2CC.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Despair&#39;s Horizon Bot#8265" data-user-id="861082089231482880" style="color: rgb(78,93,148)">Despair&#39;s Horizon Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-17 04:52:31Z</span>
+
+            <div class="chatlog__message " data-message-id="932497595232813076" id="message-932497595232813076" title="Message sent: 2022-01-17 04:52:31Z">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(217,44,67,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="Royalcat08#6390">@Royalcat08</span>, <span class="mention" title="placeholder#9775">@jozo</span> got <strong>1</strong> interaction!</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 04:53:33Z</span>
+
+            <div class="chatlog__message " data-message-id="932497856143704084" id="message-932497856143704084" title="Message sent: 2022-01-17 04:53:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He nods.</em> &quot;Sound strategy. The future waits for no man... or woman, or any other person.&quot; <em>He sighs.</em> &quot;It is no worries. I have taken a mere strategy to cloud my overwhelming emotions for once. Maybe this time it might help me out instead. Instead of fighting the void, I become the void in my heart. Seems like a fair strategy, does it not?&quot; <em>He says, just neutrally.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="932497869678723112" id="message-932497869678723112" title="Message sent: 2022-01-17 04:53:37Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Royalcat08#6390">@Royalcat08</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="placeholder#9775" style="color: rgb(52,152,219)">jozo</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;932497869678723112&#39;)">
+(<span class="mention" title="Royalcat08#6390">@Royalcat08</span>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 04:55:40Z</span>
+
+            <div class="chatlog__message " data-message-id="932498386165325874" id="message-932498386165325874" title="Message sent: 2022-01-17 04:55:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You could&#39;ve just said the future wait&#39;s for noone. But sure.&quot; She felt the need to point that out. &quot;...Hmmm. Well I think in this place, whatever helps you not lose control of yourself will work.&quot; Wow, she gave almost the opposite advice to Lester.
+
+...She doesn&#39;t do well with emotions, but she also cannot bring herself to care enough to tell Sadao &#39;bottling up emotions is bad for you&#39;. And for a more emotional person it might work out.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Royalcat08#6390" style="color: rgb(194,124,14)">Royalcat08</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;932498386165325874&#39;)">
+&quot;You could&#39;ve just said the future wait&#39;s for noone. But sure.&quot; She felt the need to point that out. &quot;...Hmmm. Well I think in this place, whatever helps you not lose control of yourself will work.&quot; Wow, she gave almost the opposite advice to Lester.
+
+...She doesn&#39;t do well with emotions, but she also cannot bring herself to care enough to tell Sadao &#39;bottling up emotions is bad for you&#39;. And for a more emotional person it might work out.                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 05:38:49Z</span>
+
+            <div class="chatlog__message " data-message-id="932509245054808106" id="message-932509245054808106" title="Message sent: 2022-01-17 05:38:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Well, true. But the saying goes that way. In whichever way it goes.&quot; <em>He coughs, and adjusts his monocle.</em> &quot;I guess you could say so. Tell me something Sai, have you ever experienced loss? Loss in the way of losing someone close to you? And I don&#39;t mean family wise. I understand that such things are quite personal, but being honest? My worries lie in somewhere else, for example how I will change for the better. Maybe becoming a mirror to those around me might work. To treat others as to how they treat you. I&#39;ll test this theory out here, if anything.&quot; <em>He says, still neutral. He&#39;s taking this a little too far, isn&#39;t he?</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="placeholder#9775" style="color: rgb(52,152,219)">jozo</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;932509245054808106&#39;)">
+&quot;Well, true. But the saying goes that way. In whichever way it goes.&quot; <em>He coughs, and adjusts his monocle.</em> &quot;I guess you could say so. Tell me something Sai, have you ever experienced loss? Loss in the way of losing someone close to you? And I don&#39;t mean family wise. I understand that such things are quite personal, but being honest? My worries lie in somewhere else, for example how I will change for the better. Maybe becoming a mirror to those around me might work. To treat others as to how they treat you. I&#39;ll test this theory out here, if anything.&quot; <em>He says, still neutral. He&#39;s taking this a little too far, isn&#39;t he?</em>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 05:40:24Z</span>
+
+            <div class="chatlog__message " data-message-id="932509645413683270" id="message-932509645413683270" title="Message sent: 2022-01-17 05:40:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Well what do you think? I&#39;m curious. If with your theory you should have an assumption as to whether or not I&#39;ve felt loss.&quot; She&#39;s curious, and she doesn&#39;t want to reveal things about herself if not necessary.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Royalcat08#6390" style="color: rgb(194,124,14)">Royalcat08</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;932509645413683270&#39;)">
+&quot;Well what do you think? I&#39;m curious. If with your theory you should have an assumption as to whether or not I&#39;ve felt loss.&quot; She&#39;s curious, and she doesn&#39;t want to reveal things about herself if not necessary.                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 06:16:38Z</span>
+
+            <div class="chatlog__message " data-message-id="932518763536990279" id="message-932518763536990279" title="Message sent: 2022-01-17 06:16:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I believe that you know of loss but have never been affected deeply by it, am I correct? Either that, or loss has impacted you to the point where apathy is the choice in which you prefer to run your daily life. Is this correct, then?&quot; <em>He says, not even smirking, just straight up looking at Sai with a neutral face.</em> &quot;Neutrality is a virtue in which your eyes can see through with no problem whatsoever. But what is a virtue without a sin in contrast? For emotions cloud your judgement, as your fate. Tempt not fate, for it listens.&quot; <em>He says, pacing around the mineshaft.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="placeholder#9775" style="color: rgb(52,152,219)">jozo</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;932518763536990279&#39;)">
+&quot;I believe that you know of loss but have never been affected deeply by it, am I correct? Either that, or loss has impacted you to the point where apathy is the choice in which you prefer to run your daily life. Is this correct, then?&quot; <em>He says, not even smirking, just straight up looking at Sai with a neutral face.</em> &quot;Neutrality is a virtue in which your eyes can see through with no problem whatsoever. But what is a virtue without a sin in contrast? For emotions cloud your judgement, as your fate. Tempt not fate, for it listens.&quot; <em>He says, pacing around the mineshaft.</em>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 06:18:30Z</span>
+
+            <div class="chatlog__message " data-message-id="932519232770572298" id="message-932519232770572298" title="Message sent: 2022-01-17 06:18:30Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You&#39;re partially correct on one but also not really.&quot; She won&#39;t elaborate on which. &quot;And perhaps. I don&#39;t claim that neutrality or what I&#39;m doing is the best around here, but I also don&#39;t care. What works for me may not work for another though. So if you&#39;re planning on changing yourself, well. Good luck with that.&quot;</span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-17 06:19:18Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="932519337342930985" id="message-932519337342930985" title="Message sent: 2022-01-17 06:18:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//actually.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 06:26:55Z</span>
+
+            <div class="chatlog__message " data-message-id="932521351925862420" id="message-932521351925862420" title="Message sent: 2022-01-17 06:26:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(actually?</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="932521403469664307" id="message-932521403469664307" title="Message sent: 2022-01-17 06:27:07Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<img loading="lazy" class="emoji " alt="😨" title="fearful" src="https://twemoji.maxcdn.com/2/svg/1f628.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 06:27:10Z</span>
+
+            <div class="chatlog__message " data-message-id="932521414580404284" id="message-932521414580404284" title="Message sent: 2022-01-17 06:27:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//i fixed smth dw abt it</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 06:55:19Z</span>
+
+            <div class="chatlog__message " data-message-id="932528496562028544" id="message-932528496562028544" title="Message sent: 2022-01-17 06:55:19Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Wait it&#39;s 2 am ill respond tomorrow</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 06:59:41Z</span>
+
+            <div class="chatlog__message " data-message-id="932529596254003200" id="message-932529596254003200" title="Message sent: 2022-01-17 06:59:41Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//Okie!!!</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Royalcat08#6390" style="color: rgb(194,124,14)">Royalcat08</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;932519232770572298&#39;)">
+&quot;You&#39;re partially correct on one but also not really.&quot; She won&#39;t elaborate on which. &quot;And perhaps. I don&#39;t claim that neutrality or what I&#39;m doing is the best around here, but I also don&#39;t care. What works for me may not work for another though. So if you&#39;re planning on changing yourself, well. Good luck with that.&quot;                    </span>
+
+                        <span class="chatlog__reference-edited-timestamp" title="2022-01-17 06:19:18Z">(edited)</span>
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 17:15:19Z</span>
+
+            <div class="chatlog__message " data-message-id="932684526226915398" id="message-932684526226915398" title="Message sent: 2022-01-17 17:15:19Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Partially correct means that I did hit a spot right. Now tell me something, what do you classify neutrality as? The ability to not care, or the ability to see everything objectively? While to you, you might as you say, not care about these questions, you might be drinking deep of forgetfulness to bury the hatchet. The second step in my change of self is to know your surroundings. Starting with the most important, the people around you. A fair exchange, truly not?&quot; <em>He shrugs. He knows this isn&#39;t going anywhere especially beneficial for both sides.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="placeholder#9775" style="color: rgb(52,152,219)">jozo</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;932684526226915398&#39;)">
+&quot;Partially correct means that I did hit a spot right. Now tell me something, what do you classify neutrality as? The ability to not care, or the ability to see everything objectively? While to you, you might as you say, not care about these questions, you might be drinking deep of forgetfulness to bury the hatchet. The second step in my change of self is to know your surroundings. Starting with the most important, the people around you. A fair exchange, truly not?&quot; <em>He shrugs. He knows this isn&#39;t going anywhere especially beneficial for both sides.</em>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 17:40:19Z</span>
+
+            <div class="chatlog__message " data-message-id="932690818739892275" id="message-932690818739892275" title="Message sent: 2022-01-17 17:40:19Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You were more wrong than you were correct.&quot; She sighs, &quot;I don&#39;t really know. Nor do I really care.&quot;She pauses a bit before glancing down at her supplies in her hands. &quot;Getting to know your surroundings is important sure. But you&#39;re going about it the wrong way.&quot; She won&#39;t tell him the right way.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Royalcat08#6390" style="color: rgb(194,124,14)">Royalcat08</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;932690818739892275&#39;)">
+&quot;You were more wrong than you were correct.&quot; She sighs, &quot;I don&#39;t really know. Nor do I really care.&quot;She pauses a bit before glancing down at her supplies in her hands. &quot;Getting to know your surroundings is important sure. But you&#39;re going about it the wrong way.&quot; She won&#39;t tell him the right way.                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 18:33:15Z</span>
+
+            <div class="chatlog__message " data-message-id="932704137337008179" id="message-932704137337008179" title="Message sent: 2022-01-17 18:33:15Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hm. Even so, I still got something correct, so this will do.&quot; <em>He nods.</em> &quot;Makes sense given how I&#39;ve seen you act before. As to you, you do not really care about questions asked. Tell me something. Was that a learned behavior, or an inherited one?&quot; <em>He raises an eyebrow.</em> &quot;The wrong way? Then you don&#39;t suppose you could guide me towards the right one? Or do you, as you always say, not care?&quot; <em>He says, fully expecting the latter.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="placeholder#9775" style="color: rgb(52,152,219)">jozo</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;932704137337008179&#39;)">
+&quot;Hm. Even so, I still got something correct, so this will do.&quot; <em>He nods.</em> &quot;Makes sense given how I&#39;ve seen you act before. As to you, you do not really care about questions asked. Tell me something. Was that a learned behavior, or an inherited one?&quot; <em>He raises an eyebrow.</em> &quot;The wrong way? Then you don&#39;t suppose you could guide me towards the right one? Or do you, as you always say, not care?&quot; <em>He says, fully expecting the latter.</em>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 18:36:19Z</span>
+
+            <div class="chatlog__message " data-message-id="932704912243064903" id="message-932704912243064903" title="Message sent: 2022-01-17 18:36:19Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She mentally counts down from twenty to keep herself from losing her calm. You&#39;re not. Doing well Sadao. 
+
+&quot;The <em>right</em> way is to <em>learn</em> where you&#39;re not wanted and to stop pushing questions like it&#39;s an interrogation and that I owe you answers just because of an unfortunate event that happened to you. Life isn&#39;t going to take pity on you just because you lost someone, and even then you haven&#39;t confirmed their deaths in person. The fact that you and all of these other people could take such a motive so seriously without any sort of proof is honestly shocking.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Royalcat08#6390" style="color: rgb(194,124,14)">Royalcat08</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;932704912243064903&#39;)">
+She mentally counts down from twenty to keep herself from losing her calm. You&#39;re not. Doing well Sadao. 
+
+&quot;The <em>right</em> way is to <em>learn</em> where you&#39;re not wanted and to stop pushing questions like it&#39;s an interrogation and that I owe you answers just because of an unfortunate event that happened to you. Life isn&#39;t going to take pity on you just because you lost someone, and even then you haven&#39;t confirmed their deaths in person. The fact that you and all of these other people could take such a motive so seriously without any sort of proof is honestly shocking.&quot;                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 19:08:24Z</span>
+
+            <div class="chatlog__message " data-message-id="932712986525708298" id="message-932712986525708298" title="Message sent: 2022-01-17 19:08:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...Who said you owe me? You owe me nothing. That is a key part of an apology. Both sides owe each other nothing, nada. And quite honestly? It feels refreshing now to not be that much of a pushover anymore. To be shrouded in pity, and I obtain the one thing that makes me no longer a big pushover. Now, back to the point.&quot; <em>He keeps pacing around the room.</em> &quot;You&#39;ve seen what this bear can do. Who&#39;s to say that this bear has not killed them, as shown there? Again, I am not blaming you, instead what we have seen this bear do proves that it is likely for this to happen. Is this what cynicism feels like?&quot; <em>He says, putting a hand to his chin.</em> &quot;I&#39;ll just use a mirror strategy instead. Cynicism will get me nowhere.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="placeholder#9775" style="color: rgb(52,152,219)">jozo</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;932712986525708298&#39;)">
+&quot;...Who said you owe me? You owe me nothing. That is a key part of an apology. Both sides owe each other nothing, nada. And quite honestly? It feels refreshing now to not be that much of a pushover anymore. To be shrouded in pity, and I obtain the one thing that makes me no longer a big pushover. Now, back to the point.&quot; <em>He keeps pacing around the room.</em> &quot;You&#39;ve seen what this bear can do. Who&#39;s to say that this bear has not killed them, as shown there? Again, I am not blaming you, instead what we have seen this bear do proves that it is likely for this to happen. Is this what cynicism feels like?&quot; <em>He says, putting a hand to his chin.</em> &quot;I&#39;ll just use a mirror strategy instead. Cynicism will get me nowhere.&quot;                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-17 19:32:53Z</span>
+
+            <div class="chatlog__message " data-message-id="932719144305057842" id="message-932719144305057842" title="Message sent: 2022-01-17 19:32:53Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Poets. Writers. 
+
+...Dear god she gets involved with too many, each more emotional than the last but this guy takes the cake. She wonders how it feels to... <em>feel</em> so much. To draw inspiration from your emotions and let them be set off by every little thing. She wonders if she wishes to be like that. She wonders what would&#39;ve happened if she was. 
+
+Briefly distracted, she&#39;s no longer as tense. Back to neutrality. &quot;...Then the bear could&#39;ve brought them here, brought your family members in front of us, killed them to absolutely demolish any sort of hope. That feels more like a Monokuma thing but alas.&quot; Maybe she could say all this because she hadn&#39;t had Cyrus killed. &quot;He didn&#39;t.&quot; 
+
+Yes she ignores half the things Sadao says because it&#39;s not important enough to warrant a response.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-18 00:41:51Z</span>
+
+            <div class="chatlog__message " data-message-id="932796898002227240" id="message-932796898002227240" title="Message sent: 2022-01-18 00:41:51Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="placeholder#9775">@jozo</span> just a reminder//</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-18 00:44:28Z</span>
+
+            <div class="chatlog__message " data-message-id="932797556856074290" id="message-932797556856074290" title="Message sent: 2022-01-18 00:44:28Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Oh shiy</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-19 15:35:21Z</span>
+
+            <div class="chatlog__message " data-message-id="933384144765993010" id="message-933384144765993010" title="Message sent: 2022-01-19 15:35:21Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="placeholder#9775">@jozo</span> Dw if ur still busy but this lol. ))</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-19 15:47:38Z</span>
+
+            <div class="chatlog__message " data-message-id="933387233786994738" id="message-933387233786994738" title="Message sent: 2022-01-19 15:47:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Shit service rn and yes I&#39;m busy I&#39;m sorry</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-19 16:44:46Z</span>
+
+            <div class="chatlog__message " data-message-id="933401613333315644" id="message-933401613333315644" title="Message sent: 2022-01-19 16:44:46Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//eyyyy don’t worry</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-20 14:49:43Z</span>
+
+            <div class="chatlog__message " data-message-id="933735048207818772" id="message-933735048207818772" title="Message sent: 2022-01-20 14:49:43Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Oh fuck</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-20 15:19:52Z</span>
+
+            <div class="chatlog__message " data-message-id="933742637981270057" id="message-933742637981270057" title="Message sent: 2022-01-20 15:19:52Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Every little thing is what counts, Sai, for every little thing is what forms the whole.</em> &quot;Well, yes. But that would have brought me conclusion, and for the most despair, this b-&quot; <em>Sadao realizes.</em> &quot;Wait a second. You&#39;re right. If the bear wanted me to feel the most despair, it would have done exactly this. Meaning that while at the same time that it might be true, it might also be false. Schrodinger&#39;s cat. Clever bear...&quot; <em>He says, thinking.</em> &quot;Hm, maybe they are alive. I cannot confirm until I see them. Damn this logic.&quot; <em>He says, clutching his head as he begins to think more clearly.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="933742675419607050" id="message-933742675419607050" title="Message sent: 2022-01-20 15:20:01Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Royalcat08#6390">@Royalcat08</span> finally</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="placeholder#9775" style="color: rgb(52,152,219)">jozo</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;933742675419607050&#39;)">
+(<span class="mention" title="Royalcat08#6390">@Royalcat08</span> finally                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-21 00:17:20Z</span>
+
+            <div class="chatlog__message " data-message-id="933877894277660682" id="message-933877894277660682" title="Message sent: 2022-01-21 00:17:20Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Sai sighed. Wow. Something she said got through to him. Good job Sai. Good job. &quot;....See? Now that&#39;s a better mindset to have.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Royalcat08#6390" style="color: rgb(194,124,14)">Royalcat08</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;933877894277660682&#39;)">
+Sai sighed. Wow. Something she said got through to him. Good job Sai. Good job. &quot;....See? Now that&#39;s a better mindset to have.&quot;                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-21 20:05:03Z</span>
+
+            <div class="chatlog__message " data-message-id="934176794217689098" id="message-934176794217689098" title="Message sent: 2022-01-21 20:05:03Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;But at the same time, with this problem, they are both alive and dead, in one part they are alive, in another they are dead. I cannot know until I see them in person, though that looked so real... considering the power this bear has, it is either completely true or completely false, neither of the two. In this situation, it is a dilemma that I must peer into the mind of the bear. If I were the bear, would I prefer an uncertain end to my own, or a certain one? An uncertain one would cause the most despair, however at the same time to remain hopeful means that those efforts are for nothing, unless he has a way to prove it later on. To have done it in my face would confirm my suspicions, having truly brought me to despair, however false hope from the former option would seem like something good for this bear. There are so many factors to consider in this situation that I truly do not know how to view it. For my own good, I&#39;ll see as if they are alive.&quot; <em>He says all of this presumably to himself, before he remembers that Sai is there.</em> &quot;Oh, yes you are right. This is a much better mindset to have than just brooding over what is not confirmed. Hm, maybe this is one of the ways that it should go right.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/56288486c1d9c0bbf34ffd0bd57a9ee3-C6333.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Royalcat08#6390" data-user-id="721911813632950335" style="color: rgb(194,124,14)">Royalcat08</span>
+
+
+        <span class="chatlog__timestamp">2022-01-22 02:18:04Z</span>
+
+            <div class="chatlog__message " data-message-id="934270664838352896" id="message-934270664838352896" title="Message sent: 2022-01-22 02:18:04Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Schrodinger&#39;s Cat.&quot; Sai shrugs, &quot;Yep. Probably. So you dwell on that while I go do work okay? Bye.&quot; And she&#39;s gone lol.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="934270712405966929" id="message-934270712405966929" title="Message sent: 2022-01-22 02:18:15Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//just felt appropriate to end it here</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="934270724133236796" id="message-934270724133236796" title="Message sent: 2022-01-22 02:18:18Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="placeholder#9775">@jozo</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="932486692420583524.html_Files/f907b018aa79e59d5efd25a9fe303ddd-7A39D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="placeholder#9775" data-user-id="475792369023713291" style="color: rgb(52,152,219)">jozo</span>
+
+
+        <span class="chatlog__timestamp">2022-01-22 02:18:38Z</span>
+
+            <div class="chatlog__message " data-message-id="934270809206312970" id="message-934270809206312970" title="Message sent: 2022-01-22 02:18:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(yea</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 53 message(s)</div>
+</div>
+
+</body>
+
+</html>

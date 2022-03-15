@@ -1,0 +1,4267 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Despair&#39;s Horizon - lester-trial</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="936387099156942858.html_Files/a_a82f66cbaf9572e715aef752d1954a13-F33DA.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Despair&#39;s Horizon</div>
+        <div class="preamble__entry">The Sims 4 - Unleash Your Imagination / lester-trial</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 23:35:39Z</span>
+
+            <div class="chatlog__message " data-message-id="936404118237495356" id="message-936404118237495356" title="Message sent: 2022-01-27 23:35:39Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>Lester wakes up... Monokuma announced the motive and Lester was the fourth one up... Strange... He doesn&#39;t remember being taken here. All he remembers is the <span class="mention">#abyssal-dungeon</span>. And then... he was here. How strange.</em>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>A slight red aura grew around him and lingered for a bit and then disappeared. It was time to start.</em>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><span class="mention" title="Blastoise#8799">@Filthy Traitor || Jlastoise</span> , begin the simulation.
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>Lester wakes up in a bed. It seems to be a normal childhood home, similar to what you would see in the suburbs. You seem to be just now getting up, despite the sun being quite high. The birds are chirping outside the window. You can hear other kids outside the door running around.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-27 23:59:40Z</span>
+
+            <div class="chatlog__message " data-message-id="936410163986989167" id="message-936410163986989167" title="Message sent: 2022-01-27 23:59:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>God dammit, why can&#39;t he catch a damn break already?</em>
+
+<em>He looks out the window..Whoever this is sure is an early riser. What the hell is this? Suburbia?? Other kids?? What is this hell?!</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 23:59:49Z</span>
+
+            <div class="chatlog__message " data-message-id="936410200238329978" id="message-936410200238329978" title="Message sent: 2022-01-27 23:59:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span> (sorry i was out)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 00:05:29Z</span>
+
+            <div class="chatlog__message " data-message-id="936411625710321684" id="message-936411625710321684" title="Message sent: 2022-01-28 00:05:29Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>You can see other houses around the street. It just looks like a normal suburb.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-28 00:06:25Z</span>
+
+            <div class="chatlog__message " data-message-id="936411862118051880" id="message-936411862118051880" title="Message sent: 2022-01-28 00:06:25Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Well, might as well rip the band aid off and get whatever happens next over with. He goes to leave the bedroom and explore the house.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 00:06:37Z</span>
+
+            <div class="chatlog__message " data-message-id="936411913011753011" id="message-936411913011753011" title="Message sent: 2022-01-28 00:06:37Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 02:49:01Z</span>
+
+            <div class="chatlog__message " data-message-id="936452779747184650" id="message-936452779747184650" title="Message sent: 2022-01-28 02:49:01Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>In the house, you can see a multitude of kids running around goofing off. One of them&#39;s at the dinner table eating, another&#39;s on the couch eating. There are 2 parents in the kitchen having a chat as you walk out.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-28 02:51:36Z</span>
+
+            <div class="chatlog__message " data-message-id="936453432859045888" id="message-936453432859045888" title="Message sent: 2022-01-28 02:51:36Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Who are these people? Who so many kids? These parents must be fucking rabbits. Looking to get any clue on who he could be in place of, he tries to find a bathroom with a mirror to look at himself before anything else. He has no clue how to talk to family strangers.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 02:51:42Z</span>
+
+            <div class="chatlog__message " data-message-id="936453454648463371" id="message-936453454648463371" title="Message sent: 2022-01-28 02:51:42Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 03:28:10Z</span>
+
+            <div class="chatlog__message " data-message-id="936462633807265852" id="message-936462633807265852" title="Message sent: 2022-01-28 03:28:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>Inside a bathroom, Lester takes a look at himself. However, you only see a flickering hologram instead of a person. However, you definitely are rather young, probably in the elementary school age.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-28 04:08:24Z</span>
+
+            <div class="chatlog__message " data-message-id="936472756801929256" id="message-936472756801929256" title="Message sent: 2022-01-28 04:08:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Dammit, he should&#39;ve seen that coming.</em>
+
+<em>He picks his own brain for ideas...It&#39;s inevitable that someone is gonna say the name of whoever he&#39;s taking the place of, right? Big family, someone&#39;s gonna say it. Basic logic. So, the plan, is act natural...As natural as he can be with his physical self replaced with a childlike hologram.</em>
+
+<em>Lester returns to the kitchen, taking a seat at the table, pretending everything is normal.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 04:08:27Z</span>
+
+            <div class="chatlog__message " data-message-id="936472773197447168" id="message-936472773197447168" title="Message sent: 2022-01-28 04:08:27Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 04:21:12Z</span>
+
+            <div class="chatlog__message " data-message-id="936475979843514438" id="message-936475979843514438" title="Message sent: 2022-01-28 04:21:12Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>No one really cares that much. You&#39;re just another kid in a full house. The parents give you an acknowledgement and point to some breakfast that you should have, and the other sibling at the table glances up at you before finishing their breakfast and getting ready for school.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-28 04:26:49Z</span>
+
+            <div class="chatlog__message " data-message-id="936477394468995082" id="message-936477394468995082" title="Message sent: 2022-01-28 04:26:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Damn, not even an &#39;i love you?&#39; is this what living in a big family is like?</em>
+
+<em>.....He hopes his dad and brother are OK.</em>
+
+<em>But, that&#39;s besides the point. Pretty lousy family unit here, fine. School surely has the answer-not that he knows where school IS in this suburban hellhole, but he&#39;s always been good at faking it until he&#39;s making it.</em>
+
+<em>So Lester &#39;gets ready for school&#39; the best he can remember, after eating a painfully silent breakfast. Anything stand out about the clothes in the closet or anything in the bedroom in general?</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 04:26:53Z</span>
+
+            <div class="chatlog__message " data-message-id="936477410180886558" id="message-936477410180886558" title="Message sent: 2022-01-28 04:26:53Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 12:18:50Z</span>
+
+            <div class="chatlog__message " data-message-id="936596179280609310" id="message-936596179280609310" title="Message sent: 2022-01-28 12:18:50Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>Nothing around the house really stands out. There&#39;s a computer on the desk in the bedroom you came out, some regular suburban clothes that a teen this age would wear.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-28 19:06:23Z</span>
+
+            <div class="chatlog__message " data-message-id="936698743812669441" id="message-936698743812669441" title="Message sent: 2022-01-28 19:06:23Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Wow, a computer! They must be richy rich or something.</em>
+
+<em>After getting ready for school, Lester exits the home. He wonders when the real nasty stuff starts.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 19:06:26Z</span>
+
+            <div class="chatlog__message " data-message-id="936698757398020186" id="message-936698757398020186" title="Message sent: 2022-01-28 19:06:26Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 19:26:09Z</span>
+
+            <div class="chatlog__message " data-message-id="936703717674188920" id="message-936703717674188920" title="Message sent: 2022-01-28 19:26:09Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>Stepping out of the house, it&#39;s as if you fell thru the floor. You land safely in a school hallway, though it&#39;s not like you&#39;re not a bit nauseous. Kids are running around, attempting to get to class on time around you. Interestingly, you can see that this school is highly advanced and prestigious.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936704210605580298" id="message-936704210605580298" title="Message sent: 2022-01-28 19:28:06Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Blastoise#8799">@Filthy Traitor || Jlastoise</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-28 19:33:06Z</span>
+
+            <div class="chatlog__message " data-message-id="936705466665418752" id="message-936705466665418752" title="Message sent: 2022-01-28 19:33:06Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He’s barely able to stop himself from unleashing a swearing fit like nobody’s ever seen. Ow.</em>
+
+<em>He stands up and looks around. Yup, definitely rich area. He immediately feels disdain for the ‘privileged’ kids he sees around. Suppose there’s nothing else to do but go to class...Wherever that is.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 19:33:10Z</span>
+
+            <div class="chatlog__message " data-message-id="936705484679966852" id="message-936705484679966852" title="Message sent: 2022-01-28 19:33:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 19:42:54Z</span>
+
+            <div class="chatlog__message " data-message-id="936707932060545114" id="message-936707932060545114" title="Message sent: 2022-01-28 19:42:54Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>Too bad. L. One of the teachers sees Lester idling in the hallway.</em> &quot;Hey, what are you doing?&quot;</div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-28 19:44:40Z</span>
+
+            <div class="chatlog__message " data-message-id="936708377189421127" id="message-936708377189421127" title="Message sent: 2022-01-28 19:44:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Fuck, think fast!</em> &#39;&#39;Uhh...Walking to class?&#39;&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 19:44:43Z</span>
+
+            <div class="chatlog__message " data-message-id="936708390086909962" id="message-936708390086909962" title="Message sent: 2022-01-28 19:44:43Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 19:46:09Z</span>
+
+            <div class="chatlog__message " data-message-id="936708752441221171" id="message-936708752441221171" title="Message sent: 2022-01-28 19:46:09Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>The teacher arched an eyebrow. The bell rung, and the students started clearing out.</em> &quot;Can I see your student ID?&quot;</div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936709401337798676" id="message-936709401337798676" title="Message sent: 2022-01-28 19:48:44Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Blastoise#8799">@Filthy Traitor || Jlastoise</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-28 19:50:24Z</span>
+
+            <div class="chatlog__message " data-message-id="936709822051672155" id="message-936709822051672155" title="Message sent: 2022-01-28 19:50:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;Absolutely!&#39;&#39;
+<em>He dug through his pockets for such a thing. Fuck, fuck, there&#39;s student IDs? Nobody told him that! Dammit!</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 19:50:29Z</span>
+
+            <div class="chatlog__message " data-message-id="936709841861357568" id="message-936709841861357568" title="Message sent: 2022-01-28 19:50:29Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 20:02:07Z</span>
+
+            <div class="chatlog__message " data-message-id="936712767493263400" id="message-936712767493263400" title="Message sent: 2022-01-28 20:02:07Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>Obviously, Lester cannot find a student ID. The teacher sighed and gestured for Lester to follow him.</em> &quot;Please follow me.&quot;</div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-28 20:06:02Z</span>
+
+            <div class="chatlog__message " data-message-id="936713756266860554" id="message-936713756266860554" title="Message sent: 2022-01-28 20:06:02Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;Must&#39;ve left it in my other uniform, sir! Haha...crap.&#39;&#39;
+
+<em>He follows along, hoping this will lead to any semblance of self.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 20:06:07Z</span>
+
+            <div class="chatlog__message " data-message-id="936713776596652132" id="message-936713776596652132" title="Message sent: 2022-01-28 20:06:07Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 22:59:24Z</span>
+
+            <div class="chatlog__message " data-message-id="936757382636261436" id="message-936757382636261436" title="Message sent: 2022-01-28 22:59:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content">&quot;Yeah, yeah.&quot; <em>Lester gets ushered into an office of sorts, where an official looking man sits at the desk, looking up at Lester as he walks in.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-28 23:41:55Z</span>
+
+            <div class="chatlog__message " data-message-id="936768084583252029" id="message-936768084583252029" title="Message sent: 2022-01-28 23:41:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Oh great, it’s a fucking principal. Time for some lecture.</em> 
+“Uh-Hello there, sir!”
+<em>He takes a seat, presuming there is one.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-28 23:42:00Z</span>
+
+            <div class="chatlog__message " data-message-id="936768104086798406" id="message-936768104086798406" title="Message sent: 2022-01-28 23:42:00Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 01:39:31Z</span>
+
+            <div class="chatlog__message " data-message-id="936797677746810990" id="message-936797677746810990" title="Message sent: 2022-01-29 01:39:31Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>There is a seat. As soon as Lester sits down.</em> &quot;You again? We&#39;ve been thru this already...&quot;
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>The principal lets out an exasperated sigh.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 01:52:21Z</span>
+
+            <div class="chatlog__message " data-message-id="936800910334652446" id="message-936800910334652446" title="Message sent: 2022-01-29 01:52:21Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;Been through this? I mean-well, you see-I have amnesia and don&#39;t remember who I am!&#39;&#39;
+
+<em>i dunno he thought maybe it would be worth a try-</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="Fukt">
+                                <img class="emoji emoji--small" alt="Fukt" src="936387099156942858.html_Files/755497698563457024-D9F52.png" loading="lazy">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 01:52:26Z</span>
+
+            <div class="chatlog__message " data-message-id="936800929561346058" id="message-936800929561346058" title="Message sent: 2022-01-29 01:52:26Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 02:11:22Z</span>
+
+            <div class="chatlog__message " data-message-id="936805695473451039" id="message-936805695473451039" title="Message sent: 2022-01-29 02:11:22Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>...No.</em>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content">&quot;Seriously? Do you think that&#39;ll work?&quot; <em>The principal sighed again.</em> &quot;This school has a reputation of prestige... What are you doing ruining it?&quot;</div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936805769469378630" id="message-936805769469378630" title="Message sent: 2022-01-29 02:11:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content">&quot;Throwing tantrums, fits, isn&#39;t gonna work for you to get your way.&quot;</div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 02:16:39Z</span>
+
+            <div class="chatlog__message " data-message-id="936807025512448001" id="message-936807025512448001" title="Message sent: 2022-01-29 02:16:39Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Damn.</em>
+
+&#39;&#39;Haha, well...Sorry?&#39;&#39; <em>He shrugs. He tries to think of who would throw tantrums.</em> &#39;&#39;Can&#39;t help myself sometimes! I don&#39;t mean to ruin anything! Very nice school, sir. Very nice.&#39;&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="regional_indicator_s">
+                                <img class="emoji emoji--small" alt="&#127480;" src="936387099156942858.html_Files/1f1f8-110EB.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction" title="regional_indicator_i">
+                                <img class="emoji emoji--small" alt="&#127470;" src="936387099156942858.html_Files/1f1ee-8608B.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction" title="regional_indicator_r">
+                                <img class="emoji emoji--small" alt="&#127479;" src="936387099156942858.html_Files/1f1f7-0882E.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction" title="ohno">
+                                <img class="emoji emoji--small" alt="ohno" src="936387099156942858.html_Files/737053613112950884-43CA6.png" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 02:16:42Z</span>
+
+            <div class="chatlog__message " data-message-id="936807037558464522" id="message-936807037558464522" title="Message sent: 2022-01-29 02:16:42Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 02:20:14Z</span>
+
+            <div class="chatlog__message " data-message-id="936807925303885874" id="message-936807925303885874" title="Message sent: 2022-01-29 02:20:14Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content">&quot;...&quot; <em>The principal sighs...</em>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>And then the horror aspect kicks in. You know the drill! Dark mood, sun sets! Woo!</em>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>The principal&#39;s voice completely changes to a voice of an unearthly being.</em> &quot;Why are you the way that you are?&quot;</div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 02:21:52Z</span>
+
+            <div class="chatlog__message " data-message-id="936808335846551602" id="message-936808335846551602" title="Message sent: 2022-01-29 02:21:52Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;Um....Uh.....You know how it is, video games, society, my dog doesn&#39;t wag it&#39;s tail and my dad&#39;s too fat, haha...&#39;&#39;
+
+<em>He backs his chair up out of nervousness.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 02:21:57Z</span>
+
+            <div class="chatlog__message " data-message-id="936808359158485042" id="message-936808359158485042" title="Message sent: 2022-01-29 02:21:57Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 03:36:06Z</span>
+
+            <div class="chatlog__message " data-message-id="936827017163309076" id="message-936827017163309076" title="Message sent: 2022-01-29 03:36:06Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content">“You don’t belong.”</div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 03:42:49Z</span>
+
+            <div class="chatlog__message " data-message-id="936828707862085642" id="message-936828707862085642" title="Message sent: 2022-01-29 03:42:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;H-hey, that&#39;s a pretty mean thing to say don&#39;t you think?&#39;&#39;
+
+<em>He starts to sweat a bit.</em>
+
+&#39;&#39;What&#39;s your problem?&#39;&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 03:42:53Z</span>
+
+            <div class="chatlog__message " data-message-id="936828724173750323" id="message-936828724173750323" title="Message sent: 2022-01-29 03:42:53Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 12:37:13Z</span>
+
+            <div class="chatlog__message " data-message-id="936963193576771645" id="message-936963193576771645" title="Message sent: 2022-01-29 12:37:13Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>The darkness in the room curls around and consumes Lester even more. A feeling of loneliness fills Lester, obviously not his feelings.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 12:39:37Z</span>
+
+            <div class="chatlog__message " data-message-id="936963796554092544" id="message-936963796554092544" title="Message sent: 2022-01-29 12:39:37Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>What the fuck?? Despite knowing these feelings aren&#39;t truly his-he still feels a bit shit. Well, who wouldn&#39;t?</em>
+
+<em>OK, Lester, think! Think! Who is this??</em>
+
+<em>...He still can&#39;t figure it out.</em>
+
+&#39;&#39;Dammit!&#39;&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 12:39:40Z</span>
+
+            <div class="chatlog__message " data-message-id="936963809774551100" id="message-936963809774551100" title="Message sent: 2022-01-29 12:39:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 12:41:46Z</span>
+
+            <div class="chatlog__message " data-message-id="936964338210705438" id="message-936964338210705438" title="Message sent: 2022-01-29 12:41:46Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>You find yourself falling... Falling in an expanse of endless possibilities...</em>
+</div></div>
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>Blocks and shapes build up and crumble around you, with odd sounds and voices playing.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 12:44:59Z</span>
+
+            <div class="chatlog__message " data-message-id="936965146998362123" id="message-936965146998362123" title="Message sent: 2022-01-29 12:44:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;Fuck youuuu!&#39;&#39;
+
+<em>He felt the need to hurl something at the principal even if it couldn&#39;t be heard. Still, the panic was clearly creeping into both his voice and face,</em>
+
+<em>Lester reaches out as if to try to grab something-anything-to get some grasp of &#39;reality&#39; again. Where the hell is he now?</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 12:45:01Z</span>
+
+            <div class="chatlog__message " data-message-id="936965155684765847" id="message-936965155684765847" title="Message sent: 2022-01-29 12:45:01Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 13:40:22Z</span>
+
+            <div class="chatlog__message " data-message-id="936979086604132422" id="message-936979086604132422" title="Message sent: 2022-01-29 13:40:22Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>You land on the ground, but it&#39;s not really the ground... It&#39;s like a hologram almost. None of this feels real. Around you, you see chaos. Colors, shapes, images...</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-29 17:34:38Z</span>
+
+            <div class="chatlog__message " data-message-id="937038043414659154" id="message-937038043414659154" title="Message sent: 2022-01-29 17:34:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“What the hell...!”
+
+<em>He stands up, looking at the chaos, fruitlessly trying to discern meaning. What do the images show?</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-29 17:34:40Z</span>
+
+            <div class="chatlog__message " data-message-id="937038051924901889" id="message-937038051924901889" title="Message sent: 2022-01-29 17:34:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-30 00:05:48Z</span>
+
+            <div class="chatlog__message " data-message-id="937136482509029397" id="message-937136482509029397" title="Message sent: 2022-01-30 00:05:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>The images contain anything you can think of, from cat images to oddly descriptive images of bread. Everything is at the tip of your fingers... And you feel comforted.</em>
+</div></div>
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>Around you, there are other people in a similar state, observing the images, talking to each other.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-30 01:48:27Z</span>
+
+            <div class="chatlog__message " data-message-id="937162315038621777" id="message-937162315038621777" title="Message sent: 2022-01-30 01:48:27Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“The fuck...Am I in the Internet??”
+
+<em>Something clicks in his brain.</em>
+
+“....Momoka? Momoka’s past??”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-30 01:48:30Z</span>
+
+            <div class="chatlog__message " data-message-id="937162327348875294" id="message-937162327348875294" title="Message sent: 2022-01-30 01:48:30Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-30 03:50:24Z</span>
+
+            <div class="chatlog__message " data-message-id="937193003884355606" id="message-937193003884355606" title="Message sent: 2022-01-30 03:50:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>An A.I voice speaks.</em> <strong>&quot;INCORRECT.&quot;</strong>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>A blinding pain sears throughout your body, causing Lester to fall to the ground. Once Lester recovers and is able to get up, you&#39;re able to see a forest scenery not too far from you. For some reason, it calls towards you...</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="ohno">
+                                <img class="emoji emoji--small" alt="ohno" src="936387099156942858.html_Files/737053613112950884-43CA6.png" loading="lazy">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-30 05:17:59Z</span>
+
+            <div class="chatlog__message " data-message-id="937215045287444481" id="message-937215045287444481" title="Message sent: 2022-01-30 05:17:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;Dammit! Fuck!&#39;&#39;
+
+<em>Reeling from the pain, he stumbles forth into the forest. God dammit, nothing good happens in forests!</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-30 05:18:04Z</span>
+
+            <div class="chatlog__message " data-message-id="937215066732900412" id="message-937215066732900412" title="Message sent: 2022-01-30 05:18:04Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-30 12:44:45Z</span>
+
+            <div class="chatlog__message " data-message-id="937327478396051506" id="message-937327478396051506" title="Message sent: 2022-01-30 12:44:45Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>The thick forest... it&#39;s kind of eerie, to be honest. Not a single sound could be heard. It&#39;s dark out too, so it&#39;s also hard to see. Animals crawl and glance at you before scurrying away. The tension in the air is palpable.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-30 13:11:51Z</span>
+
+            <div class="chatlog__message " data-message-id="937334299164811274" id="message-937334299164811274" title="Message sent: 2022-01-30 13:11:51Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He presses onwards and forwards, growing more anxious with each step. He starts to jump at the sounds of the animals moving in the distance.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-30 13:11:54Z</span>
+
+            <div class="chatlog__message " data-message-id="937334309717684274" id="message-937334309717684274" title="Message sent: 2022-01-30 13:11:54Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-30 13:53:43Z</span>
+
+            <div class="chatlog__message " data-message-id="937344832714727476" id="message-937344832714727476" title="Message sent: 2022-01-30 13:53:43Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>It&#39;s raining. There&#39;s a moment of tranquility...</em>
+</div></div>
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>And then you hear a gunshot in the distance.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-30 14:23:36Z</span>
+
+            <div class="chatlog__message " data-message-id="937352353919672410" id="message-937352353919672410" title="Message sent: 2022-01-30 14:23:36Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He instinctively covers his ears and dives down. He hates guns, quite a bit.</em>
+
+<em>Lester hides himself behind a tree hoping not to be spotted by whoever the hell is trying to shoot him.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-30 14:23:38Z</span>
+
+            <div class="chatlog__message " data-message-id="937352361721094165" id="message-937352361721094165" title="Message sent: 2022-01-30 14:23:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-30 18:22:49Z</span>
+
+            <div class="chatlog__message " data-message-id="937412556354625628" id="message-937412556354625628" title="Message sent: 2022-01-30 18:22:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>You see a group of people in a clearing in the forest, one of them holding a gun. They seem to not be focused on you as much.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-30 18:24:39Z</span>
+
+            <div class="chatlog__message " data-message-id="937413014800437258" id="message-937413014800437258" title="Message sent: 2022-01-30 18:24:39Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Knew it, nothing good happens in forests.</em>
+<em>Lester keeps a distance and watches what happens. Nothing good, he&#39;s sure.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-30 18:24:41Z</span>
+
+            <div class="chatlog__message " data-message-id="937413024589942836" id="message-937413024589942836" title="Message sent: 2022-01-30 18:24:41Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-30 23:37:30Z</span>
+
+            <div class="chatlog__message " data-message-id="937491748115087471" id="message-937491748115087471" title="Message sent: 2022-01-30 23:37:30Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>I lied. I got the backstory wrong &lt;/3</em> 
+</div></div>
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>A voice can be heard behind you.</em> &quot;Hey, what&#39;re you looking at?&quot;</div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="Fukt">
+                                <img class="emoji emoji--small" alt="Fukt" src="936387099156942858.html_Files/755497698563457024-D9F52.png" loading="lazy">
+                                <span class="chatlog__reaction-count">9</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-30 23:49:13Z</span>
+
+            <div class="chatlog__message " data-message-id="937494696060649532" id="message-937494696060649532" title="Message sent: 2022-01-30 23:49:13Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>God dammit, someone give him-or whoever this is-a break already.</em>
+
+&#39;&#39;....The birds?&#39;&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-30 23:49:15Z</span>
+
+            <div class="chatlog__message " data-message-id="937494705942450286" id="message-937494705942450286" title="Message sent: 2022-01-30 23:49:15Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 00:21:21Z</span>
+
+            <div class="chatlog__message " data-message-id="937502785090519081" id="message-937502785090519081" title="Message sent: 2022-01-31 00:21:21Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>The person poked their head around at Lester. It seems to be a normal looking purple haired person.</em> &quot;Yknow... it&#39;s kinda weird we&#39;re going thru the forest right now to meet your twin.&quot;
+</div></div>
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>Another gunshot rang thru the air, but this person didn&#39;t seem to care. Or notice.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-31 00:23:32Z</span>
+
+            <div class="chatlog__message " data-message-id="937503334015840376" id="message-937503334015840376" title="Message sent: 2022-01-31 00:23:32Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Oh, it&#39;s friend not foe. Well....Friend to whoever this person is. He wouldn&#39;t hang out with someone who has purple hair.</em>
+
+&#39;&#39;Uh, I dunno, guess I like meeting people in the woods.&#39;&#39; <em>He shrugs.</em> &#39;&#39;You worried about the GUNSHOTS GOING OFF AT ALL?!&#39;&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 00:23:36Z</span>
+
+            <div class="chatlog__message " data-message-id="937503347798331452" id="message-937503347798331452" title="Message sent: 2022-01-31 00:23:36Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 00:24:38Z</span>
+
+            <div class="chatlog__message " data-message-id="937503610894446653" id="message-937503610894446653" title="Message sent: 2022-01-31 00:24:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content">&quot;Hm?&quot; <em>They looked over at Lester.</em> &quot;Whatever could you mean?&quot;
+</div></div>
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>They walked deeper into the forest.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-31 00:29:10Z</span>
+
+            <div class="chatlog__message " data-message-id="937504752500109332" id="message-937504752500109332" title="Message sent: 2022-01-31 00:29:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Lester is just gonna assume they can&#39;t hear it. Or maybe they&#39;re actually deaf.</em>
+
+<em>He follows the person deeper into the forest.</em> &#39;&#39;Kinda spooky...&#39;&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 00:29:13Z</span>
+
+            <div class="chatlog__message " data-message-id="937504763594043482" id="message-937504763594043482" title="Message sent: 2022-01-31 00:29:13Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 00:46:55Z</span>
+
+            <div class="chatlog__message " data-message-id="937509216598507622" id="message-937509216598507622" title="Message sent: 2022-01-31 00:46:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>Tension is rising...</em>
+</div></div>
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>Another gunshot goes off, this time significantly closer to you.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-31 00:47:31Z</span>
+
+            <div class="chatlog__message " data-message-id="937509369883537428" id="message-937509369883537428" title="Message sent: 2022-01-31 00:47:31Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;God fucking dammit! Fuck!&#39;&#39;
+
+<em>Growing agitated, he starts walking quicker.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 00:47:33Z</span>
+
+            <div class="chatlog__message " data-message-id="937509377802403860" id="message-937509377802403860" title="Message sent: 2022-01-31 00:47:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 01:39:58Z</span>
+
+            <div class="chatlog__message " data-message-id="937522568259330079" id="message-937522568259330079" title="Message sent: 2022-01-31 01:39:58Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content">&quot;...What was that?&quot; <em>They seem to finally have noticed...</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-31 01:43:38Z</span>
+
+            <div class="chatlog__message " data-message-id="937523489647239259" id="message-937523489647239259" title="Message sent: 2022-01-31 01:43:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Nothing good, maybe the sound of ‘we should leave immediately’!”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 01:43:40Z</span>
+
+            <div class="chatlog__message " data-message-id="937523499717759017" id="message-937523499717759017" title="Message sent: 2022-01-31 01:43:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 01:44:19Z</span>
+
+            <div class="chatlog__message " data-message-id="937523661429170236" id="message-937523661429170236" title="Message sent: 2022-01-31 01:44:19Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>They nodded and started running opposite the direction of the gunshots. However, another one went off, even closer to them...</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-31 01:45:55Z</span>
+
+            <div class="chatlog__message " data-message-id="937524063608401961" id="message-937524063608401961" title="Message sent: 2022-01-31 01:45:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“GOD DAMMIT FUCK SHIT FUCK!”
+
+<em>He nyoomed!!</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 01:45:57Z</span>
+
+            <div class="chatlog__message " data-message-id="937524072584196116" id="message-937524072584196116" title="Message sent: 2022-01-31 01:45:57Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 02:27:39Z</span>
+
+            <div class="chatlog__message " data-message-id="937534566078505040" id="message-937534566078505040" title="Message sent: 2022-01-31 02:27:39Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>But you hit a deadend... It&#39;s almost like the trees in the forest close in on you, with thorns and dense forestry blocking your path. You and the purple haired person come to a total halt. You both turn around and hear footsteps approaching you.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-31 02:30:04Z</span>
+
+            <div class="chatlog__message " data-message-id="937535175879958528" id="message-937535175879958528" title="Message sent: 2022-01-31 02:30:04Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;Fuckshitfuckshitfuckshitfuckshitfuckshitfuckshit-&#39;&#39;
+
+<em>His mind boots into overdrive. Forestsinternetforestsinternetforestsinternet-he&#39;s getting closer!!</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 02:30:09Z</span>
+
+            <div class="chatlog__message " data-message-id="937535195186339850" id="message-937535195186339850" title="Message sent: 2022-01-31 02:30:09Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 02:46:52Z</span>
+
+            <div class="chatlog__message " data-message-id="937539403117654047" id="message-937539403117654047" title="Message sent: 2022-01-31 02:46:52Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>A man walks out through the trees... holding a loaded pistol and having a creepy smile on his face. What the hell...?</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-31 02:50:59Z</span>
+
+            <div class="chatlog__message " data-message-id="937540439756648548" id="message-937540439756648548" title="Message sent: 2022-01-31 02:50:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;Uh-Hello, sir! You don&#39;t wanna use that, so loud and messy you know...&#39;&#39;
+
+<em>Salesman gonna salesman.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 02:51:01Z</span>
+
+            <div class="chatlog__message " data-message-id="937540447730012160" id="message-937540447730012160" title="Message sent: 2022-01-31 02:51:01Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 02:54:02Z</span>
+
+            <div class="chatlog__message " data-message-id="937541208400597022" id="message-937541208400597022" title="Message sent: 2022-01-31 02:54:02Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>The man aimed the gun at them...</em>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>You feel something of a tantrum coming out of you. Definitely not you.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-31 02:57:49Z</span>
+
+            <div class="chatlog__message " data-message-id="937542159568097300" id="message-937542159568097300" title="Message sent: 2022-01-31 02:57:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;H-Hey buddy let&#39;s talk this ou-&#39;&#39;
+
+<em>Aaaand the tantrum cometh. Seriously? In front of the guy with a gun?!</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 02:57:53Z</span>
+
+            <div class="chatlog__message " data-message-id="937542175133163560" id="message-937542175133163560" title="Message sent: 2022-01-31 02:57:53Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 03:22:52Z</span>
+
+            <div class="chatlog__message " data-message-id="937548463959334983" id="message-937548463959334983" title="Message sent: 2022-01-31 03:22:52Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>The man fires.</em>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>The bullet hits the other purple haired person. The tantrum and feelings inside you get worse...</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="Fukt">
+                                <img class="emoji emoji--small" alt="Fukt" src="936387099156942858.html_Files/755497698563457024-D9F52.png" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 03:47:43Z</span>
+
+            <div class="chatlog__message " data-message-id="937554716383129621" id="message-937554716383129621" title="Message sent: 2022-01-31 03:47:43Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(OH OK DAMN)
+(PERSON FUCKIN DROPS DEAD AS SHIT AND THAT&#39;S A :FUKT: GOD DAMN)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-31 03:49:16Z</span>
+
+            <div class="chatlog__message " data-message-id="937555108827385887" id="message-937555108827385887" title="Message sent: 2022-01-31 03:49:16Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Oh. Ohhh god.</em>
+
+<em>He&#39;s right on the verge of shouting a name, but his brain sort of locks up out of fear. Even though it&#39;s not real, the fear of death he feels right now is very real.</em>
+
+<em>He cowers.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 03:49:20Z</span>
+
+            <div class="chatlog__message " data-message-id="937555122232393728" id="message-937555122232393728" title="Message sent: 2022-01-31 03:49:20Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 03:50:07Z</span>
+
+            <div class="chatlog__message " data-message-id="937555320899776562" id="message-937555320899776562" title="Message sent: 2022-01-31 03:50:07Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>The man points the gun at Lester.</em> &quot;Any last words...?&quot;</div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-31 03:51:08Z</span>
+
+            <div class="chatlog__message " data-message-id="937555575947014165" id="message-937555575947014165" title="Message sent: 2022-01-31 03:51:08Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;I-I-I-I-I-I-I-I-I-I-I-I-&#39;&#39;
+
+<em>....</em>
+
+&#39;&#39;There&#39;s a a bigfoot behind you?&#39;&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 03:51:17Z</span>
+
+            <div class="chatlog__message " data-message-id="937555615256035388" id="message-937555615256035388" title="Message sent: 2022-01-31 03:51:17Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 03:51:32Z</span>
+
+            <div class="chatlog__message " data-message-id="937555677193310249" id="message-937555677193310249" title="Message sent: 2022-01-31 03:51:32Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(nvm im just gonna go to sleep i thought you were gonna guess</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="937555706666713149" id="message-937555706666713149" title="Message sent: 2022-01-31 03:51:39Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( /lh LMO</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 03:51:47Z</span>
+
+            <div class="chatlog__message " data-message-id="937555739516502086" id="message-937555739516502086" title="Message sent: 2022-01-31 03:51:47Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(i can if you want i know who it is)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 03:52:13Z</span>
+
+            <div class="chatlog__message " data-message-id="937555848966844437" id="message-937555848966844437" title="Message sent: 2022-01-31 03:52:13Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <img loading="lazy" class="emoji " alt="🤨" title="face_with_raised_eyebrow" src="https://twemoji.maxcdn.com/2/svg/1f928.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 03:52:30Z</span>
+
+            <div class="chatlog__message " data-message-id="937555922597871676" id="message-937555922597871676" title="Message sent: 2022-01-31 03:52:30Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(at least I think i do lol)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="937556039400816730" id="message-937556039400816730" title="Message sent: 2022-01-31 03:52:58Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(i assumed there&#39;d be one more part?)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 03:55:31Z</span>
+
+            <div class="chatlog__message " data-message-id="937556678755360799" id="message-937556678755360799" title="Message sent: 2022-01-31 03:55:31Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>The man cocks the gun at Lester.</em>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>However, a gunshot doesn&#39;t go off. An arrow can be heard being fired.</em>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content">&quot;You sick fuck.&quot; <em>An arrow plunges thru the man from behind. When he drops to the ground, you see a person you recognize as a sibling.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/5a8266653aafffec376d5ae7f85570d3-00F43.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lester Warburton#0000" data-user-id="936410162967760976" style="">Lester Warburton</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-31 03:57:04Z</span>
+
+            <div class="chatlog__message " data-message-id="937557070474006618" id="message-937557070474006618" title="Message sent: 2022-01-31 03:57:04Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;&#39;J-jesus Christ, Ok, um...&#39;&#39;
+
+<em>He gives a meek little wave to the sibling person.</em>
+
+&#39;&#39;Fucking hell, it&#39;s-It&#39;s-OCTOBER! IT&#39;S OCTOBER, DAMMIT!&#39;&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/2a7ea0f58f82fb662506826dffc2f1b4-E687F.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blastoise#8799" data-user-id="403962675270516737" style="color: rgb(52,152,219)">Filthy Traitor || Jlastoise</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 03:57:09Z</span>
+
+            <div class="chatlog__message " data-message-id="937557091525230632" id="message-937557091525230632" title="Message sent: 2022-01-31 03:57:09Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Infernix#8206">@Monokuma | Kev</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/33a07bad01edc3baedb464110dd2f4a1-3FB88.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Infernix#8206" data-user-id="578326021443420160" style="color: rgb(85,27,255)">Monokuma | Kev</span>
+
+
+        <span class="chatlog__timestamp">2022-01-31 03:58:24Z</span>
+
+            <div class="chatlog__message " data-message-id="937557406303543406" id="message-937557406303543406" title="Message sent: 2022-01-31 03:58:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content"><em>The A.I pauses...</em>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>The scene crumbles for a bit, revealing an eye.</em>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><strong>&quot;CORRECT!&quot;</strong>
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>Lester fades into nothingness, reappearing back at the <span class="mention">#house-of-creation</span> safely.</em></div></div></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936387099156942858.html_Files/640cd2526a889f3a1ecaadae62311a58-FA2CC.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Despair&#39;s Horizon Bot#8265" data-user-id="861082089231482880" style="color: rgb(78,93,148)">Despair&#39;s Horizon Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-31 03:58:31Z</span>
+
+            <div class="chatlog__message " data-message-id="937557436502523964" id="message-937557436502523964" title="Message sent: 2022-01-31 03:58:31Z">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(217,44,67,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="Blastoise#8799">@Filthy Traitor || Jlastoise</span> got <strong>1</strong> interaction!</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 117 message(s)</div>
+</div>
+
+</body>
+
+</html>

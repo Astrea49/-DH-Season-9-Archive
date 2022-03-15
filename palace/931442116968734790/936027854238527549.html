@@ -1,0 +1,2741 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Despair&#39;s Horizon - Wolfsbane &amp; Wave</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="936027854238527549.html_Files/a_a82f66cbaf9572e715aef752d1954a13-F33DA.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Despair&#39;s Horizon</div>
+        <div class="preamble__entry">great-hall / Wolfsbane &amp; Wave</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-26 22:40:31Z</span>
+
+            <div class="chatlog__message " data-message-id="936027858055356456" id="message-936027858055356456" title="Message sent: 2022-01-26 22:40:31Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He was finally exploring this place a bit more. This place was interesting, yeah. He would admit that. Still finds it to be unbelievable though. Illogical. Whatever. He walks around looking at the architecture of this room.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 22:40:44Z</span>
+
+            <div class="chatlog__message " data-message-id="936027908852547604" id="message-936027908852547604" title="Message sent: 2022-01-26 22:40:44Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span> initial ping</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 22:42:40Z</span>
+
+            <div class="chatlog__message " data-message-id="936028398596292639" id="message-936028398596292639" title="Message sent: 2022-01-26 22:42:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Wave is in the great hall, also looking around, seeming to be in utter awe as he takes in all the sights, inspiration gathering in his mind for when he surfaces.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936028404577349712" id="message-936028404577349712" title="Message sent: 2022-01-26 22:42:42Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-26 22:44:21Z</span>
+
+            <div class="chatlog__message " data-message-id="936028821516337222" id="message-936028821516337222" title="Message sent: 2022-01-26 22:44:21Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He looks to Wave, making his way over.</em> “Hey, kid.” <em>He says with a nod of acknowledgment.</em> “Crazy place, huh…” <em>He adds, as his gaze looks around them some more.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 22:44:25Z</span>
+
+            <div class="chatlog__message " data-message-id="936028836997517403" id="message-936028836997517403" title="Message sent: 2022-01-26 22:44:25Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 22:46:22Z</span>
+
+            <div class="chatlog__message " data-message-id="936029327538155520" id="message-936029327538155520" title="Message sent: 2022-01-26 22:46:22Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;A-ah...!&quot;
+<em>He jumps a bit as Wolfsbane talks, being sudden to him, before relaxing upon seeing who it is.</em>
+&quot;O-oh, W-Wolfy... hello. Y-yeah, it is... r-really cool...&quot;
+<em>He seems quite nervous, one arm holding his elbow as he goes back to looking at the place, near Wolfsbane.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936029350757810216" id="message-936029350757810216" title="Message sent: 2022-01-26 22:46:27Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span> (Btw want pings?)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 22:49:38Z</span>
+
+            <div class="chatlog__message " data-message-id="936030149869191229" id="message-936030149869191229" title="Message sent: 2022-01-26 22:49:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((Sure</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-26 22:51:14Z</span>
+
+            <div class="chatlog__message " data-message-id="936030554703425588" id="message-936030554703425588" title="Message sent: 2022-01-26 22:51:14Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Ah, sorry kid. Didn’t mean to startle you.” <em>He runs a hand through his flowing hair.</em> “Yeah, I suppose it is. It’s like from fairy tale.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 22:51:18Z</span>
+
+            <div class="chatlog__message " data-message-id="936030569437990912" id="message-936030569437990912" title="Message sent: 2022-01-26 22:51:18Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 22:52:57Z</span>
+
+            <div class="chatlog__message " data-message-id="936030986729316362" id="message-936030986729316362" title="Message sent: 2022-01-26 22:52:57Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Y-yeah... l-like... fairy tale...&quot;
+<em>He thinks for a bit, before giving a sigh.</em>
+&quot;...U-um... do... y-you know any, Wolfy...?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936030993171750933" id="message-936030993171750933" title="Message sent: 2022-01-26 22:52:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-26 22:56:14Z</span>
+
+            <div class="chatlog__message " data-message-id="936031811061047407" id="message-936031811061047407" title="Message sent: 2022-01-26 22:56:14Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He thinks about it.</em> “Hmm, I know a few. Ive picked some up over the years to read to children. Want to hear one? I have one about a Wolf, one about two flowers, one about a young boy, and a few other ones, if none of those interest you.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 22:56:18Z</span>
+
+            <div class="chatlog__message " data-message-id="936031827070701638" id="message-936031827070701638" title="Message sent: 2022-01-26 22:56:18Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 22:57:22Z</span>
+
+            <div class="chatlog__message " data-message-id="936032095401295922" id="message-936032095401295922" title="Message sent: 2022-01-26 22:57:22Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Y-yes...! O-oh, um... i-if you&#39;re o-okay with i-it, of course... U-um... i-is... th-there one of a princess...?&quot;
+<em>He seems quite interested now, turning to Wolfsbane this time.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936032104800727090" id="message-936032104800727090" title="Message sent: 2022-01-26 22:57:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-26 23:01:38Z</span>
+
+            <div class="chatlog__message " data-message-id="936033168681734155" id="message-936033168681734155" title="Message sent: 2022-01-26 23:01:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Of course I am. Doesn’t hurt to tell a little tale.” <em>He mulls things over.</em> “Hmm, yes, I think I got one on a Princess. A princess who isn’t as kindhearted as one would perceive.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 23:01:40Z</span>
+
+            <div class="chatlog__message " data-message-id="936033179381424180" id="message-936033179381424180" title="Message sent: 2022-01-26 23:01:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 23:07:45Z</span>
+
+            <div class="chatlog__message " data-message-id="936034708523978814" id="message-936034708523978814" title="Message sent: 2022-01-26 23:07:45Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;H-huh...? That... doesn&#39;t sound v-very k-kind... u-um...&quot;
+<em>He seems a little hesitant to hear it, before thinking and giving a nod.</em>
+&quot;U-um... b-but... I&#39;ll b-be okay with it... yeah.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936034714823839764" id="message-936034714823839764" title="Message sent: 2022-01-26 23:07:46Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-26 23:13:41Z</span>
+
+            <div class="chatlog__message " data-message-id="936036202593792050" id="message-936036202593792050" title="Message sent: 2022-01-26 23:13:41Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He nods.</em> “Ok, well, to begin, she was raised on a luxurious castle. She was isolated from that of the common folk. She experienced life simply through her bedroom window. Until one day, the king, her father, allowed to explore the town below their castle. He allowed her to mingle with the poor. But only on one condition. That she refrained from speaking with any boys her age or older. She of course agreed, as it would allow her to see the world, but deep down she knew she wouldn’t keep that promise.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 23:13:44Z</span>
+
+            <div class="chatlog__message " data-message-id="936036214090366996" id="message-936036214090366996" title="Message sent: 2022-01-26 23:13:44Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 23:15:21Z</span>
+
+            <div class="chatlog__message " data-message-id="936036622200352788" id="message-936036622200352788" title="Message sent: 2022-01-26 23:15:21Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;H-huh...? Why w-wasn&#39;t sh-she allowed to...?&quot;
+<em>He seems quite confused by that, his eyebrows furrowing as his head tilts slightly.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936036628194017360" id="message-936036628194017360" title="Message sent: 2022-01-26 23:15:22Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-26 23:18:30Z</span>
+
+            <div class="chatlog__message " data-message-id="936037414030409728" id="message-936037414030409728" title="Message sent: 2022-01-26 23:18:30Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“You see the king didn’t want her falling in love with anyone. Have feelings for anyone. Her heart was meant to stay sealed away for someone more… Worthy of her love and devotion. Someone more on her level. Do you understand what I mean?”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 23:18:34Z</span>
+
+            <div class="chatlog__message " data-message-id="936037432372105297" id="message-936037432372105297" title="Message sent: 2022-01-26 23:18:34Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 23:19:36Z</span>
+
+            <div class="chatlog__message " data-message-id="936037693492707328" id="message-936037693492707328" title="Message sent: 2022-01-26 23:19:36Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Um... I-I think... b-but... th-then... sh-she wouldn&#39;t b-be able to g-get as many friends a-as she could...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936037706100801597" id="message-936037706100801597" title="Message sent: 2022-01-26 23:19:39Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-26 23:26:11Z</span>
+
+            <div class="chatlog__message " data-message-id="936039350779674625" id="message-936039350779674625" title="Message sent: 2022-01-26 23:26:11Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Yes, that’s true. But just know in the end she doesn’t listen to her fathers rule. One day on a stroll, experiencing her new found freedom, she bumps into a rugged boy. She falls to the ground after bumping into him, and when he offers a hand to help her up, she refuses. But when he began to walk away, as he saw no reason to stay, she quickly got to her feet and began to follow him. Ask him questions about the town, it’s people, what if’s like to live here permanently. He would reluctantly answer her, as he continued about his day. Even though he seemed to not enjoy her company, he secretly found it nice to talk to someone. She found his personality and knowledge intriguing. This was the beginning to their friendship.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 23:26:14Z</span>
+
+            <div class="chatlog__message " data-message-id="936039362897010808" id="message-936039362897010808" title="Message sent: 2022-01-26 23:26:14Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 23:32:56Z</span>
+
+            <div class="chatlog__message " data-message-id="936041047455305738" id="message-936041047455305738" title="Message sent: 2022-01-26 23:32:56Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Woah... th-that&#39;s so n-nice... wh-what happens next...? Th-they become great friends, I-I hope...!&quot;
+<em>The memory of someone from home pops into his head as he listens, growing happy as his full attention is now on the story.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936041054451429386" id="message-936041054451429386" title="Message sent: 2022-01-26 23:32:58Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-26 23:42:41Z</span>
+
+            <div class="chatlog__message " data-message-id="936043499067940914" id="message-936043499067940914" title="Message sent: 2022-01-26 23:42:41Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“They do. They find themselves spending lots of time together. Though the Princess would notice how the rugged boy would always leave abruptly, saying ‘I have to go do something.’ She got very curious and asked if she could come with. She was surprised to her him say she could. He would take her to in front of a school, where two younger boys would come to them. One seeming to be a bit awkward and the other seeming a bit  rambunctious. A wild one. The rugged boy would tell her that the two were his brothers. He had been leaving to pick them up and take them home. The Princess seemed confused on why he would ever leave her for them, but chose to not say anything. Their friendship would continue, blossoming into something more… Romantic. Lovey dovey.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 23:42:43Z</span>
+
+            <div class="chatlog__message " data-message-id="936043508945551402" id="message-936043508945551402" title="Message sent: 2022-01-26 23:42:43Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-26 23:59:43Z</span>
+
+            <div class="chatlog__message " data-message-id="936047786443567104" id="message-936047786443567104" title="Message sent: 2022-01-26 23:59:43Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“A-ah… so he’s… a b-big bro, too… w-wait, r-romantic…?”
+<em>He seems a bit shocked and a little embarrassed by that, though doesn’t really seem to be complaining or anything, just didn’t expect it.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936047796572786708" id="message-936047796572786708" title="Message sent: 2022-01-26 23:59:45Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-27 00:08:38Z</span>
+
+            <div class="chatlog__message " data-message-id="936050029855137822" id="message-936050029855137822" title="Message sent: 2022-01-27 00:08:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He nods.</em> “Yup. A big bro…” <em>He looked off for a moment, before looking back.</em> “Yeah, things got romantic. Their relationship was nice for a while. Things seemed fine. But the Princess was no longer happy with him. The rugged boy would continue to leave her for his brothers. No matter what she said to try and keep him for little bit longer, he would never stay. His brothers were his top priority. It began to eat at her. Frustrate her. And finally, she gave him an ultimatum. A choice. He either had to choose to spend his time with her or spend him time with his brother. No in between. She expected him to say her. Because she should’ve been the most important thing to him. His brothers could always wait or walk home on their own. But in the end… He picked his brothers. In his eyes, family came first. So with that he left her. Their relationship and friendship was over. She would return to her castle, disappointed. Annoyed. So annoyed she would tell her father about him. About a boy who broke her heart. Her father was at first angry at her for breaking the rule, but would then become angry with the boy. No one hurts his dearest daughter’s heart.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 00:08:40Z</span>
+
+            <div class="chatlog__message " data-message-id="936050040454119454" id="message-936050040454119454" title="Message sent: 2022-01-27 00:08:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 00:10:46Z</span>
+
+            <div class="chatlog__message " data-message-id="936050570098278460" id="message-936050570098278460" title="Message sent: 2022-01-27 00:10:46Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“H-huh…? B-but… th-that’s mean, a-and selfish… wh-why didn’t the p-princess understand…? Th-they’re s-supposed to… b-be really nice, a-and everything… no…?”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936050579162165339" id="message-936050579162165339" title="Message sent: 2022-01-27 00:10:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-27 00:17:11Z</span>
+
+            <div class="chatlog__message " data-message-id="936052182501978142" id="message-936052182501978142" title="Message sent: 2022-01-27 00:17:11Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“It’s hard to really say. Though, she didn’t have siblings of her own. She was raised to believe she was the most important thing. As a Princess should be treated. At least in her eyes. In her father’s eyes. Not all princesses are nice. Sometimes the fortune, the power, can get to them. Warp their point of view on life. How they treat others. But don’t worry, that’s not every Princess. Just a few.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 00:17:14Z</span>
+
+            <div class="chatlog__message " data-message-id="936052193788833873" id="message-936052193788833873" title="Message sent: 2022-01-27 00:17:14Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/640cd2526a889f3a1ecaadae62311a58-FA2CC.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Despair&#39;s Horizon Bot#8265" data-user-id="861082089231482880" style="color: rgb(78,93,148)">Despair&#39;s Horizon Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-27 01:55:39Z</span>
+
+            <div class="chatlog__message " data-message-id="936076963578261575" id="message-936076963578261575" title="Message sent: 2022-01-27 01:55:39Z">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(217,44,67,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span>, <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span> got <strong>1</strong> interaction!</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 06:17:45Z</span>
+
+            <div class="chatlog__message " data-message-id="936142922770944080" id="message-936142922770944080" title="Message sent: 2022-01-27 06:17:45Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Th-these princesses are… r-really m-mean, then… I h-hope they learn t-to be nicer…”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936142933135097856" id="message-936142933135097856" title="Message sent: 2022-01-27 06:17:47Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-27 13:18:08Z</span>
+
+            <div class="chatlog__message " data-message-id="936248714878664794" id="message-936248714878664794" title="Message sent: 2022-01-27 13:18:08Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Sadly, this Princess didn’t learn that lesson. She was able to convince her father to send his Royal guards after the rugged boy and his two brothers. The rugged boy was greatly out numbed, but that didn’t stop him from defending his brothers. He didn’t allow those guards to get a single scratch on them. He was devoted to protecting his younger siblings at all costs. In the end, the rugged boy came out victorious, beating the guards, and fleeing with his brothers. The three were outlawed. People looked down upon them. All because of a single person. The Princess. This tale doesn’t sound like it has a happy ending, but it does. The brothers got to stay together. The three had always depended on each other, and all this did was remind them of that. And they were all content with that. Brothers for life.” <em>He would end with a faint smile of reminiscence.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 13:18:15Z</span>
+
+            <div class="chatlog__message " data-message-id="936248744071037011" id="message-936248744071037011" title="Message sent: 2022-01-27 13:18:15Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 13:40:01Z</span>
+
+            <div class="chatlog__message " data-message-id="936254221286776862" id="message-936254221286776862" title="Message sent: 2022-01-27 13:40:01Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;A-ah... th-that... s-sounds so nice. Big siblings a-are... really cool... siblings...? I meant... b-brother... u-um... mm... th-the princess sh-should f-feel bad about doing that... I-I&#39;m really glad they&#39;re a-alright.&quot;
+<em>A smile is present on his face as he hears the ending, a warm, happy feeling replacing a lot of the anxiety his heart previously felt around others.</em>
+&quot;Um... d-do... you have b-brothers t-too, Wolfy...? Y-you seem to a-also really like th-this story...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936254227070730291" id="message-936254227070730291" title="Message sent: 2022-01-27 13:40:02Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-27 13:46:46Z</span>
+
+            <div class="chatlog__message " data-message-id="936255923071111240" id="message-936255923071111240" title="Message sent: 2022-01-27 13:46:46Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He nods.</em> “Heh… Yeah, they are. Maybe one day she did feel bad, who knows. But in the moment she didn’t care much, sadly. No matter, all that matters is that the siblings are together and doing good.” <em>He was glad he could bring a smile to Wave’s face even with such a tale. He would look off again, before looking back.</em> “I do really like this story. It really speaks to me.” <em>He says, not answering Wave’s question.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 13:46:50Z</span>
+
+            <div class="chatlog__message " data-message-id="936255939424686130" id="message-936255939424686130" title="Message sent: 2022-01-27 13:46:50Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 13:50:15Z</span>
+
+            <div class="chatlog__message " data-message-id="936256799865196584" id="message-936256799865196584" title="Message sent: 2022-01-27 13:50:15Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Mhm... th-they&#39;re... a-away from all th-the bad people... th-that&#39;s good. Um... d-do... th-they find s-somewhere p-people w-would help them...? A-and more fr-friends.&quot;
+<em>He looks back up to Wolfsbane, his yellow eyes glittering a little.</em>
+&quot;A-and... m-me too. It r-reminds me of b-big bro...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936256808631296040" id="message-936256808631296040" title="Message sent: 2022-01-27 13:50:17Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-27 14:07:09Z</span>
+
+            <div class="chatlog__message " data-message-id="936261052222566470" id="message-936261052222566470" title="Message sent: 2022-01-27 14:07:09Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He thinks for a moment.</em> “Well, yes, I’d say so. Eventually they find a place where people help them. Support them.” <em>He would faintly smile again.</em> “Good to hear.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 14:07:12Z</span>
+
+            <div class="chatlog__message " data-message-id="936261065153601556" id="message-936261065153601556" title="Message sent: 2022-01-27 14:07:12Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 14:15:02Z</span>
+
+            <div class="chatlog__message " data-message-id="936263035947995176" id="message-936263035947995176" title="Message sent: 2022-01-27 14:15:02Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ah... phew. U-um... h-hey, Wolfy... c-can... I ask s-something...?&quot;
+<em>He seems a bit more quieter now, his voice smaller, like he&#39;s internally debating asking whatever it is he&#39;s about to say.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936263042323320852" id="message-936263042323320852" title="Message sent: 2022-01-27 14:15:04Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-27 14:17:33Z</span>
+
+            <div class="chatlog__message " data-message-id="936263669094973511" id="message-936263669094973511" title="Message sent: 2022-01-27 14:17:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Yeah, of course. You can ask me anything, kid…” <em>He says that…</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 14:17:36Z</span>
+
+            <div class="chatlog__message " data-message-id="936263680100798474" id="message-936263680100798474" title="Message sent: 2022-01-27 14:17:36Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 14:21:56Z</span>
+
+            <div class="chatlog__message " data-message-id="936264772003954779" id="message-936264772003954779" title="Message sent: 2022-01-27 14:21:56Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;U-um... i-if... I... um... s-someone... d-did s-something... r-really bad... b-but... t-tries t-to... t-try to do good, a-after... a-are... th-they... s-still... b-bad...? A-and... c-can they... s-still... l-let themselves b-be with g-good people...?&quot;
+<em>His voice comes out in squeaks this time, as he looks down a bit, his hands gripping onto his elbows. It almost sounds like he&#39;s struggling to hold himself together as he asks.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936264778630967348" id="message-936264778630967348" title="Message sent: 2022-01-27 14:21:58Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-27 14:56:53Z</span>
+
+            <div class="chatlog__message " data-message-id="936273566633197568" id="message-936273566633197568" title="Message sent: 2022-01-27 14:56:53Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Hmm… If they try to make amends with the bad they did… Er, try to do something good after doing something bad, then I’d say that’s them trying to change. But I guess it’s a bit more complicated than that… Some people only pretend they’re being good to regain someone’s trust so they could use them later on… But then there is people who genuinely are trying to change. I think it depends on what you believe. How you want to take their sudden change, ya know? It’s hard to tell what someone’s true intentions are.“ <em>He sighs, looking down to Wave. He doesn’t want to scare the kid.</em> “But, uh, hey, look… It’s really hard to put people into good and bad. People can do bad things, people can do good things. No one is really one or the other. People can be both. Depends on how they grew up, their mood in the moment, what ideals… or uh, things they live by. It’s all dependent. Do you understand what I’m saying?” <em>He feels like he may be going too deep with this.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 14:56:56Z</span>
+
+            <div class="chatlog__message " data-message-id="936273579815862303" id="message-936273579815862303" title="Message sent: 2022-01-27 14:56:56Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 15:16:10Z</span>
+
+            <div class="chatlog__message " data-message-id="936278419547766795" id="message-936278419547766795" title="Message sent: 2022-01-27 15:16:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;U-um... a b-bit... s-so um... i-it... depends...? O-on many things, r-right...?&quot;
+<em>He sounds a bit confused and unsure, a hand going to his chin in thought.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936278424971014234" id="message-936278424971014234" title="Message sent: 2022-01-27 15:16:11Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-27 15:21:42Z</span>
+
+            <div class="chatlog__message " data-message-id="936279814061580329" id="message-936279814061580329" title="Message sent: 2022-01-27 15:21:42Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He nods.</em> “Uh, yeah. It all just depends. I… usually think of the worst of people, but that’s not the right way to go about looking at others. Use your better judgement, kid. Don’t let people try to use you or anything, but also don’t become… Cynical. Pessimistic… Like me…” <em>He sighs, looking off.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 15:21:45Z</span>
+
+            <div class="chatlog__message " data-message-id="936279826044690452" id="message-936279826044690452" title="Message sent: 2022-01-27 15:21:45Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 15:31:55Z</span>
+
+            <div class="chatlog__message " data-message-id="936282383534137415" id="message-936282383534137415" title="Message sent: 2022-01-27 15:31:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;N-not the right way... um... s-so... y-you... d-don&#39;t th-think they&#39;re... 100% bad...? A-and um... I... d-don&#39;t see wh-what&#39;s so b-bad about b-being like you...  y-you&#39;re... r-really k-kind, a-and gentle... b-but also s-strong... l-like... um... a r-really nice b-bear. O-or a kind wolf. Yeah...&quot;
+<em>He feels a little proud of the comparison, slightly looking back up with a small smile.</em></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-27 15:32:04Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936282389519425557" id="message-936282389519425557" title="Message sent: 2022-01-27 15:31:56Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-27 20:03:13Z</span>
+
+            <div class="chatlog__message " data-message-id="936350656720146432" id="message-936350656720146432" title="Message sent: 2022-01-27 20:03:13Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He nods.</em> “Yeah. No one is really 100% bad.” <em>He would then chuckle faintly, a smile forming on his face.</em> “Heh, no one’s ever compared me to a bear. I’ll take it. Thanks kid, your words mean a lot.”</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 20:03:16Z</span>
+
+            <div class="chatlog__message " data-message-id="936350668824916018" id="message-936350668824916018" title="Message sent: 2022-01-27 20:03:16Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="Ame/☆Est55☆#7858">@Katsuro Taira &#127912; ☆Est☆</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 20:33:28Z</span>
+
+            <div class="chatlog__message " data-message-id="936358273001599006" id="message-936358273001599006" title="Message sent: 2022-01-27 20:33:28Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I-I see... phew...&quot;
+<em>He seems... comforted by the words, like it brought an immense sense of relief to him.</em>
+&quot;U-um... y-you welcome, I-I&#39;m glad y-you like it...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936358279066550334" id="message-936358279066550334" title="Message sent: 2022-01-27 20:33:30Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="TOMOxWATER (king of crabs)#6118">@Tomo &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/6338a96e7751e098aa45959730957b47-BB382.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wolfsbane#0000" data-user-id="934230194955354153" style="">Wolfsbane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-27 20:36:55Z</span>
+
+            <div class="chatlog__message " data-message-id="936359140429791272" id="message-936359140429791272" title="Message sent: 2022-01-27 20:36:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He would pat Wave on the back.</em> “Now, I think it’s time I get going. Thanks for the chat, kid. Really needed this. Until later…” <em>He waved goodbye before walking off.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/7eca818c923eb156cae14bed5fe91ee1-1FE56.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="TOMOxWATER (king of crabs)#6118" data-user-id="303254061644382219" style="color: rgb(92,228,192)">Tomo &lt;3</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 20:37:06Z</span>
+
+            <div class="chatlog__message " data-message-id="936359186562945044" id="message-936359186562945044" title="Message sent: 2022-01-27 20:37:06Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((Thank you for the interaction!</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="936027854238527549.html_Files/8cf7040942523fd83b8d9078ee3db2f8-6CD0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/☆Est55☆#7858" data-user-id="328149026266677248" style="color: rgb(255,235,110)">Katsuro Taira &#127912; ☆Est☆</span>
+
+
+        <span class="chatlog__timestamp">2022-01-27 20:37:38Z</span>
+
+            <div class="chatlog__message " data-message-id="936359319111344128" id="message-936359319111344128" title="Message sent: 2022-01-27 20:37:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Yw, thank you too!)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936359522249875456" id="message-936359522249875456" title="Message sent: 2022-01-27 20:38:26Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Mhm... g-goodbye. Th-thank you...&quot;
+<em>He slowly felt like... there was someone else he could tell, without risks.</em>
+&quot;Maybe... I&#39;ll a-ask Desuc, b-before... hm...&quot;
+<em>In thought, he stares back at the wall in front of him, now, before eventually leaving.</em></span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-27 20:38:33Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 78 message(s)</div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,2370 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Despair&#39;s Horizon - A demon and a ghost</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="927412810038771713.html_Files/a_a82f66cbaf9572e715aef752d1954a13-F33DA.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Despair&#39;s Horizon</div>
+        <div class="preamble__entry">crystalline-caverns / A demon and a ghost</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/3d212f46c497f9a4d26fc555d24cc249-44E4D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea Senpai~</span>
+
+
+        <span class="chatlog__timestamp">2022-01-03 04:07:24Z</span>
+
+            <div class="chatlog__message " data-message-id="927412811494199307" id="message-927412811494199307" title="Message sent: 2022-01-03 04:07:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(e</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/0f2612b3a33c2becd4d417bc348e77b5-44316.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tamotsu Asa#0000" data-user-id="922298917775900743" style="">Tamotsu Asa</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-03 04:12:26Z</span>
+
+            <div class="chatlog__message " data-message-id="927414076563398706" id="message-927414076563398706" title="Message sent: 2022-01-03 04:12:26Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>There wasn&#39;t exactly a reason why she was here, per se.</em>
+
+<em>Something about this place confronted them. An empty, hallow, yet beautiful place, with its crystals glowing in the dark. It was calming, in a way. Blood could spill here, but for now, it didn&#39;t.</em>
+
+<em>Tamotsu sat down at a rock nearby to the koi pond. Nature was truly wonderful, wasn&#39;t it? The fishes moving around, swimming without a care in the world... it reminded him of his youth. The good old days... what he wouldn&#39;t give to be with</em> <strong>[CENSORED]</strong> <em>and</em> <strong>[CENSORED]</strong> <em>right now.</em>
+
+<em>But that couldn&#39;t happen, could it? No, she was here in this game now: this cursed, evil game. And yet another death had come. She wasn&#39;t really scared or frightened by the executions or deaths themselves - she&#39;s seen too much to care - but she still felt bad, and it reminded her of unpleasant times.</em>
+
+&quot;Oh, but I do wonder if this predicament will ever end...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/3d212f46c497f9a4d26fc555d24cc249-44E4D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea Senpai~</span>
+
+
+        <span class="chatlog__timestamp">2022-01-03 04:14:04Z</span>
+
+            <div class="chatlog__message " data-message-id="927414490000150558" id="message-927414490000150558" title="Message sent: 2022-01-03 04:14:04Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="&#128150; Shade &#128150;#7384">@Shade’s A Dargon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/c5f93d1d2899712003b2642b8680a76e-30FE3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Erina Normandy#0000" data-user-id="922298917775900743" style="">Erina Normandy</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-03 04:43:30Z</span>
+
+            <div class="chatlog__message " data-message-id="927421897245872169" id="message-927421897245872169" title="Message sent: 2022-01-03 04:43:30Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>…Well, here she was.</em>
+
+<em>It was a bit hard for the geologist to adjust with the reality of the situation. She was dead, and there was no way to really sugarcoat the situation. She had found herself in the crystalline caverns, where she will forever remain. She enjoyed the crystalline caverns, for it reminded her of a lot of things. The joys and accomplishments which came with her talent. However, it also reminded her of how she had essentially wasted her life in an endlessly growing expectation.</em>
+
+<em>She noticed the other sitting down by the koi pond. She walked around a few of the crystals and decided to sit down next to them. Something of note is when she walked over, it was almost as if there was a bit of an ashy trail which followed the geologist. However, much like the ghost herself, the trail would eventually disappear. She was partially unaware of whether Tamotsu would be able to see her, but would at least treat the situation like she did. As she walked over, she did overhear what they said beforehand. About whether this whole predicament would end or not but… whether the game would end or not would be meaningless to Erina. Her game had ended, and she had lost the killing game. She was now trapped in the caverns, and that was that. She had finally had the courage to sit down close to where Tamotsu was sitting, and looked over at them before looking down at the koi pond, once again not expecting Tamotsu to see her.</em>
+
+“I hope that you do not mind if I sit down here as well.” <em>She asked Tamotsu, although it sounded more as if she was talking to herself.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-01-03 04:43:34Z</span>
+
+            <div class="chatlog__message " data-message-id="927421910017519646" id="message-927421910017519646" title="Message sent: 2022-01-03 04:43:34Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Astrea#7171">@Astrea Senpai~</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927421956322627644" id="message-927421956322627644" title="Message sent: 2022-01-03 04:43:45Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Also yes Tamotsu can see her I should add</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927421981257760828" id="message-927421981257760828" title="Message sent: 2022-01-03 04:43:50Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(No invisible ghost</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/3d212f46c497f9a4d26fc555d24cc249-44E4D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea Senpai~</span>
+
+
+        <span class="chatlog__timestamp">2022-01-03 04:43:59Z</span>
+
+            <div class="chatlog__message " data-message-id="927422018285097011" id="message-927422018285097011" title="Message sent: 2022-01-03 04:43:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(sad</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927422069954723881" id="message-927422069954723881" title="Message sent: 2022-01-03 04:44:12Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(but finally, time to break the character limit! /maybe j</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-01-03 04:45:46Z</span>
+
+            <div class="chatlog__message " data-message-id="927422467700555856" id="message-927422467700555856" title="Message sent: 2022-01-03 04:45:46Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <img loading="lazy" class="emoji " alt="👀" title="eyes" src="https://twemoji.maxcdn.com/2/svg/1f440.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/0f2612b3a33c2becd4d417bc348e77b5-44316.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tamotsu Asa#0000" data-user-id="922298917775900743" style="">Tamotsu Asa</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-03 04:59:17Z</span>
+
+            <div class="chatlog__message " data-message-id="927425867880206387" id="message-927425867880206387" title="Message sent: 2022-01-03 04:59:17Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Tamotsu was initially too caught up in their thoughts to really say much. What exactly goes on in their mind, anyways? Words upon words are definitely thought out, yet they seem to change every time they&#39;re read. It almost feels like they&#39;re unsure of themselves, being an amalgamation of many different places and times.</em>
+
+<em>But that isn&#39;t relevant right now (or maybe it was?). What was important was Erina. Frankly, ghosts didn&#39;t surprise him too much; he never saw one before, but when you live on a supernatural island, are you REALLY going to question it? He jumped a little, before turning his attention on the ghost fully.</em>
+
+<em>Such a tragedy, Erina&#39;s death was. She was able to keep her emotions at bay, but the note that she made truly touched Tamotsu&#39;s heart. A truly noble goal, tainted with blood and gunpowder... not an uncommon corruption, now since she thought about it.</em>
+
+<em>But it&#39;s not like he knew Erina THAT well. In fact, he had mostly kept to himself throughout this whole thing. Friendships were a liability; they could end up backfiring at any time. Plus, he didn&#39;t WANT to get close to anyone; if he did that, well...</em>
+
+<em>...that&#39;s best left unanswered. It&#39;s in the past. EVERYTHING&#39;s in the past. The demon was sealed long ago. They&#39;re just your friendly lawyer, right? No need to worry about a sunsetted life.</em>
+
+&quot;Oh, but of course! I was unaware that ghosts need to sit... truly a peculiar situation!&quot;
+<em>But not the most peculiar.</em>
+&quot;I see ghosts exist on this island, but... this is truly a wonderful place to be if one <em>has</em> to be a ghost, correct? The caves here are rather beautiful... it does make me question how a location such as this was untouched for years, if my observations are correct...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927425877145419786" id="message-927425877145419786" title="Message sent: 2022-01-03 04:59:19Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>...what are they on about? That&#39;s unclear.</em>
+&quot;Oh, but this is the first time we are properly meeting, is it not? What an interesting and melancholy way of meeting... though you may know I am Tamotsu Asa, the Ultimate Lawyer. Of course... you do need not to introduce yourself.&quot;
+
+<em>A slight silence.</em>
+&quot;I do deeply apologize about your death. This game truly is cursed to all who are forced to participate in it...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/3d212f46c497f9a4d26fc555d24cc249-44E4D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea Senpai~</span>
+
+
+        <span class="chatlog__timestamp">2022-01-03 04:59:30Z</span>
+
+            <div class="chatlog__message " data-message-id="927425923484119081" id="message-927425923484119081" title="Message sent: 2022-01-03 04:59:30Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(broke it by like 100 characters lol</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927425945189617755" id="message-927425945189617755" title="Message sent: 2022-01-03 04:59:36Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="&#128150; Shade &#128150;#7384">@Shade’s A Dargon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/640cd2526a889f3a1ecaadae62311a58-FA2CC.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Despair&#39;s Horizon Bot#8265" data-user-id="861082089231482880" style="color: rgb(78,93,148)">Despair&#39;s Horizon Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-03 05:00:05Z</span>
+
+            <div class="chatlog__message " data-message-id="927426068804169748" id="message-927426068804169748" title="Message sent: 2022-01-03 05:00:05Z">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(217,44,67,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="Astrea#7171">@Astrea Senpai~</span> got <strong>1</strong> interaction!</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/c5f93d1d2899712003b2642b8680a76e-30FE3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Erina Normandy#0000" data-user-id="922298917775900743" style="">Erina Normandy</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-03 06:10:32Z</span>
+
+            <div class="chatlog__message " data-message-id="927443798588555284" id="message-927443798588555284" title="Message sent: 2022-01-03 06:10:32Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Erina was caught up in her own thoughts as well, in a way. The whole ‘being dead’ thing was complicated for the geologist. Of course, she wished she was still alive, and she wished she could go back to how things were, maybe with a change of heart. However, she also felt a bit of freedom as well. Freedom from the expectations of what it takes to truly be an ultimate. As grim as it may sound, death had given her a change of heart when it came to her outlook on life. It changed her perspective a bit, which can be recognized by anyone who read her note at the trial.</em>
+
+<em>She realized quickly that she should’ve been grateful for what she had, for now that it was gone, she would do anything for that chance again.</em>
+
+<em>She continued looking down at the koi pond, taking a much better look at the fish as they swam and swam in the pond. She let out a sigh, and then… she got a response from Tamotsu. She quickly snapped her attention back to the Lawyer, not entirely expecting a response. She pointed to herself, almost as if questioning if Tamotsu can see her or not. Then, after finally realizing that yes, Erina was not making things up and was now in a conversation with the lawyer, she responded.</em>
+
+“I do not see how sitting down is peculiar. Although I cannot say much on the behalf of all… ghosts.” <em>She responded, although she still seemed a bit hesitant with saying “ghost.” Probably due to the slight denial of being dead.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927443816540168243" id="message-927443816540168243" title="Message sent: 2022-01-03 06:10:36Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She heard Tamotsu’s question regarding how it seemed this was a nice place to rest if one was to be a ghost. The perfect crystals towering from the ground, the calm, yet unsettling aura which surrounds the cave, and the calm waters of the koi pond could result in perhaps one of the calmest places on the island. She looked around the caves once again, only realizing how fitting it was she would remain here. The place which perfectly aligns with her ultimate, and a place she can safely assume she was comfortable.</em>
+
+“The caverns are rather pleasant. Seeing crystals the size of these ones is quite a rare occurrence. Although I am not sure myself how a place such as this remained untouched for as long as it did, but perhaps it is for the better that it remained that way. These caverns are a natural beauty in my eyes.”
+
+<em>Tamotsu introduced themself, although it seemed that Erina would not need an introduction. The two could’ve met in any way on the island, but it sadly did not happen until death took one of them. All that remained from what could’ve been an introduction was a long silence. Nothing but the long silence until eventually, Tamotsu broke the silence. It truly was a melancholy moment. She took a moment to collect her words before she spoke to Tamotsu.</em>
+
+“This game is a curse to all of us, both the living and the dead. I suffered the consequences of my actions, and now I am here. My fate was set in stone. Although, this game has also taught me something, as silly as that may sound.” <em>She started. When she spoke the last sentence, she sounded almost as if she was reminiscing on some trivial small memories.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-01-03 06:10:48Z</span>
+
+            <div class="chatlog__message " data-message-id="927443864195850261" id="message-927443864195850261" title="Message sent: 2022-01-03 06:10:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Astrea#7171">@Astrea Senpai~</span> There you go</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/3d212f46c497f9a4d26fc555d24cc249-44E4D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea Senpai~</span>
+
+
+        <span class="chatlog__timestamp">2022-01-03 06:12:48Z</span>
+
+            <div class="chatlog__message " data-message-id="927444366639902771" id="message-927444366639902771" title="Message sent: 2022-01-03 06:12:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(&quot;set in stone&quot; huh</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927444462215516220" id="message-927444462215516220" title="Message sent: 2022-01-03 06:13:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(anyways no way i can respond to this this late in the night, ill respond in the morning!</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-01-03 06:17:54Z</span>
+
+            <div class="chatlog__message " data-message-id="927445652726775828" id="message-927445652726775828" title="Message sent: 2022-01-03 06:17:54Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(All good</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927445694950817793" id="message-927445694950817793" title="Message sent: 2022-01-03 06:18:04Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Also the pun was not intended, I’m half awake</span>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="Fukt">
+                                <img class="emoji emoji--small" alt="Fukt" src="927412810038771713.html_Files/755497698563457024-D9F52.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/c5f93d1d2899712003b2642b8680a76e-30FE3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Erina Normandy#0000" data-user-id="922298917775900743" style="">Erina Normandy</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-03 06:19:08Z</span>
+
+            <div class="chatlog__message " data-message-id="927445962274775070" id="message-927445962274775070" title="Message sent: 2022-01-03 06:19:08Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Come on-</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/3d212f46c497f9a4d26fc555d24cc249-44E4D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea Senpai~</span>
+
+
+        <span class="chatlog__timestamp">2022-01-03 17:24:13Z</span>
+
+            <div class="chatlog__message " data-message-id="927613334222684210" id="message-927613334222684210" title="Message sent: 2022-01-03 17:24:13Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(oh dear
+(expect my response to be shorter just due to how i write</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-01-03 17:39:33Z</span>
+
+            <div class="chatlog__message " data-message-id="927617195889033216" id="message-927617195889033216" title="Message sent: 2022-01-03 17:39:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(All good!</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927617210720075808" id="message-927617210720075808" title="Message sent: 2022-01-03 17:39:37Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(I’ll match the length</span>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="927412810038771713.html_Files/1f44d-B3F5F.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/0f2612b3a33c2becd4d417bc348e77b5-44316.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tamotsu Asa#0000" data-user-id="922298917775900743" style="">Tamotsu Asa</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-03 17:39:54Z</span>
+
+            <div class="chatlog__message " data-message-id="927617282891456553" id="message-927617282891456553" title="Message sent: 2022-01-03 17:39:54Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>It&#39;s not like Tamotsu was particularly surprised by a ghost sitting down, in a way - honestly, it&#39;s a bit hard to explain their thought process, if you haven&#39;t gotten that already. It makes you wonder if they&#39;re even humans at times. Perhaps they aren&#39;t.</em>
+
+<em>But regardless, Tamotsu almost did chuckle at Erina pointing at herself. It was something straight out of a show, he thought, though it&#39;s not like it&#39;s a ghost.</em> &quot;Well, miss, if you do not mind me saying, I would expect a ghost would have the same time standing as they do sitting! Both would require floating, after all.&quot;
+<em>Well, if the ghosts worked that way. He WAS taught a couple of weird things about them back in the day - maybe sitting down took less effort? Who knows, how do ghosts even work? Is it like how they said, or...</em>
+
+<em>Pointless, pointless.</em>
+
+<em>A natural beauty...</em> &quot;Such a cruel thing humans can do; yes, perhaps it is better they remained untouched.&quot; <em>It certainly would have been exciting learning about this on a more natural vacation; perhaps, if their tour guide did not die in the way they did, they could have?</em> &quot;But they typically do not grow this big? I have only seen caves like this on TV... I would not know myself! Regardless, this &#39;freak&#39; of nature must have had an interesting formation, if I do say so myself...&quot; <em>Not like she knows. She&#39;s sitting next to the rock expert, but she isn&#39;t one herself. Heck, she doesn&#39;t know everything about law.</em>
+
+<em>Tamotsu liked silent moments, honestly. It helped him think when his mind was tearing him from the inside, and while he was relatively fine (he recovered rather quickly from the trial), it still was nice. He didn&#39;t see it as melancholy - more so reflective.</em>
+<em>Though, honestly, he would prefer not having to look at his own reflection at times. The hideous thing... how did it get here in the first place?</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927617292529987616" id="message-927617292529987616" title="Message sent: 2022-01-03 17:39:56Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Pointless, pointless.</em>
+
+&quot;Consequences of your actions... perhaps you may, but...&quot; <em>Hmmm. Tamotsu didn&#39;t like assigning guilt like that. They preferred something that has more nuisance.</em> &quot;...I do believe the bear had a large part of it, too. John and you would never have met in those unfortunate circumstances if it were not for that motive, correct? But perhaps fate did have a cruel mind that day...&quot;
+<em>Tamotsu chuckled, but it appeared to be a chuckle of remorse or sympathy, if that made sense. What can you do now except laugh it off?</em>
+&quot;And taught you something? If you so desire, what exactly did it teach you?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/c5f93d1d2899712003b2642b8680a76e-30FE3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Erina Normandy#0000" data-user-id="922298917775900743" style="">Erina Normandy</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-03 23:28:14Z</span>
+
+            <div class="chatlog__message " data-message-id="927704944079937566" id="message-927704944079937566" title="Message sent: 2022-01-03 23:28:14Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>So the chuckle in response to Erina’s confusion definitely sealed the deal whether she was visible or not. She seemed a bit relieved that she was apparently visible to Tamotsu. After all, she would be quite lonely otherwise if she would be stuck watching everyone who entered and exited the caverns, never noticing her. So the fact she was having a conversation was quite nice. Tamotsu mentioned a bit about how they expected ghosts to be able to float around, and Erina never really thought about that. Since she was dead, could she float around? Something to find out later, it would appear.</em>
+
+“Floating?” <em>She questioned herself for a moment.</em> “I am not entirely sure if I can ‘float’ around or not, to be perfectly honest. I have not been a ghost for long.” <em>She pointed out.</em>
+
+<em>She then let Tamotsu speak a bit, and noted how big the crystals in the cavern are and how humanity tends to destroy everything it comes across. Of course, the geologist couldn’t help but agree with how this place would be much better left untouched. She gave a nod of agreement towards that comment. And towards the question, she gave a response of her own.</em>
+
+“Crystals tend to not grow to this size. It is a possibility, just very unlikely. The formations are quite peculiar, which is something I noted when I first stumbled upon the caverns. Although I never had the chance to research a cavern such as the one we are in.”
+
+<em>The silence definitely lent itself towards reflection. A Moment of silence can lend itself to an eternity of thinking. However, the silence eventually lends itself to vanish like a phantom, and the conversation continues. Tamotsu discussed how there were several effects which went into her, and John’s demise. The motive, for one, definitely contributed.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927704959888273448" id="message-927704959888273448" title="Message sent: 2022-01-03 23:28:18Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“The motive was definitely a contributing factor. If it wasn’t for the motive, the punishment, or the reminder it leaves of f-“ <em>She stopped herself for a moment as she tried to say the last word. However, the word, the meaning behind the word, it hurt. It hurt her, and it scared her down to her very core. And now, she was left to wait, think, and eventually drown in these very realizations.</em>
+
+“failure…” <em>She finished in a hushed tone.</em>
+
+<em>Failure with her plan in the volcanic cavity, Failure to survive, and Failure with herself.</em>
+
+<em>When Tamotsu asked what Erina had exactly learned, she went silent to think of how to word what she wanted to say.</em> (Although something to keep in mind is that she is unaware of the fact the note she wrote was used as a truth bullet)
+
+“I have learned to not take things for granted. I should have taken the time to speak to the others before, well…” <em>She paused for a moment. She then slightly moved the conversation away from her death.</em> “I had isolated myself for so long, I forgot how pleasant it was to simply talk. Talk less about the things I was constantly focused on, and more so on simple topics.” <em>She chuckled to herself for that, as she had realized how blind she had been. She was definitely using Tamotsu as a bit of a soundboard for her thoughts, which was rare coming from her. She was someone who always kept her emotions and thoughts to herself and yet, here she was, finally showing her true colors in this self reflection.</em>
+
+“But I can only assume you didn’t come here to hear about my ramblings.” <em>She stated, after realizing just what she was exactly doing. Although getting that off of her chest was nice, it was not polite of her to ramble like she did to someone whom she had just met.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-01-03 23:28:27Z</span>
+
+            <div class="chatlog__message " data-message-id="927704998631051264" id="message-927704998631051264" title="Message sent: 2022-01-03 23:28:27Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Astrea#7171">@Astrea Senpai~</span> sorry that took so long!</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/3d212f46c497f9a4d26fc555d24cc249-44E4D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea Senpai~</span>
+
+
+        <span class="chatlog__timestamp">2022-01-04 00:44:08Z</span>
+
+            <div class="chatlog__message " data-message-id="927724043447201862" id="message-927724043447201862" title="Message sent: 2022-01-04 00:44:08Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(fair enough!
+(also sorry i got a new phone and am <em>gushing</em> over how customizable it is it might take me a long while</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-01-04 00:58:45Z</span>
+
+            <div class="chatlog__message " data-message-id="927727721281359884" id="message-927727721281359884" title="Message sent: 2022-01-04 00:58:45Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(All good! Take all the time you need and have fun customizing your phone! <img loading="lazy" class="emoji " alt="wholesome" title="wholesome" src="https://cdn.discordapp.com/emojis/737438620683730954.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/0f2612b3a33c2becd4d417bc348e77b5-44316.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tamotsu Asa#0000" data-user-id="922298917775900743" style="">Tamotsu Asa</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-04 03:16:13Z</span>
+
+            <div class="chatlog__message " data-message-id="927762316433444894" id="message-927762316433444894" title="Message sent: 2022-01-04 03:16:13Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Well, could you not find that out right now? It would be simple!&quot; <em>It&#39;s literally an open cave. There is plenty of room to fly around. And besides for the koi fish and Tamotsu (neither of which care), no one was watching.</em>
+
+<em>Good to note that Erina was an environmentalist (was that really a surprise?). It was kind of weird that Tamotsu cared about the environment, especially considering he worked for an oil company, out all of things, but hey, you can hate a company while still serving for it, right?</em>
+
+&quot;How peculiar... if only you could. I am sure this cave must have many secrets begging to be discovered. I do hope we do find an answer to how this place formed one day... would it not be wonderful if we could learn all about this island&#39;s secrets? It would help us a lo— oh, do mind me, I went off topic!&quot;
+
+<em>But it would be nice. Escape never escaped her mind, and the moment of silence really just showed that off again. It seemed hopeless now. They should have been saved now, right? There was no doubt about that. It&#39;s been more than a month since they were saved...</em>
+
+&quot;...failure. Such a cruel word to use. I hope you do not mind, but I do believe it is not wise to use such absolute words; it never seems to do anyone good, especially in a case.&quot; <em>A light chuckle was heard.</em> &quot;You did save your house from further punishment. You stopped the motive. Even if it wasn&#39;t through the way you wished to, thanks to your actions, we are safe for now.&quot;
+
+<em>Could Tamotsu ever be that selfless? The note made them think about that sometimes. The answer was pretty much a definitive no, but still. Sometimes, they wished they could be that selfless. It certainly would have saved them a lot of pain. but what can you do when the environment you&#39;re raised in forces to you worry about yourself the most?</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927762325182771311" id="message-927762325182771311" title="Message sent: 2022-01-04 03:16:15Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh yes, it is wonderful to talk! Isolation truly is a horrible thing, I hear; it is something which the mind can grow accustomed to, unable to see a better side to life unless forcefully shoved out of it. I may be biased as a lawyer, but I believe it is everyone&#39;s right to a conversation!&quot;
+
+<em>...huh.</em>
+
+&quot;Though I did not come here for much! I only came to reflect, and it does seem like I can still do that... you may go on if you wish!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/3d212f46c497f9a4d26fc555d24cc249-44E4D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea Senpai~</span>
+
+
+        <span class="chatlog__timestamp">2022-01-04 03:16:20Z</span>
+
+            <div class="chatlog__message " data-message-id="927762348012363837" id="message-927762348012363837" title="Message sent: 2022-01-04 03:16:20Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="&#128150; Shade &#128150;#7384">@Shade’s A Dargon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927762431286050877" id="message-927762431286050877" title="Message sent: 2022-01-04 03:16:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(probably going to be asleep when you send the response, will send my response tomorrow!</span>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="927412810038771713.html_Files/1f44d-B3F5F.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/c5f93d1d2899712003b2642b8680a76e-30FE3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Erina Normandy#0000" data-user-id="922298917775900743" style="">Erina Normandy</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-04 12:58:08Z</span>
+
+            <div class="chatlog__message " data-message-id="927908762130477087" id="message-927908762130477087" title="Message sent: 2022-01-04 12:58:08Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Well, it was an open cave. Of course, to the geologist, she still found the idea of doing ghostly things quite silly. Denial at its finest. Although she still found the idea a bit odd, it still piqued her curiosity on whether she would be able to float around or not. It would be pretty cool if she was able to, but who knew.</em>
+
+“I suppose I could give it an attempt, although I cannot guarantee any sort of success.” <em>She responded.</em>
+
+<em>Tamotsu then went and started discussing the caverns and how there were probably many secrets hiding within them. With the secrets comes information, and with information comes opportunity. Opportunity which may benefit the living in their quest for escape. The island seemed to hold many secrets from what the geologist knew about. From the spear in the lake to the crystalline caverns to even the mysterious crown in the war house, and even more mysteries the geologist will no longer be able to explore. Although the off topic comment rang familiar to the geologist, as someone who while alive always went off topic to rocks and minerals.</em>
+
+“There seem to be quite a few mysteries regarding this island. I would hope to learn more about them, though I am confined to these caverns. Although I may be able to benefit in some way here. Perhaps I may be able to put my talent to some use.” <em>She suggested. The geologist is trapped within the crystalline caverns. She could hopefully be of some use, although every attempt to grab something ending in nothing but phasing through said object may prove to be a bit difficult.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927908821614084146" id="message-927908821614084146" title="Message sent: 2022-01-04 12:58:22Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She heard Tamotsu tell her not to use words such as failure, for it never brought any benefit. Although Erina could still not shake off the looming failure, Tamotsu was correct. Failure was, on most occasions, used as a harsh word. And Erina, being someone who strived to be perfect, used the word more than what would be needed. While she was selfless with her intentions, though, she was still selfish with her own actions. Although she may have had a hand in stopping this motive, it would make sense the bear would simply start another one, making her and John’s death seemingly meaningless. Although hearing Tamotsu say she did not exactly fail in protecting the house of war from further punishments definitely was good to hear, seeing as that was her main intention.</em>
+
+<em>Although speaking of the isolation, she couldn’t help but feel the feeling overwhelm her again. Isolation was something she had grown accustomed to, if it was not obvious. Shutting herself out from life outside of geology work put a toll on her; a toll which only revealed itself with time.</em> 
+
+“Isolation had definitely taken its toll, something I did not see until arriving here. I found myself talking more. Mostly about Geology, but that is beside the point.” <em>She gave a bit of a chuckle to that statement.</em> “When I was just having a conversation for the sake of simply talking, it was then I realized how used I was to isolation. It still feels a bit foreign, but I have gotten a bit more used to it.” <em>She commented, seeming a bit proud of herself for that. She may have only realized it in death, but she most definitely changed for the better during the short time they have been on the island.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927908844770820126" id="message-927908844770820126" title="Message sent: 2022-01-04 12:58:28Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I believe I have already gotten enough off of my chest. Apologies for suddenly dropping all of that on you.” <em>She apologized. Even though this was the first time she had spoken to Tamotsu, she was still grateful they even considered listening. Even in her tone, it was easily recognizable she seemed less on edge with conversation as her tone shifted to be a bit more casual. The crystalline caverns had become a bit of a lonely place when no one was around, so moments to talk such as this would become a bit rare.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-01-04 12:58:33Z</span>
+
+            <div class="chatlog__message " data-message-id="927908864916078592" id="message-927908864916078592" title="Message sent: 2022-01-04 12:58:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Astrea#7171">@Astrea Senpai~</span> It may be a little before I can respond cause school. Also sorry it’s a bit funky in areas I both typed bits at hours I should not have been up at lol</span>
+
+                                <span class="chatlog__edited-timestamp" title="2022-01-04 13:21:29Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927909068465647726" id="message-927909068465647726" title="Message sent: 2022-01-04 12:59:21Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Although silly question cause I know this varies with servers {and cause it was mentioned in this rp} would Ghosts be able to float? Sorry for the wacky question</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/3d212f46c497f9a4d26fc555d24cc249-44E4D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea Senpai~</span>
+
+
+        <span class="chatlog__timestamp">2022-01-04 13:37:25Z</span>
+
+            <div class="chatlog__message " data-message-id="927918649191321610" id="message-927918649191321610" title="Message sent: 2022-01-04 13:37:25Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(also currently at school, dw!
+(also, ghosts <em>can</em> float</span>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="zoom_eyes">
+                                <img class="emoji emoji--small" alt="zoom_eyes" src="927412810038771713.html_Files/867221038688370708-636D2.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/0f2612b3a33c2becd4d417bc348e77b5-44316.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tamotsu Asa#0000" data-user-id="922298917775900743" style="">Tamotsu Asa</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-04 23:29:46Z</span>
+
+            <div class="chatlog__message " data-message-id="928067718467420161" id="message-928067718467420161" title="Message sent: 2022-01-04 23:29:46Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Well, there is no harm in trying! At most, you will simply not be able to do so.&quot; <em>And yeah, Tamotsu wouldn&#39;t care.</em>
+
+&quot;It would be wonderful if you could investigate this place, yes! I hope you do not mind, but if you are stuck here, I do hope you may spare some spare time to investigating this place... it may seem a bit selfish of me, but I still do wish to find some way off of this island, and any information would be of help!&quot;
+
+<em>Would Tamotsu particularly care about making sure everyone got off the island with them? That&#39;s hard to say, though it&#39;s definitely possible to say that it would be nice if everyone could come along. They doubted this place would have much - why would it? - but they knew giving up wasn&#39;t an option, as much as they didn&#39;t.</em>
+
+<em>The silence that followed was telling to him. Perhaps there isn&#39;t much to be said about it. He knew, as a random stranger, that changing her mind about that was impossible, and he accepted that quickly. He just hoped that she took some of it to mind; he wouldn&#39;t want her to be unhappy in her afterlife.</em>
+<em>After all, she&#39;s free.</em>
+<em>...it might have been a bit odd, but Tamotsu simply nodded at Erina in the silence to display said understanding.</em>
+
+&quot;Of course, it <em>does</em> take time to get used to these things, but I am glad you enjoyed it! I do hope you continue it, even while you are in this state. I am sure there must be people higher up you may talk to... though I suppose I cannot know for sure. I would be contradictory myself if I said I believed in a religion a bit before going to this place, but with ghosts, I assume I am wrong about my belief, correct?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="928067728428908555" id="message-928067728428908555" title="Message sent: 2022-01-04 23:29:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>It was nice knowing there were multiple religions this could be. The world is truly wonderful with how many differing beliefs can all exist in it, though not all are safe, of course. He just hoped whatever religion was right according to this place was a relatively calm one...</em>
+
+<em>Oh, wait, why are we talking about religion? Pointless, pointless...</em>
+
+&quot;It is fine! Once again, I was not planning to do much, and I have plenty of time to spare. You are not paying hourly for my services, correct?&quot; <em>They laughed at that thought. They wouldn&#39;t charge anyone here, anyways.</em> &quot;I sense you like this talk; once again, if you wish to talk, please do!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/3d212f46c497f9a4d26fc555d24cc249-44E4D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea Senpai~</span>
+
+
+        <span class="chatlog__timestamp">2022-01-04 23:31:26Z</span>
+
+            <div class="chatlog__message " data-message-id="928068137650360330" id="message-928068137650360330" title="Message sent: 2022-01-04 23:31:26Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="&#128150; Shade &#128150;#7384">@Shade’s A Dargon</span> 
+(sorry for taking so long! i was just busy all day and my parents took up more of my time after school</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-01-05 00:16:51Z</span>
+
+            <div class="chatlog__message " data-message-id="928079565396533259" id="message-928079565396533259" title="Message sent: 2022-01-05 00:16:51Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(it’s all good! <img loading="lazy" class="emoji " alt="wholesome" title="wholesome" src="https://cdn.discordapp.com/emojis/737438620683730954.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/c5f93d1d2899712003b2642b8680a76e-30FE3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Erina Normandy#0000" data-user-id="922298917775900743" style="">Erina Normandy</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2022-01-05 02:19:45Z</span>
+
+            <div class="chatlog__message " data-message-id="928110497050538066" id="message-928110497050538066" title="Message sent: 2022-01-05 02:19:45Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She decided she might as well try. Tamotsu questioning whether it was true if a ghost could float or not had piqued her own interest as well. So, she got up from where she was sitting and walked out away from the pond a bit. Although, she herself was not certain on how this could work, if she even could. Since floating involved moving, well, up, she decided the best plan of approach would be to jump. It might have been a silly way to test, but it was still a viable option. So, she took a moment before actually making the jump. <s>(And by that I mean I went and rolled a D20 on my desk to see what happens)</s> Then, she finally made the jump. She waited a second, expecting to hit the ground. But, it seemed she must have done something right, for she did not hit the ground. Now, in ghostly fashion, she was floating. It took her a moment before fully realizing that yes, she was no longer touching the ground. She looked over at Tamotsu while still in the air, and her reaction showed she was quite surprised. <s>Thank the fact I somehow rolled a nat 20 for this to work</s></em>
+
+“It appears we have our answer. I… wasn’t expecting this to work.” <em>She simply replied, although it seemed she was in a bit of disbelief.</em>
+
+<em>She finally returned to the ground again after a bit of struggling. That was surely an event, and definitely something the Geologist would have to get used to. At least the two questions got answered regarding the floating.</em>
+
+<em>She nodded in response to Tamotsu’s request for her to keep a lookout in the caverns. Of course, it would only make sense for the geologist to have her own questions regarding the caverns. And since it would seem her ghostly self was stuck in here, at least she could make herself useful towards those who were still alive.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="928110562452316211" id="message-928110562452316211" title="Message sent: 2022-01-05 02:20:01Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Of course. I can certainly take a bit of time to investigate. There may be information that could be of use, after all.” <em>She commented. She might have been nothing but a ghost, but at least she was still able to contribute. She was the ultimate geologist, after all. Researching caverns was just another factor in her daily life.</em>
+
+<em>The silence most certainly spoke louder than any words could. While some actions would be irreversible, she was still free. The thorny vines of her past loneliness had ultimately dragged her down, but now they couldn’t really touch her. It was a harsh cost, but she truly felt free. Or, at least free from whatever had been holding her back before coming to the island. Although change cannot be immediate, it can definitely come. It will simply take time. But Erina would definitely take Tamotsu’s words into consideration.</em>
+
+<em>She listened to Tamotsu discuss on whether there was any sort of higher being in which she could talk to. Religion was… something she never really thought about. Although because she was a ghost, there had to be some sort of higher up force, right? That was something never really thought of.</em>
+
+“I am not sure about that myself, Tamotsu. I never really had thought about what would happen after we die, although I suppose me being here can help with figuring that out.”
+
+<em>It wouldn’t take a genius to know that Erina did feel a bit of relief after getting that off of her chest. She was never really one to talk about her emotions, so this was definitely a change for the geologist. Slowly showing a bit of her true emotions, and not always being the calm collected Ultimate Geologist she always assumed the world wanted her to be.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="928110607440412745" id="message-928110607440412745" title="Message sent: 2022-01-05 02:20:12Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I believe it may be a bit difficult to pay for hourly services with me in my current state.” <em>She tried to laugh her comment off, but being dead still stung. Still must be a touchy subject. She had tried to get herself to float in the air a bit, and succeeded, although not by much. Just an inch or two, if at all.</em>
+
+“…I did enjoy this talk. I believe I really needed to have this talk. I never really spoke this much, unless it was to my best friend.” <em>She must’ve been referring to the friend mentioned in her note. She looked over at one of the Crystals and sighed.</em>
+
+“I hope he is alright.” <em>She mumbled under her breath.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-01-05 02:20:30Z</span>
+
+            <div class="chatlog__message " data-message-id="928110684485603439" id="message-928110684485603439" title="Message sent: 2022-01-05 02:20:30Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Astrea#7171">@Astrea Senpai~</span> 
+(I got stupidly lucky with rolls, haha</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="928110830862610443" id="message-928110830862610443" title="Message sent: 2022-01-05 02:21:05Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Nat 20</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/3d212f46c497f9a4d26fc555d24cc249-44E4D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea Senpai~</span>
+
+
+        <span class="chatlog__timestamp">2022-01-05 04:10:17Z</span>
+
+            <div class="chatlog__message " data-message-id="928138313028739133" id="message-928138313028739133" title="Message sent: 2022-01-05 04:10:17Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <img loading="lazy" class="emoji " alt="🎉" title="tada" src="https://twemoji.maxcdn.com/2/svg/1f389.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="928138598040105021" id="message-928138598040105021" title="Message sent: 2022-01-05 04:11:25Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(anyways, i ended up getting busy trying to compress a gif (if you know gifs, you know that ended <em>poorly</em> and i gave up) and then doing quick adjustments to <span class="mention" title="Despair&#39;s Horizon Bot#8265">@Astrea’s Love Child || [d!]</span>, and now i gotta sleep
+(ill reply tomorrow! though i might become even slower since i&#39;ll probably try doing another rp with someone else too</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-01-05 04:25:17Z</span>
+
+            <div class="chatlog__message " data-message-id="928142088338558987" id="message-928142088338558987" title="Message sent: 2022-01-05 04:25:17Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(All good! Take all the time you need <img loading="lazy" class="emoji " alt="wholesome" title="wholesome" src="https://cdn.discordapp.com/emojis/737438620683730954.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/3d212f46c497f9a4d26fc555d24cc249-44E4D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea Senpai~</span>
+
+
+        <span class="chatlog__timestamp">2022-01-05 22:46:36Z</span>
+
+            <div class="chatlog__message " data-message-id="928419242649460747" id="message-928419242649460747" title="Message sent: 2022-01-05 22:46:36Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(sorry, feeling more tired than usual today - ill respond either later tonight or tomorrow</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-01-05 23:03:10Z</span>
+
+            <div class="chatlog__message " data-message-id="928423410390937650" id="message-928423410390937650" title="Message sent: 2022-01-05 23:03:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(All good! Like I said take all the time you need. Taking care of yourself is far more important than the rp <img loading="lazy" class="emoji " alt="💖" title="sparkling_heart" src="https://twemoji.maxcdn.com/2/svg/1f496.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-01-06 23:09:04Z</span>
+
+            <div class="chatlog__message " data-message-id="928787283279241238" id="message-928787283279241238" title="Message sent: 2022-01-06 23:09:04Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Gonna unarchive this real fast if that is okey</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/3d212f46c497f9a4d26fc555d24cc249-44E4D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea Senpai~</span>
+
+
+        <span class="chatlog__timestamp">2022-01-06 23:09:59Z</span>
+
+            <div class="chatlog__message " data-message-id="928787512850276362" id="message-928787512850276362" title="Message sent: 2022-01-06 23:09:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(currently facing a slight headache and watching the event, ill try responding tonight though!</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-01-06 23:10:47Z</span>
+
+            <div class="chatlog__message " data-message-id="928787716588576778" id="message-928787716588576778" title="Message sent: 2022-01-06 23:10:47Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Take all the time you need! Don’t pressure yourself to respond if it’s too much! /gen</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/3d212f46c497f9a4d26fc555d24cc249-44E4D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea Senpai~</span>
+
+
+        <span class="chatlog__timestamp">2022-01-07 01:29:24Z</span>
+
+            <div class="chatlog__message " data-message-id="928822599084036096" id="message-928822599084036096" title="Message sent: 2022-01-07 01:29:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(sorry, can we put this either on indefinite pause or just cancel it altogether? i sadly dont have the energy to lit rp rn :(</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="927412810038771713.html_Files/339bfab704f02e37cadac7f9af242159-BC3FD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#128150; Shade &#128150;#7384" data-user-id="478930314253565972" style="color: rgb(177,23,23)">Shade’s A Dargon</span>
+
+
+        <span class="chatlog__timestamp">2022-01-07 01:31:51Z</span>
+
+            <div class="chatlog__message " data-message-id="928823217274093588" id="message-928823217274093588" title="Message sent: 2022-01-07 01:31:51Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Of course! Whatever is easiest for you</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 62 message(s)</div>
+</div>
+
+</body>
+
+</html>

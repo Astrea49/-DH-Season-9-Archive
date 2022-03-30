@@ -18,5 +18,5 @@ jobs:
       # Auto-commit to repository
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Minify source code
+          commit_message: 'chore: minify source code'
           branch: ${{ github.ref }}

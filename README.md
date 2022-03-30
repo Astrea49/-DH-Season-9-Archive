@@ -10,6 +10,7 @@ All Categories:
 * [Jungle](https://astrea49.github.io/DH-Season-9-Archive/jungle/jungle)
 * [Caverns](https://astrea49.github.io/DH-Season-9-Archive/caverns/caverns)
 * [The Palace](https://astrea49.github.io/DH-Season-9-Archive/palace/palace)
+* [Epilogue](https://astrea49.github.io/DH-Season-9-Archive/epilogue/epilogue)
 * [??? Tower (Chapter 3 Mini-Event)](https://astrea49.github.io/DH-Season-9-Archive/tower/tower)
 * [Chapter 4 Motive Simulations](https://astrea49.github.io/DH-Season-9-Archive/ch4motive/ch4motive)
 * [Chapter 5 Event Location](https://astrea49.github.io/DH-Season-9-Archive/ch5event/ch5event)

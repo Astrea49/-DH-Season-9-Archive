@@ -5,13 +5,13 @@
 </p>
 
 All Categories:
-* [Prologue](https://astrea49.github.io/DH-Season-9-Archive/prologue/prologue)
-* [Dorms](https://astrea49.github.io/DH-Season-9-Archive/dorms/dorms)
-* [Jungle](https://astrea49.github.io/DH-Season-9-Archive/jungle/jungle)
-* [Caverns](https://astrea49.github.io/DH-Season-9-Archive/caverns/caverns)
-* [The Palace](https://astrea49.github.io/DH-Season-9-Archive/palace/palace)
-* [Epilogue](https://astrea49.github.io/DH-Season-9-Archive/epilogue/epilogue)
-* [??? Tower (Chapter 3 Mini-Event)](https://astrea49.github.io/DH-Season-9-Archive/tower/tower)
-* [Chapter 4 Motive Simulations](https://astrea49.github.io/DH-Season-9-Archive/ch4motive/ch4motive)
-* [Chapter 5 Event Location](https://astrea49.github.io/DH-Season-9-Archive/ch5event/ch5event)
-* [Diaries](https://astrea49.github.io/DH-Season-9-Archive/diaries/diaries)
+* [Prologue](https://astreatss.github.io/DH-Season-9-Archive/prologue/prologue)
+* [Dorms](https://astreatss.github.io/DH-Season-9-Archive/dorms/dorms)
+* [Jungle](https://astreatss.github.io/DH-Season-9-Archive/jungle/jungle)
+* [Caverns](https://astreatss.github.io/DH-Season-9-Archive/caverns/caverns)
+* [The Palace](https://astreatss.github.io/DH-Season-9-Archive/palace/palace)
+* [Epilogue](https://astreatss.github.io/DH-Season-9-Archive/epilogue/epilogue)
+* [??? Tower (Chapter 3 Mini-Event)](https://astreatss.github.io/DH-Season-9-Archive/tower/tower)
+* [Chapter 4 Motive Simulations](https://astreatss.github.io/DH-Season-9-Archive/ch4motive/ch4motive)
+* [Chapter 5 Event Location](https://astreatss.github.io/DH-Season-9-Archive/ch5event/ch5event)
+* [Diaries](https://astreatss.github.io/DH-Season-9-Archive/diaries/diaries)
